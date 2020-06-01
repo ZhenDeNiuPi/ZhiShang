@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>ZhiShang</display-name>
+  <filter>
+        <filter-name>jfinal</filter-name>
+        <filter-class>com.jfinal.core.JFinalFilter</filter-class>
+        <init-param>
+            <param-name>configClass</param-name>
+            <param-value>com.fire.engine.EnginStart</param-value>
+        </init-param>
+    </filter>
+	<listener>
+	
+		<listener-class>com.fire.filter.SessionListener</listener-class>
+	
+	</listener>
+    <filter-mapping>
+        <filter-name>jfinal</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+   	<filter>
+    	<filter-name>Set Character Encoding</filter-name>
+    	<filter-class>com.fire.filter.SetCharacterEncodingFilter</filter-class>
+    	<init-param>
+      		<param-name>encoding</param-name>
+      		<param-value>UTF-8</param-value>
+    	</init-param>
+  	</filter>
+  	<!-- Example filter mapping to apply the "Set Character Encoding" filter
+		to *all* requests processed by this web application -->
+  	<filter-mapping>
+    	<filter-name>Set Character Encoding</filter-name>
+    	<url-pattern>/*</url-pattern>
+ 	</filter-mapping>
+  	<filter-mapping>
+    	<filter-name>Set Character Encoding</filter-name>
+    	<url-pattern>*.html</url-pattern>
+  	</filter-mapping>
+  	
+  	<!-- Define the pushlet servlet -->
+<!--   	<servlet>
+		<servlet-name>pushlet</servlet-name>
+		<servlet-class>nl.justobjects.pushlet.servlet.Pushlet</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+	Define the Servlet Mappings.
+	The pushlet
+	<servlet-mapping>
+		<servlet-name>pushlet</servlet-name>
+		<url-pattern>/pushlet.srv</url-pattern>
+	</servlet-mapping> -->
+	<security-constraint>  
+   <web-resource-collection>  
+      <url-pattern>/*</url-pattern>  
+      <http-method>PUT</http-method>  
+<http-method>DELETE</http-method>  
+<http-method>HEAD</http-method>  
+<http-method>OPTIONS</http-method>  
+<http-method>TRACE</http-method>  
+   </web-resource-collection>  
+   <auth-constraint>  
+   </auth-constraint>  
+ </security-constraint>  
+ <login-config>  
+   <auth-method>BASIC</auth-method>  
+ </login-config>
+</web-app>

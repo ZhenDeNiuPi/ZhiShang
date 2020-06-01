@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<title>基金助手官网</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="css/bootstrap-dialog.css" rel="stylesheet">
+    <script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dialog.js"></script>
+    <script type="text/javascript" src="js/properties.js"></script>
+    <script type="text/javascript" src="js/globalAjax.js"></script>
+  </head>
+  <body style="width:95%">
+	<div style="margin-top:50px">
+		<form id="searchForm" action="" class="form-horizontal" role="form">
+		  <div class="form-group">
+		    <label for="paytype" class="col-sm-2 control-label" style="">支付方式</label>
+		    <div class="col-sm-3">
+		      <select class = "form-control" id="paytype" name="paytype" onchange="getQr()">
+				<option value=0>支付宝</option>	
+		      </select>
+		    </div>
+		    <label for="days" class="col-sm-2 control-label">续费天数</label>
+		    <div class="col-sm-3">
+		      <select class = "form-control" id="days" name="days" onchange="getQr()">
+		      </select>
+		    </div>
+		    <div class="col-sm-2"></div>
+		  </div>
+		</form>
+	</div>
+	<div id="qr">
+		<label class="col-sm-5 control-label"></label>
+		<div class="col-sm-2"><img id="qrimg" width="100%" onload="showqr()"/></div>
+		<label class="col-sm-5 control-label"></label>
+	</div>
+</body>
+<script type="text/javascript">
+getDays();
+$("#qr").hide();
+function getDays(){
+	$.ajax({
+		type:"post",
+		url:"payment/getPrices",
+		data:"",
+		dataType:"json",
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+		 },
+		success:function(result){
+			var str = "";
+			//var str = "<option value=''>请选择</option>";
+			for(var i=0;i<result.length;i++){
+				str += "<option value="+result[i]["days"]+">"+result[i]["days"]+"天"+result[i]["price"]+"元</option>";
+			}
+			$("#days").html(str);	
+			getQr();
+		}
+	});
+}
+
+function getQr(){
+	$("#qr").hide();
+	var type = $("#paytype").val();
+	var days = $("#days").val();
+	if(type==""||days==""){
+		$("#qr").hide();
+		return;
+	} 
+	var url = "payment/";
+	if(type==0)url += "alipayQrCode?days="+days;
+	$("#qrimg").attr("src",url);	
+}
+function showqr(){
+	$("#qr").show();
+}
+</script>
+</html>

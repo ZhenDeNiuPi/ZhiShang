@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<title>首页</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="css/bootstrap-dialog.css" rel="stylesheet">
+    <script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dialog.js"></script>
+    <script type="text/javascript" src="js/properties.js"></script>
+    <script type="text/javascript" src="js/globalAjax.js"></script>
+</head>
+<body>
+	  <div align="center">
+	  
+	        <button type="button" id="loginBut" class="btn btn-default" data-dismiss="modal">登录</button>
+	        <!-- <button type="button" id="regisBut" class="btn btn-default" data-dismiss="modal">注册</button> -->
+	        <button type="button" id="findBut" class="btn btn-default" data-dismiss="modal">密码修改</button>
+	  </div>
+<div id="consoleForm">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        
+	        <h4 id="h4title" class="modal-title" id="myModalLabel"
+	        align="center">用户登录</h4>
+	      </div>
+	      <div class="modal-body">
+	       	<!-- 表单开始 -->
+			<form id="welcomeForm" action="" class="form-horizontal" role="form" autocomplete="off">
+			  <div class="form-group">
+			    <label for="account" class="col-sm-3 control-label">账户:</label>
+			    <div class="col-sm-9">
+			      <input type="account" class="form-control" maxlength="50"
+			       id="account" name="u.account" placeholder="输入账户" autocomplete="off">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="password" class="col-sm-3 control-label">密码:</label>
+			    <div class="col-sm-9">
+			      <input type="password" class="form-control" maxlength="16"
+			       id="password" name="u.password" placeholder="输入密码">
+			    </div>
+			  </div>
+			  <div class="form-group" id="newpass">
+			    <label for="password" class="col-sm-3 control-label" id="passNew">新密码:</label>
+			    <div class="col-sm-9">
+			      <input type="password" class="form-control" maxlength="16"
+			       id="passwordnew" name="u.passwordnew" placeholder="输入新密码">
+			    </div>
+			  </div>
+		<div id="valiDiv">
+			  <div class="form-group" id="validate">
+			    <label for="validate" class="col-sm-3 control-label">验证码:</label>
+			    <div class="col-sm-9">
+			      <input type="text" class="form-control" maxlength="4"
+			       id="validate" name="validate" placeholder="输入验证码">
+			    </div>
+			  </div>
+			  <div class="form-group" id="validate_img">
+			    <label for="validate_img" class="col-sm-3 control-label"></label>
+			    <div class="col-sm-9">
+			    	<br/>
+			       &nbsp&nbsp<img id="img" src="img"+Math.random() onclick="changeUrl()"/>
+			    </div>
+			  </div>
+		</div>
+			</form>
+	       	<!-- 表单结束 -->
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="sendButton" class="btn btn-default" data-dismiss="modal">发送验证码</button>
+	        <button type="button" id="submitButton" class="btn btn-default" data-dismiss="modal">提交</button>
+	        <button type="button" id="clearButton" class="btn btn-default" data-dismiss="modal">重置</button>
+	      </div>
+	    </div>
+	  </div>
+</div>	 
+<script type="text/javascript">
+$("#submitButton").bind("click",function(){
+	var url = "";
+	var params = null;
+	if($("#h4title").text()=="用户登录"){
+		url += "dologin";
+	}else if($("#h4title").text()=="密码修改"){
+		url += "findPass";
+	}
+	$.ajax({
+		type:"post",
+		url:url,
+		data:$("#welcomeForm").serialize(),
+		dataType:"json",
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+		 },
+		success:function(result){
+			if(url=="dologin"){
+				if(result["login"]==1){
+					BootstrapDialog.show({title:"提示信息",closable:false,message:"登录成功，欢迎您！",buttons: [{
+		                label: 'GO',
+		                action: function(dialog) {
+		                	window.parent.location.reload(true);
+		                	//self.location='infomation'; 
+		                }
+		            }]});
+				}else {
+					BootstrapDialog.alert({title:"提示信息",message:result["errormessage"]});
+					changeUrl();
+				}
+			}else if(url == "findPass"){
+				if(result["num"]>0){
+					BootstrapDialog.alert({title:"提示信息",message:"新密码设置成功！"});
+					openLogin();
+					changeUrl();
+				}else {
+					BootstrapDialog.alert({title:"提示信息",message:result["errormessage"]});
+					changeUrl();
+				}
+			}
+		}
+	});
+});
+$("#clearButton").bind("click",function(){
+	document.getElementById("welcomeForm").reset();
+});
+var openLogin = function(){
+	$("#h4title").text("用户登录");
+	$("#valiDiv").show();
+	$("#newpass").hide();
+	$("#loginBut").attr("disabled","disabled");
+	$("#findBut").removeAttr("disabled").val("");
+}
+var openFind = function(){
+	$("#h4title").text("密码找回");
+	$("#valiDiv").show();
+	$("#newpass").show();
+	$("#findBut").attr("disabled","disabled");
+	$("#loginBut").removeAttr("disabled").val("");
+}
+
+$("#loginBut").attr("disabled","disabled");
+$("#loginBut").bind("click",function(){
+	openLogin();
+});
+$("#findBut").bind("click",function(){
+	openFind();
+});
+var changeUrl = function(){
+	$("#img").attr("src",'img?'+Math.random());
+}
+</script>
+</body>
+</html>

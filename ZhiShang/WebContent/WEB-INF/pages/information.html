@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<title>首页</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="css/bootstrap-dialog.css" rel="stylesheet">
+    <script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dialog.js"></script>
+    <script type="text/javascript" src="js/properties.js"></script>
+    <script type="text/javascript" src="js/globalAjax.js"></script>
+</head>
+<body>
+<div id="consoleForm">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        
+	        <h4 class="modal-title" id="myModalLabel"
+	        align="center">联系我们信息管理</h4>
+	      </div>
+	      <div class="modal-body">
+	       	<!-- 表单开始 -->
+			<form id="welcomeForm" action="" class="form-horizontal" role="form" autocomplete="off">
+			  <div class="form-group">
+			    <label for="hot" class="col-sm-3 control-label">热线:</label>
+			    <div class="col-sm-9">
+			      <input type="text" class="form-control" maxlength="20" 
+			       id="hot" name="u.hot" placeholder="输入热线">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="address" class="col-sm-3 control-label">地址:</label>
+			    <div class="col-sm-9">
+			      <input type="text" class="form-control" maxlength="30"
+			       id="address" name="u.address" placeholder="输入地址">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="email" class="col-sm-3 control-label">邮箱:</label>
+			    <div class="col-sm-9">
+			      <input type="text" class="form-control" maxlength="30"
+			       id="email" name="u.email" placeholder="输入邮箱">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="phone" class="col-sm-3 control-label">固话:</label>
+			    <div class="col-sm-9">
+			      <input type="text" class="form-control" maxlength="20" 
+			       id="phone" name="u.phone" placeholder="输入固话">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="mobile" class="col-sm-3 control-label">手机:</label>
+			    <div class="col-sm-9">
+			      <input type="text" class="form-control" maxlength="20" 
+			       id="mobile" name="u.mobile" placeholder="输入手机">
+			    </div>
+			  </div>
+			</form>
+	       	<!-- 表单结束 -->
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="submitButton" class="btn btn-default" data-dismiss="modal">修改</button>
+	        <button type="button" id="clearButton" class="btn btn-default" data-dismiss="modal">重置</button>
+	      </div>
+	    </div>
+</div>	 
+<script type="text/javascript">
+getData();
+$("#clearButton").bind("click",function(){
+	getData();
+});
+function getData(){
+	$.ajax({
+		type:"post",
+		url:"user/getData",
+		data:"",
+		dataType:"json",
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+		 },
+		success:function(result){
+			if(result){
+				$("#hot").val(result["hot"]);
+				$("#address").val(result["address"]);
+				$("#email").val(result["email"]);
+				$("#phone").val(result["phone"]);
+				$("#mobile").val(result["mobile"]);
+			}else BootstrapDialog.alert({title:"提示信息",message:result["errormessage"]});
+		}
+	});
+}
+$("#submitButton").bind("click",function(){
+	$.ajax({
+		type:"post",
+		url:"user/update",
+		data:$("#welcomeForm").serialize(),
+		dataType:"json",
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+		 },
+		success:function(result){
+			if(result["num"]=="1"){
+				BootstrapDialog.alert({title:"提示信息",message:"修改成功！"});
+			}else BootstrapDialog.alert({title:"提示信息",message:result["errormessage"]});
+		}
+	});
+});
+</script>
+</body>
+</html>

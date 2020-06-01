@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<title>至上净化管理系统</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="css/bootstrap-dialog.css" rel="stylesheet">
+    <script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dialog.js"></script>
+    <style>
+    	.page-header{
+    		margin:2px 0 0;
+    		padding-bottom:2px;
+    	}
+    	.navbar{
+    		margin-bottom:2px;
+    	}
+    </style>
+  </head>
+  
+  <body>
+  <!-- 页头开始 -->
+    <div class="page-header">
+  		<!-- <img src="img/1.jpg"  width="100%" height="120px"/> -->
+	</div>
+	<!-- 页头结束 -->
+	<!-- 导航条开始 -->
+		<nav class="navbar navbar-default" role="navigation">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barbar">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">至上净化管理系统</a>
+		    </div>
+		
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse">
+		    <ul class="nav navbar-nav navbar-right" id="barbar">
+		        
+		        <li class="dropdown">
+		          <a id="exit" href="#" class="dropdown-toggle" data-toggle="dropdown">退出</a>
+		        </li>
+		      </ul>
+		    </div>
+		    <!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+	<!-- 导航条结束 -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-2" style="margin-top: 10px">
+				<div id="tree">
+				
+				</div>
+			</div>
+			<div class="col-xs-10">
+				<iframe frameborder="0"
+				 style="width:100%" name="et" id="et"></iframe>
+			</div>
+		</div>
+	</div>
+	
+    <script>
+	var el = document.getElementById("et");
+    el.style.height = (window.screen.height-300) + 'px';
+    $("#barbar").hide();
+	var defaultData = [
+	        {
+		      	 text: '联系我们信息管理',
+		      	 info: 'us',
+		      	 tags: ['0']	
+   			},
+   			{
+	        	 text: '轮播图管理',
+	        	 info: 'rc',
+	        	 tags: ['0']	
+	        },
+            {
+             	 text: '新闻管理',
+             	 info: 'new',
+             	 tags: ['0']	
+            },
+            {
+            	 text: '案例管理',
+            	 info: 'case',
+            	 tags: ['0']	
+            },
+            {
+	           	 text: '证书管理',
+	           	 info: 'book',
+	           	 tags: ['0']	
+            }
+           ];
+	 $.ajax({
+		type:"post",
+		url:"getIfUser",
+		data:"",
+		dataType:"json",
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+		 },
+		success:function(result){
+ 			var i = result['num'];
+		    $("#et").attr("src","us");
+     	    if(i==1){
+   		    	$("#et").attr("src","us");
+   		        $("#barbar").show();
+   	    	}else{
+   		    	$("#et").attr("src","welcome");
+   	    	}
+		}
+	}); 
+$(function(){
+		inittree();
+});
+
+function inittree(){
+	 $('#tree').treeview({
+         data: defaultData, //默认使用指定的数据来填充树
+         //enableLinks: ${empty user?false:true},//链接可用
+         onNodeSelected:function(event, data) {
+        	 $.ajax({
+            		type:"post",
+            		url:"getIfUser",
+            		data:"",
+            		dataType:"json",
+            		error:function(XMLHttpRequest, textStatus, errorThrown){
+            			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+            		 },
+            		success:function(result){
+            			 var i = result['num'];
+      	        	  if(i==1){
+      	        		  $("#et").attr("src",data.info);
+      	        	  }else{
+      	        		  self.location=''; 
+      	        	  }
+            		}
+        		});
+         }
+       });
+}
+$("#exit").bind("click",function(){
+	$.ajax({
+		type:"post",
+		url:"logout",
+		data:"",
+		dataType:"json",
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+		 },
+		success:function(result){
+			BootstrapDialog.show({title:"提示信息",closable:false,message:"欢迎您下次登录！",buttons:[{
+             label: 'Bye',
+             action: function(dialog) {
+ 				location.reload(true);
+    		        $("#barbar").hide();
+ 				return;
+             }
+         }]});
+		}
+	});
+})
+    </script>
+</body>
+</html>

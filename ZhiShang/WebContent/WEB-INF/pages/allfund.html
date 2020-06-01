@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<title>首页</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="css/bootstrap-dialog.css" rel="stylesheet">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table.js"></script>
+    <script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dialog.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="js/properties.js"></script>
+    <script type="text/javascript" src="js/globalAjax.js"></script>
+</head>
+<body>
+    <div id="toolbar">
+        <button id="condis" class="btn btn-warning" data-toggle="modal"
+		             data-target="#searchModal">
+            <i class="glyphicon glyphicon-search"></i> 条件查询
+        </button>
+        <button id="clear" class="btn btn-primary">
+            <i class="glyphicon glyphicon-refresh"></i> 重置查询
+        </button>
+    </div>
+    <table id="table" data-toolbar="#toolbar">
+    </table>
+</div>
+	<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="myModalLabel"
+	        align="center">条件查询</h4>
+	      </div>
+	      <div class="modal-body">
+	       	<!-- 表单开始 -->
+			<form id="searchForm" action="" class="form-horizontal" role="form">
+			  <div class="form-group">
+			    <label for="searchFund" class="col-sm-3 control-label">基金模糊检索</label>
+			    <div class="col-sm-9">
+			      <input type="text" class="form-control"
+			       id="searchFund" name="searchFund"  placeholder="输入基金编码或名称" maxlength="15"/>
+			    </div>
+			  </div>
+			</form>
+	       	<!-- 表单结束 -->
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" id="clearButton" class="btn btn-primary">重置</button>
+	        <button type="button" id="searchButton" class="btn btn-primary">查询</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</body>
+<script type="text/javascript">
+function queryParams(params) {  //配置参数 
+	var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的  
+  	"pageSize": params.pageSize,   //页面大小  
+ 	"pageNumber": params.pageNumber,  //页码    
+	"id`name%s~":$("#searchFund").val(),
+  	"sortName": params.sortName,  //排序列名  
+  	"sortOrder": params.sortOrder//排位命令（desc，asc）  
+};  
+return temp;  
+} 
+    $("#clearButton").bind("click",function(){
+    	document.getElementById("searchForm").reset();
+    });
+    $("#clear").bind("click",function(){
+    	document.getElementById("searchForm").reset();
+    	$("#table").bootstrapTable(  
+	              "refresh",  
+	              {  
+	                  url:"followfund/getAllFunds"
+	              }  
+	      ); 
+    });
+    $("#searchButton").bind("click",function(){
+    	
+    	$("#table").bootstrapTable(  
+	              "refresh",  
+	              {   
+	                  url:"followfund/getAllFunds"
+	              }  
+	      ); 
+		$("#searchModal").modal('hide');
+    });
+$('#table').bootstrapTable({
+    method: 'post',
+    contentType: "application/x-www-form-urlencoded",
+    url: "followfund/getAllFunds",//这个接口需要处理bootstrap table传递的固定参数
+    toolbar: '#toolbar',    //工具按钮用哪个容器
+    striped: true,      //是否显示行间隔色
+    cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+    pagination: true,     //是否显示分页（*）
+    onlyInfoPagination: false,
+    sortable: true,      //是否启用排序
+    sortOrder: "asc",     //排序方式
+    sortName:"id",
+    dataType: "json",
+    pageNumber:1,      //初始化加载第一页，默认第一页
+    pageSize: 10,      //每页的记录行数（*）
+    pageList: [10, 25, 50, 100],  //可供选择的每页的行数（*）
+    queryParamsType:'', //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+                        // 设置为 ''  在这种情况下传给服务器的参数为：pageSize,pageNumber
+
+    queryParams: queryParams,//前端调用服务时，会默认传递上边提到的参数，如果需要添加自定义参数，可以自定义一个函数返回请求参数
+    sidePagination: "server",   //分页方式：client客户端分页，server服务端分页（*）
+    //search: true,      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+    //strictSearch: true,
+    //showColumns: true,     //是否显示所有的列
+    //showRefresh: true,     //是否显示刷新按钮
+    //showHeader : true,
+    //showPaginationSwitch:true,
+    //showColumns : true,
+    minimumCountColumns: 2,    //最少允许的列数
+    clickToSelect: false,    //是否启用点击选中行
+    //searchOnEnterKey: true,
+    /* height: $(window).height(), */
+    columns: [{
+        field: 'id',
+        title: 'id',
+        align: 'center',
+        visible:false
+    },{
+        field: 'preprice',
+        title: 'preprice',
+        align: 'center',
+        visible:false
+    },{
+        field: 'net',
+        title: 'net',
+        align: 'center',
+        visible:false
+    },{
+        field: 'id',
+        title: '基金编码',
+        align: 'center',
+        width:'10%',
+        sortable: true
+    },{
+        field: 'name',
+        title: '基金名称',
+        align: 'center',
+        width:'20%',
+        sortable: true
+    },{
+        field: 'date',
+        title: '更新日期',
+        align: 'center',
+        width:'10%',
+        sortable: true
+    },{
+        field: 'preprice',
+        title: '上期净值',
+        align: 'center',
+        width:'10%',
+        sortable: true,
+        formatter: function (value, row, index) {
+        	return value+"元";
+        }
+    },{
+        field: '最新净值',
+        title: '最新净值',
+        align: 'center',
+        width:'10%',
+        formatter: function (value, row, index) {
+        	var net = row['net']
+        	if(net == ""||net==null) net = "预估："+row['price'];
+        	if(net == ""){
+        		return "暂无最新数据";
+        	}
+        	return net+"元";
+        }
+    },{
+        field: '增长率',
+        title: '增长率',
+        align: 'center',
+        width:'10%',
+        formatter: function (value, row, index) {
+        	var net = row['rate']
+        	if(net == ""||net==null) net = "预估："+row['priceRate'];
+        	if(net == ""){
+        		return "暂无最新数据";
+        	}
+        	return net+"%";
+        }
+    } ],
+    onLoadSuccess:function(data){
+    	/* console.log($("#footpagebar"));
+    	$("#footpagebar").attr("style","margin:0 auto"); */
+    }
+});
+</script>
+</html>
