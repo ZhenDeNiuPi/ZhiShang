@@ -1,9 +1,10 @@
 package com.fire.config.route;
 
-import com.fire.controller.FollowFundController;
+import com.fire.controller.BookController;
+import com.fire.controller.CaseController;
 import com.fire.controller.LoginController;
-import com.fire.controller.OrderController;
-import com.fire.controller.PaymentController;
+import com.fire.controller.NewsController;
+import com.fire.controller.RCController;
 import com.fire.controller.UserController;
 import com.jfinal.config.Routes;
 
@@ -15,8 +16,10 @@ public class FrontRoutes extends Routes {
 	public void config() {
 		add("/", LoginController.class, path );
 		add("/user", UserController.class,path);
-		add("/followfund", FollowFundController.class,path);
-		add("/payment", PaymentController.class,path);
-		add("/order", OrderController.class,path);
+		add("/rc", RCController.class,path);
+		add("/book", BookController.class,path);
+		add("/news", NewsController.class,path);
+		add("/case", CaseController.class,path);
+		
 	}
 }

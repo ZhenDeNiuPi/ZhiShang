@@ -30,28 +30,24 @@ public class LoginController extends Controller{
 		render("welcome.html");
 	}
 
-	public void information() {
+	public void us() {
 		render("information.html");
 	}
 
-	public void followfund() {
-		render("followfund.html");
+	public void rc() {
+		render("rc.html");
 	}
 	
-	public void allfund() {
-		render("allfund.html");
+	public void book() {
+		render("book.html");
 	}
 	
-	public void allOrder() {
-		Record user = getSessionAttr("user");
-		if(!"1".equals(user.get("id")+""))renderJson("有病"); 
-		else
-			render("allorder.html");
+	public void news() {
+		render("news.html");
 	}
 	
-	@Clear
-	public void usebook() {
-		render("usebook.html");
+	public void cases() {
+		render("case.html");
 	}
 
 	@Clear
@@ -113,15 +109,10 @@ public class LoginController extends Controller{
 			renderJson("errormessage", ""+(!valiResult?"验证码":"账号密码")+"不正确！非法登录五次将锁定IP！");
 			return;
 		}
-		int t1 = Integer.parseInt(user.get("state")+"");
-		if (t1 != 0) {
-			renderJson("errormessage", "该账号已被禁用！");
-			return;
-		}
-		Long uid = Long.parseLong(user.get("id")+"");
+//		Long uid = Long.parseLong(user.get("id")+"");
 		user.set("password", password);
 		setSessionAttr("user", user);
-		Db.update("update user_tb set if_login=1,last_ip='"+ip+"',last_login_time="+System.currentTimeMillis()/1000+" where id="+uid);
+//		Db.update("update user_tb set if_login=1,last_ip='"+ip+"',last_login_time="+System.currentTimeMillis()/1000+" where id="+uid);
 		Db.update("update login_iperror_tb set error_time=0 where lock_ip='"+ip+"'");
 		
 		renderJson("login",1);
@@ -185,10 +176,6 @@ public class LoginController extends Controller{
 					return;
 			}
 			renderJson("errormessage", "验证码或密码不正确！非法登录五次将锁定IP！");
-			return;
-		}
-		if(!password.equals(passwordnew)) {
-			renderJson("errormessage", "新密码需要与原密码一致！");
 			return;
 		}
 		String md5Pass=MD5Util.getMD5Code(passwordnew);

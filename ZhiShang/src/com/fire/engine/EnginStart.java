@@ -14,8 +14,6 @@ import com.jfinal.config.Routes;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.cron4j.Cron4jPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
@@ -58,8 +56,8 @@ public class EnginStart extends JFinalConfig {
     	ActiveRecordPlugin Arp_mySql=new ActiveRecordPlugin("ms",druid_mySql);
     	me.add(Arp_mySql);
     	MappingKit.mappingMySql(Arp_mySql);
-		Cron4jPlugin cp = new Cron4jPlugin("job.properties");
-		me.add(cp);
+		/*Cron4jPlugin cp = new Cron4jPlugin("job.properties");
+		me.add(cp);*/
     }
 
     /**
@@ -85,8 +83,7 @@ public class EnginStart extends JFinalConfig {
     @Override
     public void afterJFinalStart() {
     	// TODO Auto-generated method stub
-    	Db.update("update user_tb set if_login=0");
-    	System.out.println("YourFundHelper启动成功");
+    	System.out.println("至上净化后台管理启动成功");
 
     }
 

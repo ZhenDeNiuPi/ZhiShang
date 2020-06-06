@@ -22,44 +22,71 @@
 	      <div class="modal-header">
 	        
 	        <h4 class="modal-title" id="myModalLabel"
-	        align="center">联系我们信息管理</h4>
+	        align="center">公司信息管理</h4>
 	      </div>
 	      <div class="modal-body">
 	       	<!-- 表单开始 -->
 			<form id="welcomeForm" action="" class="form-horizontal" role="form" autocomplete="off">
+			  <input type="hidden" id="id" name="u.id" >
 			  <div class="form-group">
-			    <label for="hot" class="col-sm-3 control-label">热线:</label>
-			    <div class="col-sm-9">
+			    <label for="hot" class="col-sm-4 control-label">热线:</label>
+			    <div class="col-sm-8">
 			      <input type="text" class="form-control" maxlength="20" 
 			       id="hot" name="u.hot" placeholder="输入热线">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="address" class="col-sm-3 control-label">地址:</label>
-			    <div class="col-sm-9">
+			    <label for="address" class="col-sm-4 control-label">地址:</label>
+			    <div class="col-sm-8">
 			      <input type="text" class="form-control" maxlength="30"
 			       id="address" name="u.address" placeholder="输入地址">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="email" class="col-sm-3 control-label">邮箱:</label>
-			    <div class="col-sm-9">
+			    <label for="email" class="col-sm-4 control-label">邮箱:</label>
+			    <div class="col-sm-8">
 			      <input type="text" class="form-control" maxlength="30"
 			       id="email" name="u.email" placeholder="输入邮箱">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="phone" class="col-sm-3 control-label">固话:</label>
-			    <div class="col-sm-9">
+			    <label for="phone" class="col-sm-4 control-label">固话:</label>
+			    <div class="col-sm-8">
 			      <input type="text" class="form-control" maxlength="20" 
 			       id="phone" name="u.phone" placeholder="输入固话">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="mobile" class="col-sm-3 control-label">手机:</label>
-			    <div class="col-sm-9">
+			    <label for="mobile" class="col-sm-4 control-label">手机:</label>
+			    <div class="col-sm-8">
 			      <input type="text" class="form-control" maxlength="20" 
 			       id="mobile" name="u.mobile" placeholder="输入手机">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="about" class="col-sm-4 control-label">关于我们:</label>
+			    <div class="col-sm-8">
+			      <textarea class="form-control" maxlength="300" 
+			       id="about" name="u.about" placeholder="输入公司简介"></textarea>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="four" class="col-sm-4 control-label">四个优势:</label>
+			    <div class="col-sm-2">
+			      <input type="text" class="form-control" maxlength="20" 
+			       id="four1" name="u.four1" placeholder="一">
+			    </div>
+			    <div class="col-sm-2">
+			      <input type="text" class="form-control" maxlength="20" 
+			       id="four2" name="u.four2" placeholder="二">
+			    </div>
+			    <div class="col-sm-2">
+			      <input type="text" class="form-control" maxlength="20" 
+			       id="four3" name="u.four3" placeholder="三">
+			    </div>
+			    <div class="col-sm-2">
+			      <input type="text" class="form-control" maxlength="20" 
+			       id="four4" name="u.four4" placeholder="四">
 			    </div>
 			  </div>
 			</form>
@@ -87,11 +114,17 @@ function getData(){
 		 },
 		success:function(result){
 			if(result){
+				$("#id").val(result["id"]);
 				$("#hot").val(result["hot"]);
 				$("#address").val(result["address"]);
 				$("#email").val(result["email"]);
 				$("#phone").val(result["phone"]);
 				$("#mobile").val(result["mobile"]);
+				$("#about").val(result["about"]);
+				$("#four1").val(result["four1"]);
+				$("#four2").val(result["four2"]);
+				$("#four3").val(result["four3"]);
+				$("#four4").val(result["four4"]);
 			}else BootstrapDialog.alert({title:"提示信息",message:result["errormessage"]});
 		}
 	});

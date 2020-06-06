@@ -74,7 +74,6 @@
 	       	<!-- 表单结束 -->
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="sendButton" class="btn btn-default" data-dismiss="modal">发送验证码</button>
 	        <button type="button" id="submitButton" class="btn btn-default" data-dismiss="modal">提交</button>
 	        <button type="button" id="clearButton" class="btn btn-default" data-dismiss="modal">重置</button>
 	      </div>
@@ -130,20 +129,19 @@ $("#clearButton").bind("click",function(){
 });
 var openLogin = function(){
 	$("#h4title").text("用户登录");
-	$("#valiDiv").show();
 	$("#newpass").hide();
 	$("#loginBut").attr("disabled","disabled");
 	$("#findBut").removeAttr("disabled").val("");
 }
 var openFind = function(){
-	$("#h4title").text("密码找回");
-	$("#valiDiv").show();
+	$("#h4title").text("密码修改");
 	$("#newpass").show();
 	$("#findBut").attr("disabled","disabled");
 	$("#loginBut").removeAttr("disabled").val("");
 }
 
 $("#loginBut").attr("disabled","disabled");
+$("#newpass").hide();
 $("#loginBut").bind("click",function(){
 	openLogin();
 });

@@ -13,14 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.fire.service.SendMail;
 import com.fire.util.CrazyRequest;
 import com.fire.util.Str2TimeStamp;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.jfinal.core.JFinal;
-import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.Db;
 
 public class ExceptionInterceptor implements Interceptor{
@@ -111,8 +109,9 @@ public class ExceptionInterceptor implements Interceptor{
 	        sb.append("Exception Type:").append(e.getClass().getName()).append("\n");
 	        sb.append("Exception Details:");
 	        logg.error(sb.toString(),e);
-	        if(PropKit.getBoolean("devMode"))return;
-		    SendMail.sendExceptionAllinformation(e);
+	        System.out.println(sb.toString());
+//	        if(PropKit.getBoolean("devMode"))return;
+//		    SendMail.sendExceptionAllinformation(e);
 	    }
 	    private static String decodeDragon(String str){
 	    	if(str==null||str.length()==0||str.equalsIgnoreCase("null"))return "";
@@ -182,7 +181,7 @@ public class ExceptionInterceptor implements Interceptor{
 	    	 ai.getController().setSessionAttr("errormessage", "&nbsp;&nbsp;&nbsp;网络异常！请稍候再试！");
 	         ai.getController().render("/WEB-INF/pages/index.html");
 
-		   	  String idStr = ai.getController().getSession().getAttribute("loginuin")+"";
+		   	  /*String idStr = ai.getController().getSession().getAttribute("loginuin")+"";
 		   	  Long id = -1L;
 		   	  try{
 		   		  id = Long.parseLong(idStr);
@@ -192,6 +191,6 @@ public class ExceptionInterceptor implements Interceptor{
 		   	  if(id>-1) {
 		   		  Db.update("update user_tb set if_login=0 where id="+id);//更改登录状态
 		   	  }
-		     ai.getController().removeSessionAttr("loginuin");
+		     ai.getController().removeSessionAttr("loginuin");*/
 		}
 }

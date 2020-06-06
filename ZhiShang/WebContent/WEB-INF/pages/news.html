@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<title>首页</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="css/cropper.css" rel="stylesheet">
+    <link href="summ/summernote.css" rel="stylesheet">
+    <script type="text/javascript" src="summ/summernote.js"></script>
+    <script type="text/javascript" src="summ/summernote-zh-CN.js"></script>
+    <script type="text/javascript" src="js/cropper.js"></script>
+    <script type="text/javascript" src="js/jquery-cropper.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table.js"></script>
+    <script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dialog.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="js/properties.js"></script>
+    <script type="text/javascript" src="js/globalAjax.js"></script>
+</head>
+<body>
+    <div id="toolbar">
+        <button id="remove" class="btn btn-danger">
+            <i class="glyphicon glyphicon-remove"></i> 批量删除
+        </button>
+        <button id="update" class="btn btn-success">
+            <i class="glyphicon glyphicon-pencil"></i> 编辑新闻
+        </button>
+        <button id="add" class="btn btn-info" >
+            <i class="glyphicon glyphicon-plus"></i> 添加新闻
+        </button>
+        <button id="condis" class="btn btn-warning" data-toggle="modal"
+		             data-target="#searchModal">
+            <i class="glyphicon glyphicon-search"></i> 条件查询
+        </button>
+        <button id="clear" class="btn btn-primary">
+            <i class="glyphicon glyphicon-refresh"></i> 重置查询
+        </button>
+    </div>
+    <table id="table" data-toolbar="#toolbar">
+    </table>
+</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" style="width:600px;">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="myModalLabel"
+	        align="center">添加新闻</h4>
+	      </div>
+	      <div class="modal-body">
+	       	<!-- 表单开始 -->
+			<form id="addForm" action="" class="form-horizontal" role="form">
+				<input type="hidden" id="id" name="n.id"/>
+				<input type="hidden" id="content" name="content"/>
+			  <div class="form-group">
+			    <label for="fund_name" class="col-sm-2 control-label">时间</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control"
+			       id="ntime" name="ntime" placeholder="选择新闻发生时间">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="fund_id" class="col-sm-2 control-label">标题</label>
+			    <div class="col-sm-10">
+			      <textarea type="text" class="form-control"
+			       id="title" name="n.title" placeholder="输入新闻标题" maxlength="200"></textarea>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="fund_id" class="col-sm-2 control-label">副标题</label>
+			    <div class="col-sm-10">
+			      <textarea type="text" class="form-control"
+			       id="stitle" name="n.stitle" placeholder="输入新闻副标题" maxlength="200"></textarea>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="fund_id" class="col-sm-2 control-label">作者</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control"
+			       id="creator" name="n.creator" placeholder="输入新闻作者" maxlength="30">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="fund_name" class="col-sm-2 control-label">是否展示</label>
+			    <div class="col-sm-10">
+			      <select id="if_show" name="n.if_show" class="form-control">
+			      	<option value="0">否</option>
+			      	<option value="1">是</option>
+			      </select>
+			    </div>
+			  </div>
+			  <div class="form-group" id="summernote"></div>
+			</form>
+	       	<!-- 表单结束 -->
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" id="addButton" class="btn btn-primary">保存</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="myModalLabel"
+	        align="center">条件查询</h4>
+	      </div>
+	      <div class="modal-body">
+	       	<!-- 表单开始 -->
+			<form id="searchForm" action="" class="form-horizontal" role="form">
+			  <div class="form-group">
+			    <label for="timeStrBegin" class="col-sm-3 control-label">新闻时间起始</label>
+			    <div class="col-sm-3">
+			      <input type="text" class="form-control"
+			       id="timeStrBegin" name="timeStrBegin" readonly="readonly"  placeholder="选择时间起始">
+			    </div>
+			    <label for="timeStrBegin" class="col-sm-3 control-label">新闻时间截止</label>
+			    <div class="col-sm-3">
+			      <input type="text" class="form-control"
+			       id="timeStrEnd" name="timeStrEnd" readonly="readonly"  placeholder="选择时间截止">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="searchBook" class="col-sm-3 control-label">标题模糊检索</label>
+			    <div class="col-sm-9">
+			      <input type="text" class="form-control"
+			       id="searchBook" name="searchBook"  placeholder="输入新闻标题" maxlength="15"/>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="searchIfShow" class="col-sm-3 control-label">是否展示</label>
+			    <div class="col-sm-9">
+			      <select id="searchIfShow" name="searchIfShow" class="form-control">
+			      	<option value="">请选择</option>
+			      	<option value="1">是</option>
+			      	<option value="0">否</option>
+			      </select>
+			    </div>
+			  </div>
+			</form>
+	       	<!-- 表单结束 -->
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" id="clearButton" class="btn btn-primary">重置</button>
+	        <button type="button" id="searchButton" class="btn btn-primary">查询</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</body>
+
+
+<div class="modal fade" id="seeModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog-lg">
+    <div class="modal-content" style="height:100%;text-align:center">
+        <img id="see">
+    </div>
+</div>
+</div>
+<div class="modal fade" id="see2Modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog-lg">
+    <div class="modal-content" style="height:100%;text-align:center" id="see2div">
+    </div>
+</div>
+</div>
+
+
+<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog-lg">
+    <div class="modal-content" style="height:100%">
+        <div class="row">
+        <div class="col-sm-12 text-center">
+            <label for="input" class="btn btn-danger" id="">
+            <span>选择图片</span>
+            <input type="file" id="input" class="sr-only">
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6" id="photodiv">
+            <img src="" id="photo" />
+        </div>
+        <div class="col-sm-6  text-center">
+            <div id="prediv">
+                <div class="img-preview" id="pre"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+            data-dismiss="modal">取消</button>
+        <button class="btn btn-primary" onclick="crop()">确定</button>
+    </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+
+$("#add").bind("click",function(){
+	document.getElementById("addForm").reset();
+	$("#summernote").summernote('code',"");
+	$("#myModalLabel").text("添加新闻");
+	$("#myModal").modal('show');
+});
+$("#addButton").bind("click",function(){
+	var url = "";
+	var text = $("#myModalLabel").text();
+	if(text=="添加新闻")
+		url = "news/addData";
+	else
+		url = "news/updateData";
+	$("#content").val($("#summernote").summernote('code'));
+    $.ajax({
+		type:"post",
+		url:url,
+		data:$("#addForm").serialize(),
+		dataType:"json",
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+		 },
+		success:function(result){
+			if(result["num"]==1){
+				$("#table").bootstrapTable(  
+			              "refresh",  
+			              {  
+			                  url:"news/getDatas"
+			              }  
+			      ); 	
+				BootstrapDialog.alert({title:"提示信息",message:"保存成功！"});
+				$("#myModal").modal('hide');
+			}
+			else BootstrapDialog.alert({title:"提示信息",message:result["errormessage"]});
+		}
+	});
+});
+function queryParams(params) {  //配置参数 
+	var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的  
+  	"pageSize": params.pageSize,   //页面大小  
+ 	"pageNumber": params.pageNumber,  //页码    
+	"n.time%t>":$("#timeStrBegin").val(),
+	"n.time%t<":$("#timeStrEnd").val(),
+	"n.title%s~":$("#searchBook").val(),
+	"n.if_show%i=":$("#searchIfShow").val(),
+  	"sortName": params.sortName,  //排序列名  
+  	"sortOrder": params.sortOrder//排位命令（desc，asc）  
+	};  
+	return temp;  
+} 
+    $("#clearButton").bind("click",function(){
+    	document.getElementById("searchForm").reset();
+    });
+    $("#clear").bind("click",function(){
+    	document.getElementById("searchForm").reset();
+    	$("#table").bootstrapTable(  
+	              "refresh",  
+	              {  
+	                  url:"news/getDatas"
+	              }  
+	      ); 
+    });
+    $("#searchButton").bind("click",function(){
+    	
+    	$("#table").bootstrapTable(  
+	              "refresh",  
+	              {   
+	                  url:"news/getDatas"
+	              }  
+	      ); 
+		$("#searchModal").modal('hide');
+    });
+    $("#remove").bind("click",function(){
+    	var datas = $("#table").bootstrapTable("getSelections");
+    	if(datas.length!=0){
+    		var str = "";
+    		for(var i=0;i<datas.length;i++){
+    			str+=datas[i]["id"]+",";
+    		}
+    		str = str.substring(0,str.length-1);
+    		$.ajax({
+        		type:"post",
+        		url:"news/deleteDatas",
+        		data:{idStr:str},
+        		dataType:"json",
+        		error:function(XMLHttpRequest, textStatus, errorThrown){
+        			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+        		 },
+        		success:function(result){
+        			$("#table").bootstrapTable(  
+        		              "refresh",  
+        		              {  
+        		                  url:"news/getDatas"
+        		              }  
+        		      ); 	
+        			BootstrapDialog.alert({title:"提示信息",message:"成功删除"+result["num"]+"条新闻！"});
+        		}
+    		}); 
+    	}else{
+    		BootstrapDialog.alert({title:"提示信息",message:"你还没有选择数据！"});
+    	}
+    })
+$("#update").bind("click",function(){
+	document.getElementById("addForm").reset();
+	var datas = $("#table").bootstrapTable("getSelections");
+	if(datas.length == 1){
+		var rowData = datas[0];
+		$.ajax({
+    		type:"post",
+    		url:"news/getData",
+    		data:{"id":rowData['id']},
+    		dataType:"json",
+    		error:function(XMLHttpRequest, textStatus, errorThrown){
+    			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+    		 },
+    		success:function(result){
+    			$("#id").val(result['id']);
+    			$("#title").val(result['title']);
+    			$("#stitle").val(result['stitle']);
+    			$("#creator").val(result['creator']);
+    			$("#ntime").val(result['ntime']);
+    			$("#if_show").val(result['if_show']);
+    			$("#content").val(result['content']);
+    			$("#summernote").summernote("code",result['content']);
+    			$("#myModalLabel").text("编辑新闻");
+    			$("#myModal").modal('show');
+    		}
+		});
+	}else{
+		BootstrapDialog.alert({title:"提示信息",message:"必须选择一条新闻！"});
+	}
+});$('#ntime').datetimepicker({
+	format: 'yyyy-mm-dd',      /*此属性是显示顺序，还有显示顺序是mm-dd-yyyy*/
+	minView:'month',
+	todayBtn:true,
+	todayHighlight:true,
+	autoclose:true,
+	startDate:'2018-01-01',
+	forceParse:false
+	});
+$('#timeStrBegin').datetimepicker({
+	format: 'yyyy-mm-dd',      /*此属性是显示顺序，还有显示顺序是mm-dd-yyyy*/
+	minView:'month',
+	todayBtn:true,
+	todayHighlight:true,
+	autoclose:true,
+	startDate:'2018-01-01',
+	forceParse:false
+	});
+$('#timeStrEnd').datetimepicker({
+	format: 'yyyy-mm-dd',      /*此属性是显示顺序，还有显示顺序是mm-dd-yyyy*/
+	minView:'month',
+	todayBtn:true,
+	todayHighlight:true,
+	autoclose:true,
+	startDate:'2018-01-01',
+	forceParse:false
+	});
+$('#table').bootstrapTable({
+    method: 'post',
+    contentType: "application/x-www-form-urlencoded",
+    url: "news/getDatas",//这个接口需要处理bootstrap table传递的固定参数
+    toolbar: '#toolbar',    //工具按钮用哪个容器
+    striped: true,      //是否显示行间隔色
+    cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+    pagination: true,     //是否显示分页（*）
+    onlyInfoPagination: false,
+    sortable: true,      //是否启用排序
+    sortOrder: "desc",     //排序方式
+    sortName:"time",
+    dataType: "json",
+    pageNumber:1,      //初始化加载第一页，默认第一页
+    pageSize: 10,      //每页的记录行数（*）
+    pageList: [10, 25, 50, 100],  //可供选择的每页的行数（*）
+    queryParamsType:'', //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+                        // 设置为 ''  在这种情况下传给服务器的参数为：pageSize,pageNumber
+
+    queryParams: queryParams,//前端调用服务时，会默认传递上边提到的参数，如果需要添加自定义参数，可以自定义一个函数返回请求参数
+    sidePagination: "server",   //分页方式：client客户端分页，server服务端分页（*）
+    //search: true,      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+    //strictSearch: true,
+    //showColumns: true,     //是否显示所有的列
+    //showRefresh: true,     //是否显示刷新按钮
+    //showHeader : true,
+    //showPaginationSwitch:true,
+    //showColumns : true,
+    minimumCountColumns: 2,    //最少允许的列数
+    clickToSelect: false,    //是否启用点击选中行
+    //searchOnEnterKey: true,
+    /* height: $(window).height(), */
+    columns: [{
+        field: 'state',
+        checkbox: true,
+        width:'5%',
+        align: 'left'
+    },{
+        field: 'id',
+        title: 'id',
+        align: 'center',
+        visible:false
+    },{
+        field: 'if_show',
+        title: 'if_show',
+        align: 'center',
+        visible:false
+    },{
+        field: 'ntime',
+        title: '新闻时间',
+        align: 'center',
+        width:'20%',
+        sortable: true
+    },{
+        field: 'title',
+        title: '新闻标题',
+        align: 'center',
+        width:'20%',
+        sortable: true
+    },{
+        field: 'stitle',
+        title: '新闻副标题',
+        align: 'center',
+        width:'10%',
+        sortable: true
+    },{
+        field: 'creator',
+        title: '新闻作者',
+        align: 'center',
+        width:'10%',
+        sortable: true
+    },{
+        field: '是否展示',
+        title: '是否展示',
+        align: 'center',
+        width:'10%',
+        formatter: function (value, row, index) {
+        	var if_show = row['if_show'];
+        	return (if_show>0?"是":"否");
+        }
+    },{
+        field: '新闻正文',
+        title: '新闻正文',
+        align: 'center',
+        width:'10%',
+        sortable: false,
+        formatter: function (value, row, index) {
+        	var id = row['id'];
+        	return "<a onclick='preHtml("+id+")'>预览<a/>";
+        }
+    },{
+        field: '首页图片',
+        title: '首页图片',
+        align: 'center',
+        width:'10%',
+        formatter: function (value, row, index) {
+        	var id = row['id'];
+        	return "<a onclick='seePic("+id+")'>查看<a/>&nbsp;&nbsp;&nbsp;&nbsp;"+
+        	"<a onclick='sendPic("+id+")'>上传<a/>";
+        }
+    },{
+        field: '',
+        title: '',
+        width:'5%',
+        formatter: function (value, row, index) {
+        	return "";
+        }
+    } ]
+});
+
+function preHtml(id){
+	$.ajax({
+        url: 'news/preHtml', // 要上传的地址
+        type: 'post',
+        data: {"id":id},
+        dataType: 'json',
+        success: function (data) {
+        	$("#see2div").html(data.content);
+    		$("#see2Modal").modal('show');
+        }
+    });
+}
+
+function seePic(id){
+	$.ajax({
+        url: 'news/ifSend', // 要上传的地址
+        type: 'post',
+        data: {"id":id,
+        	"s":Math.random()},
+        dataType: 'json',
+        success: function (data) {
+        	if(data["path"] == ""){
+				BootstrapDialog.alert({title:"提示信息",message:"还未上传新闻图片，请先上传！"});
+        	}else{
+        		var swidth = $(document).width();
+        		$("#see").attr("src",data["path"]+"&s="+Math.random());
+        		$("#see").height(swidth/2-swidth/8);
+        		$("#seeModal").modal('show');
+        	}
+        }
+    });
+}
+var sendId = "";
+function sendPic(id){
+	sendId = id;
+	$("#photodiv").html('<img src="" id="photo" />');
+	$("#prediv").html('<div class="img-preview" id="pre"></div>');
+	var swidth = $(document).width();
+	$("#photo").width(swidth/2);
+	$("#photo").height(swidth/2-swidth/8);
+	$("#pre").width(swidth/2);
+	$("#pre").height(swidth/2-swidth/8);
+	initCropper($('#photo'),$('#input'));
+	$("#changeModal").modal('show');
+}
+var initCropper = function (img, input){
+    var $image = img;
+    var options = {
+        //aspectRatio: 1, // 纵横比
+        viewMode: 2,
+        preview: '.img-preview' // 预览图的class名
+    };
+    $image.cropper(options);
+    var $inputImage = input;
+    var uploadedImageURL;
+    if (URL) {
+        // 给input添加监听
+        $inputImage.change(function () {
+            var files = this.files;
+            var file;
+            if (!$image.data('cropper')) {
+                return;
+            }
+            if (files && files.length) {
+                file = files[0];
+                // 判断是否是图像文件
+                if (/^image\/\w+$/.test(file.type)) {
+                    // 如果URL已存在就先释放
+                    if (uploadedImageURL) {
+                        URL.revokeObjectURL(uploadedImageURL);
+                    }
+                    uploadedImageURL = URL.createObjectURL(file);
+                    // 销毁cropper后更改src属性再重新创建cropper
+                    $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+                    $inputImage.val('');
+                } else {
+                  window.alert('请选择一个图像文件！');
+              }
+          }
+      });
+    } else {
+        $inputImage.prop('disabled', true).addClass('disabled');
+    }
+}
+
+var crop = function(){
+    var cas = $('#photo').cropper('getCroppedCanvas',{
+    	  fillColor: '#fff',
+    	  imageSmoothingEnabled: false,
+    	  imageSmoothingQuality: 'high'
+    });
+    var photo = cas.toDataURL('image/jpeg');
+    cas.toBlob(function (e) {
+        console.log(e);  //生成Blob的图片格式
+        e.name=$("#picid").val()+".jpeg";
+        var formData = new FormData();
+        formData.append('croppedImage', e);
+        formData.append('id', sendId);
+        console.log(e);
+        console.log(formData);
+        $.ajax('news/uploadPic', {
+    	    method: "POST",
+    	    data: formData,
+    	    processData: false,
+    	    contentType: false,
+    	    success: function () {
+                $('#changeModal').modal('hide');
+				BootstrapDialog.alert({title:"提示信息",message:"上传成功，可点击查看进行新闻图片查看！"});
+    	    },
+    	    error: function () {
+    	    }
+        });
+    },'image/jpeg')
+}
+
+
+//编辑器功能=====================================
+$("#summernote").summernote({
+    lang : 'zh-CN',// 语言
+   minHeight : 200, // 最小高度
+   maxHeight : 200,
+   placeholder : '请输入新闻正文', // 提示       
+   // summernote自定义配置
+   toolbar: [
+     //['operate', ['undo','redo']],
+     ['magic',['style']],
+     ['style', ['bold', 'italic', 'underline', 'clear']],
+     ['para', ['height','fontsize','ul', 'ol', 'paragraph']],
+     ['font', ['strikethrough', 'superscript', 'subscript']],
+     ['color', ['color']],
+     ['insert',['picture',/* 'video', */'link','table','hr']],
+     ['layout',['fullscreen'/* ,'codeview' */]],
+   ],
+   callbacks : { // 回调函数
+       // 上传图片时使用的回调函数   因为我们input选择的本地图片是二进制图片，需要把二进制图片上传服务器，服务器再返回图片url，就需要用到callback这个回调函数
+       onImageUpload : function(files) { 
+           var form=new FormData();
+               form.append("file",files[0]);  //myFileName 是上传的参数名，一定不能写错
+           $.ajax({
+               type:"post",
+               url:"news/uploadContentPic", //上传服务器地址
+               dataType:'json',
+               data:form,
+               processData : false,
+                  contentType : false,
+                  cache : false,
+                  success:function(data){
+                   console.log(data.path)                            
+                     $('#summernote').summernote('editor.insertImage',data.path);
+                  }
+           })
+       }
+   }
+});
+
+</script>
+</html>
