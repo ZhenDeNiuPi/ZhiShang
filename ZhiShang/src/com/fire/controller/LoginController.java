@@ -25,6 +25,10 @@ public class LoginController extends Controller{
 	public void index() {
 		render("index.html");
 	}
+	
+	public void menu() {
+		render("menu.html");
+	}
 
 	public void welcome() {
 		render("welcome.html");

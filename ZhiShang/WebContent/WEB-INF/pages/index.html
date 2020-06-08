@@ -1,175 +1,96 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<title>至上净化管理系统</title>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-treeview.min.css" rel="stylesheet">
-    <link href="css/bootstrap-dialog.css" rel="stylesheet">
-    <script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-dialog.js"></script>
-    <style>
-    	.page-header{
-    		margin:2px 0 0;
-    		padding-bottom:2px;
-    	}
-    	.navbar{
-    		margin-bottom:2px;
-    	}
-    </style>
-  </head>
-  
-  <body>
-  <!-- 页头开始 -->
-    <div class="page-header">
-  		<!-- <img src="img/1.jpg"  width="100%" height="120px"/> -->
-	</div>
-	<!-- 页头结束 -->
-	<!-- 导航条开始 -->
-		<nav class="navbar navbar-default" role="navigation">
-		  <div class="container-fluid">
-		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barbar">
-		        <span class="sr-only">Toggle navigation</span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </button>
-		      <a class="navbar-brand" href="#">至上净化管理系统</a>
-		    </div>
-		
-		    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse">
-		    <ul class="nav navbar-nav navbar-right" id="barbar">
-		        
-		        <li class="dropdown">
-		          <a id="exit" href="#" class="dropdown-toggle" data-toggle="dropdown">退出</a>
-		        </li>
-		      </ul>
-		    </div>
-		    <!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
-	<!-- 导航条结束 -->
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-2" style="margin-top: 10px">
-				<div id="tree">
-				
-				</div>
-			</div>
-			<div class="col-xs-10">
-				<iframe frameborder="0"
-				 style="width:100%" name="et" id="et"></iframe>
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+<meta charset="UTF-8">
+<title>登录注册表单</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--图标库-->
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css' rel="stylesheet">
+<!--响应式框架-->
+<link href="css/bootstrap2.min.css" rel="stylesheet">
+<!--主要样式-->
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+	<div class="card-wrap">
+		<div class="card border-0 shadow card--welcome is-show" id="welcome">
+			<div class="card-body">
+				<h2 class="card-title">至上净化后台管理</h2>
+				<p>欢迎进入登录页面</p>
+				<div class="btn-wrap"><a class="btn btn-lg btn-login js-btn" data-target="login">登录</a><p></p><a class="btn btn-lg btn-register js-btn" data-target="register">修改密码</a></div>
 			</div>
 		</div>
+		<div class="card border-0 shadow card--register" id="register">
+			<div class="card-body">
+				<h2 class="card-title">修改密码</h2>
+				<p id="changeError"></p>
+				<!-- <p class="card-text">第三方注册</p>
+				<p class="badge-wrap"><a class="badge"><i class="fab fa-facebook-f"></i></a><a class="badge"><i class="fab fa-google"></i></a><a class="badge"><i class="fab fa-twitter"></i></a><a class="badge"><i class="fab fa-github"></i></a></p>
+				<p>或者使用您的电子邮箱进行注册</p> -->
+				<form id="changeForm">
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="账号" 
+						required="required" id="account2" name="u.account"/>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="password" 
+						placeholder="原密码" required="required" 
+						 id="password2" name="u.password"/>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="password" 
+						placeholder="新密码" required="required"
+						 id="passwordnew" name="u.passwordnew"/>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="password" required="required" maxlength="4"
+			       id="validate2" name="validate" placeholder="验证码" />
+					</div>
+					<div class="form-group">
+						<img id="img2" src="img"+Math.random() onclick="changeUrl()"/>
+					</div>
+					<input type="button" id="changePassButton" class="btn btn-lg" value="修改"/>
+					<!-- <button id="changePassButton" class="btn btn-lg">修改</button> -->
+				</form>
+			</div>
+			<button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
+		</div>
+		<div class="card border-0 shadow card--login" id="login">
+			<div class="card-body">
+				<h2 class="card-title">欢迎登录</h2>
+				<p id="loginError"></p>
+				<!-- <p class="badge-wrap"><a class="badge"><i class="fab fa-facebook-f"></i></a><a class="badge"><i class="fab fa-google"></i></a><a class="badge"><i class="fab fa-twitter"></i></a><a class="badge"><i class="fab fa-github"></i></a></p>
+				<p>或用邮箱登录</p> -->
+				<form id="loginForm">
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="账号" required="required" maxlength="50"
+			       id="account" name="u.account" autocomplete="off"/>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="password" placeholder="密码" required="required" maxlength="16"
+			       id="password" name="u.password" />
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="password" required="required" maxlength="4"
+			       id="validate" name="validate" placeholder="验证码" />
+					</div>
+					<div class="form-group">
+						<img id="img" src="img"+Math.random() onclick="changeUrl()"/>
+					</div>
+					<input type="button" id="submitButton" class="btn btn-lg" value="登录"/>
+					<!-- <button  id="submitButton" class="btn btn-lg">登录</button> -->
+				</form>
+			</div>
+			<button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
+		</div>
 	</div>
-	
-    <script>
-	var el = document.getElementById("et");
-    el.style.height = (window.screen.height-300) + 'px';
-    $("#barbar").hide();
-	var defaultData = [
-	        {
-		      	 text: '公司信息管理',
-		      	 info: 'us',
-		      	 tags: ['0']	
-   			},
-   			{
-	        	 text: '轮播图管理',
-	        	 info: 'rc',
-	        	 tags: ['0']	
-	        },
-            {
-             	 text: '新闻管理',
-             	 info: 'news',
-             	 tags: ['0']	
-            },
-            {
-            	 text: '案例管理',
-            	 info: 'cases',
-            	 tags: ['0']	
-            },
-            {
-	           	 text: '证书管理',
-	           	 info: 'book',
-	           	 tags: ['0']	
-            }
-           ];
-	 $.ajax({
-		type:"post",
-		url:"getIfUser",
-		data:"",
-		dataType:"json",
-		error:function(XMLHttpRequest, textStatus, errorThrown){
-			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
-		 },
-		success:function(result){
- 			var i = result['num'];
-		    $("#et").attr("src","us");
-     	    if(i==1){
-   		    	$("#et").attr("src","us");
-   		        $("#barbar").show();
-   	    	}else{
-   		    	$("#et").attr("src","welcome");
-   	    	}
-		}
-	}); 
-$(function(){
-		inittree();
-});
-
-function inittree(){
-	 $('#tree').treeview({
-         data: defaultData, //默认使用指定的数据来填充树
-         //enableLinks: ${empty user?false:true},//链接可用
-         onNodeSelected:function(event, data) {
-        	 $.ajax({
-            		type:"post",
-            		url:"getIfUser",
-            		data:"",
-            		dataType:"json",
-            		error:function(XMLHttpRequest, textStatus, errorThrown){
-            			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
-            		 },
-            		success:function(result){
-            			 var i = result['num'];
-      	        	  if(i==1){
-      	        		  $("#et").attr("src",data.info);
-      	        	  }else{
-      	        		  self.location=''; 
-      	        	  }
-            		}
-        		});
-         }
-       });
-}
-$("#exit").bind("click",function(){
-	$.ajax({
-		type:"post",
-		url:"logout",
-		data:"",
-		dataType:"json",
-		error:function(XMLHttpRequest, textStatus, errorThrown){
-			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
-		 },
-		success:function(result){
-			BootstrapDialog.show({title:"提示信息",closable:false,message:"欢迎您下次登录！",buttons:[{
-             label: 'Bye',
-             action: function(dialog) {
- 				location.reload(true);
-    		        $("#barbar").hide();
- 				return;
-             }
-         }]});
-		}
-	});
-})
-    </script>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/properties.js"></script>
+<script type="text/javascript" src="js/globalAjax.js"></script>
 </body>
 </html>
