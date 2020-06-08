@@ -23,7 +23,7 @@
     <script type="text/javascript" src="js/properties.js"></script>
     <script type="text/javascript" src="js/globalAjax.js"></script>
 </head>
-<body>
+<body id="#body">
     <div id="toolbar">
         <button id="remove" class="btn btn-danger">
             <i class="glyphicon glyphicon-remove"></i> 批量删除
@@ -45,7 +45,7 @@
     <table id="table" data-toolbar="#toolbar">
     </table>
 </div>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="overflow: auto">
 	  <div class="modal-dialog" style="width:600px;">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -163,13 +163,20 @@
 <div class="modal fade" id="seeModal" tabindex="-1" role="dialog" aria-hidden="true">
 <div class="modal-dialog-lg">
     <div class="modal-content" style="height:100%;text-align:center">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	    </div>
         <img id="see">
     </div>
 </div>
 </div>
 <div class="modal fade" id="see2Modal" tabindex="-1" role="dialog" aria-hidden="true">
 <div class="modal-dialog-lg">
-    <div class="modal-content" style="height:100%;text-align:center" id="see2div">
+    <div class="modal-content" style="height:100%;text-align:center">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	    </div>
+	    <div  id="see2div" style="height:100%;text-align:center"></div>
     </div>
 </div>
 </div>
@@ -412,23 +419,41 @@ $('#table').bootstrapTable({
         align: 'center',
         visible:false
     },{
+        field: 'title',
+        title: '新闻标题',
+        align: 'center',
+        visible:false
+    },{
+        field: 'stitle',
+        title: '新闻副标题',
+        align: 'center',
+        visible:false
+    },{
         field: 'ntime',
         title: '新闻时间',
         align: 'center',
         width:'20%',
         sortable: true
     },{
-        field: 'title',
+        field: '新闻标题',
         title: '新闻标题',
         align: 'center',
-        width:'20%',
-        sortable: true
+        width:'10%',
+        formatter: function (value, row, index) {
+        	var title = row['title'];
+        	if(title.length>11) return title.substring(0,11)+"...";
+        	return title;
+        }
     },{
-        field: 'stitle',
+        field: '新闻副标题',
         title: '新闻副标题',
         align: 'center',
-        width:'10%',
-        sortable: true
+        width:'20%',
+        formatter: function (value, row, index) {
+        	var stitle = row['stitle'];
+        	if(stitle.length>27) return stitle.substring(0,27)+"...";
+        	return stitle;
+        }
     },{
         field: 'creator',
         title: '新闻作者',
@@ -623,11 +648,19 @@ $("#summernote").summernote({
                   success:function(data){
                    console.log(data.path)                            
                      $('#summernote').summernote('editor.insertImage',data.path);
+	                   //$(".modal-backdrop").remove();
+	                   //
                   }
            })
        }
    }
 });
 
+/* var summs = document.getElementByName("summ");
+for(var i=0;i<summs.length;i++){
+	$(summs[i]).on("hidden.bs.modal", function () {
+	    $("#body").addClass('modal-open');
+	});
+} */
 </script>
 </html>

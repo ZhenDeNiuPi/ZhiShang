@@ -157,7 +157,7 @@ public class NewsController  extends Controller{
 //			System.out.println(name);
 			filenames.add(name);
 			//temp刷新
-			temp = temp.substring(eindex);
+			temp = temp.substring(eindex+7);
 //			System.out.println(temp);
 			for(File file : allFiles) {
 				if(file.getName().startsWith(name+".")) {

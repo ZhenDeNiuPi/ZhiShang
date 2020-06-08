@@ -18,7 +18,10 @@ public class LoginInterceptor implements Interceptor{
 		String error = controller.getSessionAttr("errormessage");
 		Object user = controller.getSessionAttr("user");
 		if(user == null){
-			if (actKey.equals("/dologin")||
+			String zs = controller.getPara("zs");
+			if(zs!=null){
+				inv.invoke();
+			}else if(actKey.equals("/dologin")||
 					actKey.equals("/")||
 					actKey.equals("/welcome")||
 					actKey.equals("/user/sendValidate")

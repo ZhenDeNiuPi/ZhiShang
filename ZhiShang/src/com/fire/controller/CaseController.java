@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.fire.intercepter.FormOperaIntercepter;
 import com.fire.intercepter.LoginInterceptor;
-import com.fire.model.Book;
+import com.fire.model.Case;
 import com.fire.service.IBaseServiceImpl;
 import com.fire.util.Page;
 import com.fire.util.Str2TimeStamp;
@@ -37,25 +37,25 @@ public class CaseController  extends Controller{
 	
 	@Before(FormOperaIntercepter.class)
 	public void addData() {
-		Book b = getModel(Book.class,"b");
+		Case c = getModel(Case.class,"c");
 		String ctime = getPara("ctime");
-		if(ctime != null || !"".equals(ctime)) b.set("ctime", sts.getTimeStamp(ctime)/1000);
-		renderJson("num",b.save()?1:0);
+		if(ctime != null || !"".equals(ctime)) c.set("ctime", sts.getTimeStamp(ctime)/1000);
+		renderJson("num",c.save()?1:0);
 	}
 	
 	public void getData() {
 		String id = getPara("id");
 		String select  = "select c.id,from_unixtime(c.ctime,'%Y-%m-%d') ctime,c.title,c.address,c.content,c.if_show "
-        		+ " from book_tb b where id="+id;
+        		+ " from case_tb c where id="+id;
 		renderJson(Db.findFirst(select));
 	}
 	
 	@Before(FormOperaIntercepter.class)
 	public void updateData() {
-		Book b = getModel(Book.class,"b");
+		Case c = getModel(Case.class,"c");
 		String ctime = getPara("ctime");
-		if(ctime != null || !"".equals(ctime)) b.set("ctime", sts.getTimeStamp(ctime)/1000);
-		renderJson("num",b.update()?1:0);
+		if(ctime != null || !"".equals(ctime)) c.set("ctime", sts.getTimeStamp(ctime)/1000);
+		renderJson("num",c.update()?1:0);
 	}
 	
 	public void deleteDatas() {
@@ -86,6 +86,8 @@ public class CaseController  extends Controller{
 	public void getPic() {
 		String id = getPara("id");
 		File file = new File(rootPath,id+".jpeg");
+		if(!file.exists())
+			file = new File(PathKit.getWebRootPath()+"/img","nopic.png");
 		renderFile(file);
 	}
 	

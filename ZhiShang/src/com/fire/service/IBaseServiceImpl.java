@@ -90,7 +90,8 @@ public class IBaseServiceImpl{
         int startNumber = 0;
         if (pageNumber > 1)
         	startNumber = (pageNumber - 1) * pageSize;
-        if(sortOrder.length()>0&&sortName.length()>0)
+        if(sortOrder.length()>0&&sortName.length()>0
+        		&&(!"null".equals(sortOrder))&&(!"null".equals(sortName)))
         	fsql += " order by " + sortName +" "+ sortOrder;
         fsql +=  " limit " + startNumber + "," + pageSize + " ";
         String findsql = headSql + fsql;//最终查询语句

@@ -53,25 +53,32 @@
 	      <div class="modal-body">
 	       	<!-- 表单开始 -->
 			<form id="addForm" action="" class="form-horizontal" role="form">
-				<input type="hidden" id="id" name="b.id"/>
+				<input type="hidden" id="id" name="c.id"/>
 			  <div class="form-group">
-			    <label for="fund_id" class="col-sm-3 control-label">案例名称</label>
+			    <label for="fund_id" class="col-sm-3 control-label">案例标题</label>
 			    <div class="col-sm-9">
 			      <input type="text" class="form-control"
-			       id="name" name="b.name" placeholder="输入案例名称" maxlength="30">
+			       id="title" name="c.title" placeholder="输入案例标题" maxlength="30">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="fund_id" class="col-sm-3 control-label">案例地址</label>
+			    <div class="col-sm-9">
+			      <input type="text" class="form-control"
+			       id="address" name="c.address" placeholder="输入案例地址" maxlength="50">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="fund_name" class="col-sm-3 control-label">案例时间</label>
 			    <div class="col-sm-9">
 			      <input type="text" class="form-control"
-			       id="getTime" name="getTime" placeholder="选择案例获取时间">
+			       id="ctime" name="ctime" placeholder="选择案例发生时间">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="fund_name" class="col-sm-3 control-label">是否有效</label>
 			    <div class="col-sm-9">
-			      <select id="if_show" name="b.if_show" class="form-control">
+			      <select id="if_show" name="c.if_show" class="form-control">
 			      	<option value="0">否</option>
 			      	<option value="1">是</option>
 			      </select>
@@ -81,7 +88,7 @@
 			    <label for="fund_name" class="col-sm-3 control-label">案例简介</label>
 			    <div class="col-sm-9">
 			      <textarea type="text" class="form-control"
-			       id="content" name="b.content" placeholder="输入案例简介" maxlength="200"></textarea>
+			       id="content" name="c.content" placeholder="输入案例简介" maxlength="200"></textarea>
 			    </div>
 			  </div>
 			</form>
@@ -151,18 +158,21 @@
 <div class="modal fade" id="seeModal" tabindex="-1" role="dialog" aria-hidden="true">
 <div class="modal-dialog-lg">
     <div class="modal-content" style="height:100%;text-align:center">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	    </div>
 	  <input type="hidden" id="picid" />
 	  <div class="row">
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="1" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="2" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="3" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="4" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic1"><img src="img/nopic.png"  width="100%" id="1" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic2"><img src="img/nopic.png"  width="100%" id="2" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic3"><img src="img/nopic.png"  width="100%" id="3" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic4"><img src="img/nopic.png"  width="100%" id="4" onclick="opera(this)"/></div>
 	  </div>
 	  <div class="row">
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="5" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="6" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="7" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="8" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic5"><img src="img/nopic.png"  width="100%" id="5" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic6"><img src="img/nopic.png"  width="100%" id="6" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic7"><img src="img/nopic.png"  width="100%" id="7" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic8"><img src="img/nopic.png"  width="100%" id="8" onclick="opera(this)"/></div>
 	  </div>
     </div>
 </div>
@@ -226,7 +236,6 @@
     </div>
 </div>
 <script type="text/javascript">
-
 $("#add").bind("click",function(){
 	document.getElementById("addForm").reset();
 	$("#myModalLabel").text("添加案例");
@@ -236,9 +245,9 @@ $("#addButton").bind("click",function(){
 	var url = "";
 	var text = $("#myModalLabel").text();
 	if(text=="添加案例")
-		url = "book/addData";
+		url = "case/addData";
 	else
-		url = "book/updateData";
+		url = "case/updateData";
 	
     $.ajax({
 		type:"post",
@@ -253,7 +262,7 @@ $("#addButton").bind("click",function(){
 				$("#table").bootstrapTable(  
 			              "refresh",  
 			              {  
-			                  url:"book/getDatas"
+			                  url:"case/getDatas"
 			              }  
 			      ); 	
 				BootstrapDialog.alert({title:"提示信息",message:"保存成功！"});
@@ -267,10 +276,10 @@ function queryParams(params) {  //配置参数
 	var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的  
   	"pageSize": params.pageSize,   //页面大小  
  	"pageNumber": params.pageNumber,  //页码    
-	"b.get_time%t>":$("#timeStrBegin").val(),
-	"b.get_time%t<":$("#timeStrEnd").val(),
-	"b.name%s~":$("#searchBook").val(),
-	"b.if_show%i=":$("#searchIfShow").val(),
+	"c.ctime%t>":$("#timeStrBegin").val(),
+	"c.ctime%t<":$("#timeStrEnd").val(),
+	"c.title%s~":$("#searchBook").val(),
+	"c.if_show%i=":$("#searchIfShow").val(),
   	"sortName": params.sortName,  //排序列名  
   	"sortOrder": params.sortOrder//排位命令（desc，asc）  
 	};  
@@ -284,7 +293,7 @@ function queryParams(params) {  //配置参数
     	$("#table").bootstrapTable(  
 	              "refresh",  
 	              {  
-	                  url:"book/getDatas"
+	                  url:"case/getDatas"
 	              }  
 	      ); 
     });
@@ -293,7 +302,7 @@ function queryParams(params) {  //配置参数
     	$("#table").bootstrapTable(  
 	              "refresh",  
 	              {   
-	                  url:"book/getDatas"
+	                  url:"case/getDatas"
 	              }  
 	      ); 
 		$("#searchModal").modal('hide');
@@ -308,7 +317,7 @@ function queryParams(params) {  //配置参数
     		str = str.substring(0,str.length-1);
     		$.ajax({
         		type:"post",
-        		url:"book/deleteDatas",
+        		url:"case/deleteDatas",
         		data:{idStr:str},
         		dataType:"json",
         		error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -318,7 +327,7 @@ function queryParams(params) {  //配置参数
         			$("#table").bootstrapTable(  
         		              "refresh",  
         		              {  
-        		                  url:"book/getDatas"
+        		                  url:"case/getDatas"
         		              }  
         		      ); 	
         			BootstrapDialog.alert({title:"提示信息",message:"成功删除"+result["num"]+"条案例！"});
@@ -335,7 +344,7 @@ $("#update").bind("click",function(){
 		var rowData = datas[0];
 		$.ajax({
     		type:"post",
-    		url:"book/getData",
+    		url:"case/getData",
     		data:{"id":rowData['id']},
     		dataType:"json",
     		error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -343,9 +352,10 @@ $("#update").bind("click",function(){
     		 },
     		success:function(result){
     			$("#id").val(result['id']);
-    			$("#name").val(result['name']);
+    			$("#title").val(result['title']);
+    			$("#address").val(result['address']);
     			$("#content").val(result['content']);
-    			$("#getTime").val(result['getTime']);
+    			$("#ctime").val(result['ctime']);
     			$("#if_show").val(result['if_show']);
     			$("#myModalLabel").text("编辑案例");
     			$("#myModal").modal('show');
@@ -355,7 +365,7 @@ $("#update").bind("click",function(){
 		BootstrapDialog.alert({title:"提示信息",message:"必须选择一条案例！"});
 	}
 })
-$('#getTime').datetimepicker({
+$('#ctime').datetimepicker({
 	format: 'yyyy-mm-dd',      /*此属性是显示顺序，还有显示顺序是mm-dd-yyyy*/
 	minView:'month',
 	todayBtn:true,
@@ -385,7 +395,7 @@ $('#timeStrEnd').datetimepicker({
 $('#table').bootstrapTable({
     method: 'post',
     contentType: "application/x-www-form-urlencoded",
-    url: "book/getDatas",//这个接口需要处理bootstrap table传递的固定参数
+    url: "case/getDatas",//这个接口需要处理bootstrap table传递的固定参数
     toolbar: '#toolbar',    //工具按钮用哪个容器
     striped: true,      //是否显示行间隔色
     cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -393,7 +403,7 @@ $('#table').bootstrapTable({
     onlyInfoPagination: false,
     sortable: true,      //是否启用排序
     sortOrder: "desc",     //排序方式
-    sortName:"get_time",
+    sortName:"ctime",
     dataType: "json",
     pageNumber:1,      //初始化加载第一页，默认第一页
     pageSize: 10,      //每页的记录行数（*）
@@ -430,13 +440,19 @@ $('#table').bootstrapTable({
         align: 'center',
         visible:false
     },{
-        field: 'name',
-        title: '案例名称',
+        field: 'title',
+        title: '案例标题',
         align: 'center',
-        width:'20%',
+        width:'10%',
         sortable: true
     },{
-        field: 'getTime',
+        field: 'title',
+        title: '案例地址',
+        align: 'center',
+        width:'10%',
+        sortable: true
+    },{
+        field: 'ctime',
         title: '案例时间',
         align: 'center',
         width:'10%',
@@ -460,7 +476,7 @@ $('#table').bootstrapTable({
         field: '案例图片',
         title: '案例图片',
         align: 'center',
-        width:'20%',
+        width:'10%',
         formatter: function (value, row, index) {
         	var id = row['id'];
         	return "<a onclick='seePic("+id+")'>查看<a/>";
@@ -478,14 +494,31 @@ $('#table').bootstrapTable({
 var seeId = "";
 function seePic(id){
 	seeId = id;
+	/* var nums = [1,2,3,4,5,6,7,8];
+    for(var i=0;i<nums.length;i++){
+    	$("#"+nums[i]).attr("src","");
+    	$("#"+nums[i]).attr("src","case/getPic?id="+id+"_"+nums[i]+"&s="+Math.random());
+    }
+	$("#seeModal").modal('show'); */
 	$.ajax({
         url: 'case/getPics', // 要上传的地址
         type: 'post',
         data: {"id":id},
         dataType: 'json',
         success: function (data) {
+        	var swidth = $(document).width();
+        	var nums = [1,2,3,4,5,6,7,8];
             for(var i=0;i<data.length;i++){
             	$("#"+data[i]).attr("src","case/getPic?id="+id+"_"+data[i]+"&s="+Math.random());
+            	/* $("#"+data[i]).attr("style","height:"+(swidth/4-30)+"px;max-height:"+(swidth/4-30)+"px");
+            	var width = $("#"+data[i]).width();
+            	console.log(data[i]+".."+width+".."+$("#"+data[i]).outerWidth()+".."+$("#"+data[i]).outerWidth(true)); */
+            	nums.splice($.inArray(data[i],nums),1);
+            }
+            for(var i=0;i<nums.length;i++){
+            	//$("#"+nums[i]).attr("src","");
+            	$("#"+nums[i]).attr("src","case/getPic?id=nopic&s="+Math.random());
+            	//console.log(width+".."+$("#pic"+data[i]).outerWidth()+".."+$("#pic"+nums[i]).outerWidth(true));
             }
     		$("#seeModal").modal('show');
         }
@@ -497,7 +530,7 @@ function opera(img){
 	var id = $(img).attr("id");
 	$("#picid").val(id);
 	//如果src = img/nopic.png 点击就直接弹出上传 否则弹出选项删除或者重新上传
-	if(src == "img/nopic.png"){
+	if(src .indexOf("nopic")>-1){
 		open();
 	}else{
 		$("#reuploadOrDel").modal('show');
@@ -595,6 +628,8 @@ var crop = function(){
     	    processData: false,
     	    contentType: false,
     	    success: function () {
+    	    	/* var swidth = $(document).width();
+    	    	$("#"+$("#picid").val()).attr("style","max-width:"+(swidth/4-30)+"px;max-height:"+(swidth/4-30)+"px"); */
                 $("#"+$("#picid").val()).attr('src', 'case/getPic?id='+seeId+"_"+$("#picid").val()+'&s='+Math.random());
                 $('#changeModal').modal('hide');
 	        	console.log('Upload success');

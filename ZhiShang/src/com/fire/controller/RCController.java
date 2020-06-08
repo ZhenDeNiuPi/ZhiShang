@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.fire.intercepter.LoginInterceptor;
-import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.PathKit;
 import com.jfinal.upload.UploadFile;
@@ -35,7 +33,6 @@ public class RCController  extends Controller{
 		renderJson("num",1);
 	}
 
-	@Clear(LoginInterceptor.class)
 	public void getPics() {
 		File dir = new File(rootPath);
 		if(!dir.exists()) dir.mkdir();
@@ -50,7 +47,6 @@ public class RCController  extends Controller{
 		renderJson(names);
 	}
 
-	@Clear(LoginInterceptor.class)
 	public void getPic() {
 		String id = getPara("id");
 		File file = new File(rootPath,id+".jpeg");
