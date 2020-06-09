@@ -103,7 +103,7 @@
            ];
 	 $.ajax({
 		type:"post",
-		url:"getIfUser",
+		url:"manage/getIfUser",
 		data:"",
 		dataType:"json",
 		error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -131,7 +131,7 @@ function inittree(){
          onNodeSelected:function(event, data) {
         	 $.ajax({
             		type:"post",
-            		url:"getIfUser",
+            		url:"manage/getIfUser",
             		data:"",
             		dataType:"json",
             		error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -152,7 +152,7 @@ function inittree(){
 $("#exit").bind("click",function(){
 	$.ajax({
 		type:"post",
-		url:"logout",
+		url:"manage/logout",
 		data:"",
 		dataType:"json",
 		error:function(XMLHttpRequest, textStatus, errorThrown){

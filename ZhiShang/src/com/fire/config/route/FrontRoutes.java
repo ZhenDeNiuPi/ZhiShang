@@ -14,7 +14,7 @@ public class FrontRoutes extends Routes {
 
 	@Override
 	public void config() {
-		add("/", LoginController.class, path );
+		add("/manage", LoginController.class, path );
 		add("/user", UserController.class,path);
 		add("/rc", RCController.class,path);
 		add("/book", BookController.class,path);

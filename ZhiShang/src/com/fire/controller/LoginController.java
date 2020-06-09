@@ -24,7 +24,7 @@ import com.jfinal.plugin.activerecord.Record;
 public class LoginController extends Controller{
 	static Logger logger = Logger.getLogger(LoginController.class);
 
-	public void manage() {
+	public void index() {
 		render("index.html");
 	}
 	
@@ -232,12 +232,22 @@ public class LoginController extends Controller{
 }
 	
 	public void contactUs() throws Exception {
+
+		String ip = getIp(getRequest());
+		Long before24 = System.currentTimeMillis()/1000-86400;
+		Record ipcount = Db.findFirst("select ifnull(count(*),0) count from contact_ip_tb where ip='"+ip+"' and time>"+before24);
+		int count1 = Integer.parseInt(ipcount.get("count")+"");
+		if(count1>4) {
+			renderJson("errormessage","24小时内最多发送五次联系信息！");
+			return;
+		}
 		String recieve = Db.findFirst("select mobile from info_tb ").get("mobile")+"";
 		String mobile = getPara("mobile","");
 		String content = getPara("content","");
 		String name = getPara("name","");
 		HttpClientResult hcr = 
 				ZsSmsUtil.sendSms(recieve, mobile, content, name);
+//		System.out.println(hcr.getContent());
 		renderJson(hcr);
 	}
 }

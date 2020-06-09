@@ -31,15 +31,15 @@ function view_change(next) {
   next.classList.add('is-show');
 }
 var changeUrl = function(){
-	$("#img").attr("src",'img?'+Math.random());
-	$("#img2").attr("src",'img?'+Math.random());
+	$("#img").attr("src",'manage/img?'+Math.random());
+	$("#img2").attr("src",'manage/img?'+Math.random());
 }
 $("#changePassButton").bind("click",function(){
 	var account = $("#account2").val();
 	var newpass = $("#passwordnew").val();
 	$.ajax({
 		type:"post",
-		url:"findPass",
+		url:"manage/findPass",
 		data:$("#changeForm").serialize(),
 		dataType:"json",
 		error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -64,7 +64,7 @@ $("#changePassButton").bind("click",function(){
 $("#submitButton").bind("click",function(){
 	$.ajax({
 		type:"post",
-		url:"dologin",
+		url:"manage/dologin",
 		data:$("#loginForm").serialize(),
 		dataType:"json",
 		error:function(XMLHttpRequest, textStatus, errorThrown){
