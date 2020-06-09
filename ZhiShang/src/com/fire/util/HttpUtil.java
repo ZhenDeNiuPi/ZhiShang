@@ -3,6 +3,7 @@ package com.fire.util;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
@@ -147,4 +148,56 @@ public class HttpUtil {
         }  
         return null;  
     }  
+    
+    public static String doGet(String url,String token, Map<String,String> params) {      
+    	HttpClientBuilder builder = HttpClients.custom();
+    	builder.setUserAgent("Mozilla/5.0(Windows;U;Windows NT 5.1;en-US;rv:0.9.4)"); 
+        CloseableHttpClient httpclient = builder.build();; 
+//        HttpPost httpPost = new HttpPost(url);// 创建httpPost    
+        HttpGet httpPost = new HttpGet(url);// 创建httpPost   
+        RequestConfig requestConfig =  
+        		RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(10000).build();
+        httpPost.setConfig(requestConfig);
+//		Header header = new Header("Authorization", "Bearer " + token);
+//        httpPost.setHeader("Accept", "application/json");    //接收报文类型
+//        httpPost.setHeader("Authorization", "Bearer "+token);    //接收报文类型
+//        httpPost.setHeader("Content-Type", "application/json");   //发送报文类型
+        /*if(params != null && !"".equals(params)){
+            StringEntity entity = new StringEntity(params, "UTF-8");  
+            httpPost.setEntity(entity);    	
+        } */    
+        url += "?";
+        for(String key : params.keySet()) {
+        	url+= key + "=" + params.get(key) + "&";
+        }
+        url = url.substring(0,url.length()-1);
+        System.out.println(url);
+        CloseableHttpResponse response = null;     
+        try {  
+            response = httpclient.execute(httpPost);  
+            StatusLine status = response.getStatusLine();  
+            int state = status.getStatusCode();  
+            if (state == HttpStatus.SC_OK) {  
+                HttpEntity responseEntity = response.getEntity();  
+                String jsonString = EntityUtils.toString(responseEntity,"UTF-8");  
+                return jsonString;  
+            }  
+            else{  
+                System.out.println(state);
+            }  
+        } catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}  
+        finally { 
+                try {  
+                	if (response != null)response.close();  
+                	httpclient.close();  
+                } catch (IOException e) {  
+                    e.printStackTrace();  
+                }  
+        }  
+        return null;  
+    }
 }

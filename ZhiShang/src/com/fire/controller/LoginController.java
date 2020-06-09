@@ -10,7 +10,9 @@ import org.apache.log4j.Logger;
 
 import com.fire.intercepter.FormOperaIntercepter;
 import com.fire.intercepter.LoginInterceptor;
+import com.fire.util.HttpClientResult;
 import com.fire.util.MD5Util;
+import com.fire.util.ZsSmsUtil;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.captcha.CaptchaRender;
@@ -229,6 +231,15 @@ public class LoginController extends Controller{
         return false;
 }
 	
+	public void contactUs() throws Exception {
+		String recieve = Db.findFirst("select mobile from info_tb ").get("mobile")+"";
+		String mobile = getPara("mobile","");
+		String content = getPara("content","");
+		String name = getPara("name","");
+		HttpClientResult hcr = 
+				ZsSmsUtil.sendSms(recieve, mobile, content, name);
+		renderJson(hcr);
+	}
 }
 
 
