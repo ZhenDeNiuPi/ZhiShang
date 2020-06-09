@@ -22,8 +22,8 @@ public class LoginInterceptor implements Interceptor{
 			if(zs!=null){
 				inv.invoke();
 			}else if(actKey.equals("/dologin")||
-					actKey.equals("/")||
-					actKey.equals("/welcome")||
+					actKey.equals("/manage")||
+//					actKey.equals("/welcome")||
 					actKey.equals("/user/sendValidate")
 					) 
 				inv.invoke();
@@ -43,7 +43,7 @@ public class LoginInterceptor implements Interceptor{
 	}
 	private void extractedLogin(Controller controller) {
 		removeSession(controller);
-		controller.redirect("/");
+		controller.redirect("/manage");
 	}
 	
 	private void removeSession(Controller controller){

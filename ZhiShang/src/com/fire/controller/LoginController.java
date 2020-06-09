@@ -22,7 +22,7 @@ import com.jfinal.plugin.activerecord.Record;
 public class LoginController extends Controller{
 	static Logger logger = Logger.getLogger(LoginController.class);
 
-	public void index() {
+	public void manage() {
 		render("index.html");
 	}
 	

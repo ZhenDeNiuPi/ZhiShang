@@ -8,14 +8,14 @@ $(function(){
             if(sessionstatus=="timeout"){   
                //如果超时就处理 ，指定要跳转的页面  这里必须是alert 否则直接就跳了
                alert("连接超时，请重新登录！");
-               top.location.href = postPath+"/";
+               top.location.href = postPath+"/manage";
               
             }else if(sessionstatus=="break"){
                 alert("网络错误！");
-            	top.location.href = postPath+"/";
+            	top.location.href = postPath+"/manage";
             }else if(sessionstatus=="fuck"){
                 alert("非法访问！");
-            	top.location.href = postPath+"/";
+            	top.location.href = postPath+"/manage";
             }  
         },
         beforeSend:function(XMLHttpRequest,arguments){
