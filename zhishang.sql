@@ -134,3 +134,13 @@ CREATE TABLE `user_tb` (
 -- Records of user_tb
 -- ----------------------------
 INSERT INTO `user_tb` VALUES ('1', 'admin', '12946e291689abaf5af28e859e93619c');
+
+
+-- 20200609 联系我们ip限制表
+DROP TABLE IF EXISTS `contact_ip_tb`;
+CREATE TABLE `contact_ip_tb` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(20) DEFAULT NULL,
+  `time` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
