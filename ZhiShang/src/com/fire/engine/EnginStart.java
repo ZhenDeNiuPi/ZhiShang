@@ -11,6 +11,7 @@ import com.jfinal.config.Interceptors;
 import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
+import com.jfinal.core.JFinal;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -31,7 +32,7 @@ public class EnginStart extends JFinalConfig {
         //设置编码格式
         me.setEncoding("utf-8");
         //设置视图类型
-        me.setViewType(ViewType.JSP);
+        me.setViewType(ViewType.JFINAL_TEMPLATE);
     }
 
     /**
@@ -67,7 +68,7 @@ public class EnginStart extends JFinalConfig {
     @Override
     public void configInterceptor(Interceptors me) {
     	me.add(new SessionInViewInterceptor());
-    	me.addGlobalActionInterceptor(new LoginInterceptor());    
+    	//me.addGlobalActionInterceptor(new LoginInterceptor());
     	me.addGlobalActionInterceptor(new ExceptionInterceptor());
     }
 
@@ -90,7 +91,9 @@ public class EnginStart extends JFinalConfig {
 	@Override
 	public void configEngine(Engine me) {
 		// TODO Auto-generated method stub
-
+        //支持模版热加载
+        me.setDevMode(true);
+        me.addSharedObject("context", JFinal.me().getContextPath());
 	}
 
 }
