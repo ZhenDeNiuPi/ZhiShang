@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<title>首页</title>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-treeview.min.css" rel="stylesheet">
-    <link href="css/bootstrap-dialog.css" rel="stylesheet">
-    <link href="css/cropper.css" rel="stylesheet">
-    <script type="text/javascript" src="js/cropper.js"></script>
-    <script type="text/javascript" src="js/jquery-cropper.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-table.js"></script>
-    <script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-dialog.js"></script>
-    <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
-    <script type="text/javascript" src="js/properties.js"></script>
-    <script type="text/javascript" src="js/globalAjax.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../css/cropper.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/cropper.js"></script>
+    <script type="text/javascript" src="../js/jquery-cropper.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-table.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-dialog.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="../js/properties.js"></script>
+    <script type="text/javascript" src="../js/globalAjax.js"></script>
 </head>
 <body>
     <div id="toolbar">
@@ -197,9 +197,9 @@ $("#addButton").bind("click",function(){
 	var url = "";
 	var text = $("#myModalLabel").text();
 	if(text=="添加证书")
-		url = "book/addData";
+		url = "../book/addData";
 	else
-		url = "book/updateData";
+		url = "../book/updateData";
 	
     $.ajax({
 		type:"post",
@@ -214,7 +214,7 @@ $("#addButton").bind("click",function(){
 				$("#table").bootstrapTable(  
 			              "refresh",  
 			              {  
-			                  url:"book/getDatas"
+			                  url:"../book/getDatas"
 			              }  
 			      ); 	
 				BootstrapDialog.alert({title:"提示信息",message:"保存成功！"});
@@ -245,7 +245,7 @@ function queryParams(params) {  //配置参数
     	$("#table").bootstrapTable(  
 	              "refresh",  
 	              {  
-	                  url:"book/getDatas"
+	                  url:"../book/getDatas"
 	              }  
 	      ); 
     });
@@ -254,7 +254,7 @@ function queryParams(params) {  //配置参数
     	$("#table").bootstrapTable(  
 	              "refresh",  
 	              {   
-	                  url:"book/getDatas"
+	                  url:"../book/getDatas"
 	              }  
 	      ); 
 		$("#searchModal").modal('hide');
@@ -269,7 +269,7 @@ function queryParams(params) {  //配置参数
     		str = str.substring(0,str.length-1);
     		$.ajax({
         		type:"post",
-        		url:"book/deleteDatas",
+        		url:"../book/deleteDatas",
         		data:{idStr:str},
         		dataType:"json",
         		error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -279,7 +279,7 @@ function queryParams(params) {  //配置参数
         			$("#table").bootstrapTable(  
         		              "refresh",  
         		              {  
-        		                  url:"book/getDatas"
+        		                  url:"../book/getDatas"
         		              }  
         		      ); 	
         			BootstrapDialog.alert({title:"提示信息",message:"成功删除"+result["num"]+"条证书！"});
@@ -296,7 +296,7 @@ $("#update").bind("click",function(){
 		var rowData = datas[0];
 		$.ajax({
     		type:"post",
-    		url:"book/getData",
+    		url:"../book/getData",
     		data:{"id":rowData['id']},
     		dataType:"json",
     		error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -346,7 +346,7 @@ $('#timeStrEnd').datetimepicker({
 $('#table').bootstrapTable({
     method: 'post',
     contentType: "application/x-www-form-urlencoded",
-    url: "book/getDatas",//这个接口需要处理bootstrap table传递的固定参数
+    url: "../book/getDatas",//这个接口需要处理bootstrap table传递的固定参数
     toolbar: '#toolbar',    //工具按钮用哪个容器
     striped: true,      //是否显示行间隔色
     cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -439,7 +439,7 @@ $('#table').bootstrapTable({
 
 function seePic(id){
 	$.ajax({
-        url: 'book/ifSend', // 要上传的地址
+        url: '../book/ifSend', // 要上传的地址
         type: 'post',
         data: {"id":id,
         	"s":Math.random()},
@@ -449,7 +449,7 @@ function seePic(id){
 				BootstrapDialog.alert({title:"提示信息",message:"还未上传证书图片，请先上传！"});
         	}else{
         		var swidth = $(document).width();
-        		$("#see").attr("src",data["path"]+"&s="+Math.random());
+        		$("#see").attr("src","../"+data["path"]+"&s="+Math.random());
         		$("#see").height(swidth/2-swidth/8);
         		$("#seeModal").modal('show');
         	}
@@ -524,7 +524,7 @@ var crop = function(){
         formData.append('id', sendId);
         console.log(e);
         console.log(formData);
-        $.ajax('book/uploadPic', {
+        $.ajax('../book/uploadPic', {
     	    method: "POST",
     	    data: formData,
     	    processData: false,

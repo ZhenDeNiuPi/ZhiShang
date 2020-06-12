@@ -92,7 +92,6 @@ public class CaseController  extends Controller{
 	}
 	
 
-	@Clear(LoginInterceptor.class)
 	public void getPics() {
 		String id = getPara("id");
 		File dir = new File(rootPath);
@@ -108,6 +107,24 @@ public class CaseController  extends Controller{
 			Collections.sort(names);
 		}
 		renderJson(names);
+	}
+
+	public void getPic4Index() {
+		String id = getPara("id");
+		File dir = new File(rootPath);
+		if(!dir.exists()) dir.mkdir();
+		File[] files = new File(rootPath).listFiles();
+		if(files != null && files.length > 0) {
+			for(File file : files) {
+				String fileName = file.getName();
+				if(fileName.startsWith(id+"_")) {
+					renderFile(file);
+					return;
+				}
+			}
+		}
+		File file = new File(PathKit.getWebRootPath()+"/img","nopic.png");
+		renderFile(file);
 	}
 	
 	public void delPic() {

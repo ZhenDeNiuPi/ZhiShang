@@ -183,62 +183,22 @@
             </div>
         </div>
         <div class="row row-static" style="margin-top:80px;">
-            <div class="col-md-3 col-sm-6 w50">
-            <div>
-                <div>
-                    <div class="cus-thumbnail">
-                        <div class="img">
-                            <img src="#(context)/img/zs/p.jpg">
-                        </div>
-                        <div class="cont">
-                            <p><a href="">证书1</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <div class="col-md-3 col-sm-6 w50">
-            <div>
-                <div>
-                    <div class="cus-thumbnail">
-                        <div class="img">
-                            <img src="#(context)/img/zs/p.jpg">
-                        </div>
-                        <div class="cont">
-                            <p><a href="">证书1 </a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <div class="col-md-3 col-sm-6 w50">
-            <div>
-                <div>
-                    <div class="cus-thumbnail">
-                        <div class="img">
-                            <img src="#(context)/img/zs/p.jpg">
-                        </div>
-                        <div class="cont">
-                            <p><a href="">证书1 </a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <div class="col-md-3 col-sm-6 w50">
-            <div>
-                <div>
-                    <div class="cus-thumbnail">
-                        <div class="img">
-                            <img src="#(context)/img/zs/p.jpg">
-                        </div>
-                        <div class="cont">
-                            <p><a href="">证书1 </a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        #for(book:books)
+	        <div class="col-md-#(12/books.size()) col-sm-6 w50">
+	            <div>
+	                <div>
+	                    <div class="cus-thumbnail">
+	                        <div class="img">
+	                            <img src="#(context)/book/getPic?id=#(book.get('id'))&t=#(time)&zs=zs">
+	                        </div>
+	                        <div class="cont">
+	                            <p><a href="">#(book.get('name'))</a></p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+        #end
 
         </div>
     </div>
@@ -265,55 +225,21 @@
             <div class="col-md-12">
                 <div class="Webpart">
                     <div class="row">
+                    
+       		 	#for(case:cases)
                         <div class="col-md-6 col-sm-6 w50">
                         <div class="thumbnail">
                             <div class="intr-box"> <a href="/a/chanpinzhanshi/6.html">
                                 <div class="img">
-                                    <img src="#(context)/img/zs/p.jpg">
+                                    <img src="#(context)/case/getPic4Index?id=#(case.get('id'))&t=#(time)&zs=zs">
                                 </div>
                                 <div class="caption">
-                                    <h3 >案例展示6</h3>
+                                    <h3 >#(case.get("title"))</h3>
                                 </div>
                             </a> </div>
                         </div>
                     </div>
-                        <div class="col-md-6 col-sm-6 w50">
-                            <div class="thumbnail">
-                                <div class="intr-box"> <a href="/a/chanpinzhanshi/5.html">
-                                    <div class="img">
-                                        <img src="#(context)/img/zs/p.jpg">
-                                    </div>
-                                    <div class="caption">
-                                        <h3>案例展示5</h3>
-                                    </div>
-                                </a> </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 w50">
-                            <div class="thumbnail">
-                                <div class="intr-box"> <a href="/a/chanpinzhanshi/4.html">
-                                    <div class="img">
-                                        <img src="#(context)/img/zs/p.jpg">
-                                    </div>
-                                    <div class="caption">
-                                        <h3>案例展示4</h3>
-                                    </div>
-                                </a> </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 w50">
-                            <div class="thumbnail">
-                                <div class="intr-box"> <a href="/a/chanpinzhanshi/3.html">
-                                    <div class="img">
-                                        <img src="#(context)/img/zs/p.jpg">
-                                    </div>
-                                    <div class="caption">
-                                        <h3>案例展示3</h3>
-                                    </div>
-                                </a> </div>
-                            </div>
-                        </div>
-
+                #end
                     </div>
                 </div>
             </div>
@@ -338,68 +264,24 @@
                     </div>
                 </div>
                 <div class="row row-static" style="margin-top:80px;">
+                
+       		 	#for(new:news)
                     <div class="col-md-3 col-sm-6 w50">
                         <div>
                             <div>
                                 <div class="cus-thumbnail">
                                     <div class="img">
-                                        <img src="#(context)/img/zs/p.jpg">
+                                        <img src="#(context)/news/getPic?id=#(new.get('id'))&t=#(time)&zs=zs">
                                     </div>
                                     <div class="cont text-left" >
-                                        <p class="ov1 text-left"><a href="" >咨询标题咨询标题咨询标题咨询标题 </a></p>
+                                        <p class="ov1 text-left"><a href="" >#(new.get('title')) </a></p>
                                         <p><a href="" style="color: #0a628f;text-align: left">查看详情→ </a></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 w50">
-                        <div>
-                            <div>
-                                <div class="cus-thumbnail">
-                                    <div class="img">
-                                        <img src="#(context)/img/zs/p.jpg">
-                                    </div>
-                                    <div class="cont text-left" >
-                                        <p class="ov1 text-left"><a href="" >咨询标题咨询标题咨询标题咨询标题 </a></p>
-                                        <p><a href="" style="color: #0a628f;text-align: left">查看详情→ </a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 w50">
-                        <div>
-                            <div>
-                                <div class="cus-thumbnail">
-                                    <div class="img">
-                                        <img src="#(context)/img/zs/p.jpg">
-                                    </div>
-                                    <div class="cont text-left" >
-                                        <p class="ov1 text-left"><a href="" >咨询标题咨询标题咨询标题咨询标题 </a></p>
-                                        <p><a href="" style="color: #0a628f;text-align: left">查看详情→ </a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 w50">
-                        <div>
-                            <div>
-                                <div class="cus-thumbnail">
-                                    <div class="img">
-                                        <img src="#(context)/img/zs/p.jpg">
-                                    </div>
-                                    <div class="cont text-left" >
-                                        <p class="ov1 text-left"><a href="" >咨询标题咨询标题咨询标题咨询标题 </a></p>
-                                        <p><a href="" style="color: #0a628f;text-align: left">查看详情→ </a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
+                #end
                 </div>
             </div>
         </div>
@@ -434,12 +316,16 @@
                         <div class="col-sm-6 lianxi" >
                             <form>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">联系方式</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    <label for="name">姓名</label>
+                                    <input name="name" type="text" class="form-control" id="name" placeholder="请输入姓名">
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobile">手机号</label>
+                                    <input name="mobile" type="text" class="form-control" id="mobile" placeholder="请输入手机号">
                                 </div>
                                 <div class="form-group">
                                     <label for="">备注</label>
-                                    <textarea class="form-control" rows="3"></textarea>
+                                    <textarea name="content" class="form-control" rows="3" placeholder="请输入备注"></textarea>
                                 </div>
 
                                 <button type="submit" class="btn btn-success">提交</button>

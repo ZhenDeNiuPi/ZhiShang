@@ -21,7 +21,7 @@ public class LoginInterceptor implements Interceptor{
 			String zs = controller.getPara("zs");
 			if(zs!=null){
 				inv.invoke();
-			}else if(actKey.equals("/dologin")||
+			}else if(actKey.equals("/manage/dologin")||
 					actKey.equals("/manage")||
 //					actKey.equals("/welcome")||
 					actKey.equals("/user/sendValidate")

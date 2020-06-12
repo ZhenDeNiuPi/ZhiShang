@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<title>至上净化管理系统</title>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-treeview.min.css" rel="stylesheet">
-    <link href="css/bootstrap-dialog.css" rel="stylesheet">
-    <script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-dialog.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-dialog.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-dialog.js"></script>
     <style>
     	.page-header{
     		margin:2px 0 0;
@@ -103,7 +103,7 @@
            ];
 	 $.ajax({
 		type:"post",
-		url:"manage/getIfUser",
+		url:"getIfUser",
 		data:"",
 		dataType:"json",
 		error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -131,7 +131,7 @@ function inittree(){
          onNodeSelected:function(event, data) {
         	 $.ajax({
             		type:"post",
-            		url:"manage/getIfUser",
+            		url:"getIfUser",
             		data:"",
             		dataType:"json",
             		error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -152,7 +152,7 @@ function inittree(){
 $("#exit").bind("click",function(){
 	$.ajax({
 		type:"post",
-		url:"manage/logout",
+		url:"logout",
 		data:"",
 		dataType:"json",
 		error:function(XMLHttpRequest, textStatus, errorThrown){

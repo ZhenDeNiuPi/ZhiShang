@@ -32,7 +32,8 @@ public class EnginStart extends JFinalConfig {
         //设置编码格式
         me.setEncoding("utf-8");
         //设置视图类型
-        me.setViewType(ViewType.JFINAL_TEMPLATE);
+//        me.setViewType(ViewType.JFINAL_TEMPLATE);
+        me.setViewType(ViewType.JSP);
     }
 
     /**
@@ -68,7 +69,7 @@ public class EnginStart extends JFinalConfig {
     @Override
     public void configInterceptor(Interceptors me) {
     	me.add(new SessionInViewInterceptor());
-    	//me.addGlobalActionInterceptor(new LoginInterceptor());
+    	me.addGlobalActionInterceptor(new LoginInterceptor());
     	me.addGlobalActionInterceptor(new ExceptionInterceptor());
     }
 

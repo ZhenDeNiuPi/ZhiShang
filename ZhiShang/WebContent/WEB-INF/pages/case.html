@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<title>首页</title>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-treeview.min.css" rel="stylesheet">
-    <link href="css/bootstrap-dialog.css" rel="stylesheet">
-    <link href="css/cropper.css" rel="stylesheet">
-    <script type="text/javascript" src="js/cropper.js"></script>
-    <script type="text/javascript" src="js/jquery-cropper.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-table.js"></script>
-    <script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-dialog.js"></script>
-    <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
-    <script type="text/javascript" src="js/properties.js"></script>
-    <script type="text/javascript" src="js/globalAjax.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../css/cropper.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/cropper.js"></script>
+    <script type="text/javascript" src="../js/jquery-cropper.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-table.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-dialog.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="../js/properties.js"></script>
+    <script type="text/javascript" src="../js/globalAjax.js"></script>
 </head>
 <body>
     <div id="toolbar">
@@ -163,16 +163,16 @@
 	    </div>
 	  <input type="hidden" id="picid" />
 	  <div class="row">
-				<div class="col-md-3" id="pic1"><img src="img/nopic.png"  width="100%" id="1" onclick="opera(this)"/></div>
-				<div class="col-md-3" id="pic2"><img src="img/nopic.png"  width="100%" id="2" onclick="opera(this)"/></div>
-				<div class="col-md-3" id="pic3"><img src="img/nopic.png"  width="100%" id="3" onclick="opera(this)"/></div>
-				<div class="col-md-3" id="pic4"><img src="img/nopic.png"  width="100%" id="4" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic1"><img src="../img/nopic.png"  width="100%" id="1" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic2"><img src="../img/nopic.png"  width="100%" id="2" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic3"><img src="../img/nopic.png"  width="100%" id="3" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic4"><img src="../img/nopic.png"  width="100%" id="4" onclick="opera(this)"/></div>
 	  </div>
 	  <div class="row">
-				<div class="col-md-3" id="pic5"><img src="img/nopic.png"  width="100%" id="5" onclick="opera(this)"/></div>
-				<div class="col-md-3" id="pic6"><img src="img/nopic.png"  width="100%" id="6" onclick="opera(this)"/></div>
-				<div class="col-md-3" id="pic7"><img src="img/nopic.png"  width="100%" id="7" onclick="opera(this)"/></div>
-				<div class="col-md-3" id="pic8"><img src="img/nopic.png"  width="100%" id="8" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic5"><img src="../img/nopic.png"  width="100%" id="5" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic6"><img src="../img/nopic.png"  width="100%" id="6" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic7"><img src="../img/nopic.png"  width="100%" id="7" onclick="opera(this)"/></div>
+				<div class="col-md-3" id="pic8"><img src="../img/nopic.png"  width="100%" id="8" onclick="opera(this)"/></div>
 	  </div>
     </div>
 </div>
@@ -245,9 +245,9 @@ $("#addButton").bind("click",function(){
 	var url = "";
 	var text = $("#myModalLabel").text();
 	if(text=="添加案例")
-		url = "case/addData";
+		url = "../case/addData";
 	else
-		url = "case/updateData";
+		url = "../case/updateData";
 	
     $.ajax({
 		type:"post",
@@ -262,7 +262,7 @@ $("#addButton").bind("click",function(){
 				$("#table").bootstrapTable(  
 			              "refresh",  
 			              {  
-			                  url:"case/getDatas"
+			                  url:"../case/getDatas"
 			              }  
 			      ); 	
 				BootstrapDialog.alert({title:"提示信息",message:"保存成功！"});
@@ -293,7 +293,7 @@ function queryParams(params) {  //配置参数
     	$("#table").bootstrapTable(  
 	              "refresh",  
 	              {  
-	                  url:"case/getDatas"
+	                  url:"../case/getDatas"
 	              }  
 	      ); 
     });
@@ -302,7 +302,7 @@ function queryParams(params) {  //配置参数
     	$("#table").bootstrapTable(  
 	              "refresh",  
 	              {   
-	                  url:"case/getDatas"
+	                  url:"../case/getDatas"
 	              }  
 	      ); 
 		$("#searchModal").modal('hide');
@@ -317,7 +317,7 @@ function queryParams(params) {  //配置参数
     		str = str.substring(0,str.length-1);
     		$.ajax({
         		type:"post",
-        		url:"case/deleteDatas",
+        		url:"../case/deleteDatas",
         		data:{idStr:str},
         		dataType:"json",
         		error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -327,7 +327,7 @@ function queryParams(params) {  //配置参数
         			$("#table").bootstrapTable(  
         		              "refresh",  
         		              {  
-        		                  url:"case/getDatas"
+        		                  url:"../case/getDatas"
         		              }  
         		      ); 	
         			BootstrapDialog.alert({title:"提示信息",message:"成功删除"+result["num"]+"条案例！"});
@@ -344,7 +344,7 @@ $("#update").bind("click",function(){
 		var rowData = datas[0];
 		$.ajax({
     		type:"post",
-    		url:"case/getData",
+    		url:"../case/getData",
     		data:{"id":rowData['id']},
     		dataType:"json",
     		error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -395,7 +395,7 @@ $('#timeStrEnd').datetimepicker({
 $('#table').bootstrapTable({
     method: 'post',
     contentType: "application/x-www-form-urlencoded",
-    url: "case/getDatas",//这个接口需要处理bootstrap table传递的固定参数
+    url: "../case/getDatas",//这个接口需要处理bootstrap table传递的固定参数
     toolbar: '#toolbar',    //工具按钮用哪个容器
     striped: true,      //是否显示行间隔色
     cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -501,7 +501,7 @@ function seePic(id){
     }
 	$("#seeModal").modal('show'); */
 	$.ajax({
-        url: 'case/getPics', // 要上传的地址
+        url: '../case/getPics', // 要上传的地址
         type: 'post',
         data: {"id":id},
         dataType: 'json',
@@ -509,7 +509,7 @@ function seePic(id){
         	var swidth = $(document).width();
         	var nums = [1,2,3,4,5,6,7,8];
             for(var i=0;i<data.length;i++){
-            	$("#"+data[i]).attr("src","case/getPic?id="+id+"_"+data[i]+"&s="+Math.random());
+            	$("#"+data[i]).attr("src","../case/getPic?id="+id+"_"+data[i]+"&s="+Math.random());
             	/* $("#"+data[i]).attr("style","height:"+(swidth/4-30)+"px;max-height:"+(swidth/4-30)+"px");
             	var width = $("#"+data[i]).width();
             	console.log(data[i]+".."+width+".."+$("#"+data[i]).outerWidth()+".."+$("#"+data[i]).outerWidth(true)); */
@@ -517,7 +517,7 @@ function seePic(id){
             }
             for(var i=0;i<nums.length;i++){
             	//$("#"+nums[i]).attr("src","");
-            	$("#"+nums[i]).attr("src","case/getPic?id=nopic&s="+Math.random());
+            	$("#"+nums[i]).attr("src","../case/getPic?id=nopic&s="+Math.random());
             	//console.log(width+".."+$("#pic"+data[i]).outerWidth()+".."+$("#pic"+nums[i]).outerWidth(true));
             }
     		$("#seeModal").modal('show');
@@ -538,12 +538,12 @@ function opera(img){
 }
 $("#delBut").click(function() {
 	$.ajax({
-        url: 'case/delPic', // 要上传的地址
+        url: '../case/delPic', // 要上传的地址
         type: 'post',
         data: {"seeId":seeId,"picId":$("#picid").val()},
         dataType: 'json',
         success: function (data) {
-        	$("#"+$("#picid").val()).attr("src","img/nopic.png");
+        	$("#"+$("#picid").val()).attr("src","../img/nopic.png");
     		$("#reuploadOrDel").modal('hide');
         }
     });
@@ -622,7 +622,7 @@ var crop = function(){
         formData.append('seeId', seeId);
         console.log(e);
         console.log(formData);
-        $.ajax('case/uploadPic', {
+        $.ajax('../case/uploadPic', {
     	    method: "POST",
     	    data: formData,
     	    processData: false,
@@ -630,7 +630,7 @@ var crop = function(){
     	    success: function () {
     	    	/* var swidth = $(document).width();
     	    	$("#"+$("#picid").val()).attr("style","max-width:"+(swidth/4-30)+"px;max-height:"+(swidth/4-30)+"px"); */
-                $("#"+$("#picid").val()).attr('src', 'case/getPic?id='+seeId+"_"+$("#picid").val()+'&s='+Math.random());
+                $("#"+$("#picid").val()).attr('src', '../case/getPic?id='+seeId+"_"+$("#picid").val()+'&s='+Math.random());
                 $('#changeModal').modal('hide');
 	        	console.log('Upload success');
     	    },

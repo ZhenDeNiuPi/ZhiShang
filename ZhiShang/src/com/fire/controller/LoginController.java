@@ -61,7 +61,7 @@ public class LoginController extends Controller{
 		renderCaptcha();
 	}
 
-	public void dologin() throws NumberFormatException, Exception {
+	public void dologin() {
 		
 		String ip = getIp(getRequest());
 		Record ipcount = Db.findFirst("select ifnull(error_time,0) count from login_iperror_tb where lock_ip='"+ip+"'");

@@ -30,9 +30,10 @@ function view_change(next) {
   cards.forEach(card => {card.classList.remove('is-show');});
   next.classList.add('is-show');
 }
-var changeUrl = function(){
-	$("#img").attr("src",'manage/img?'+Math.random());
-	$("#img2").attr("src",'manage/img?'+Math.random());
+var changeUrl = function(flag){
+	if(flag) $("#img").attr("src",'manage/img?'+Math.random());
+	else $("#img2").attr("src",'manage/img?'+Math.random());
+	
 }
 $("#changePassButton").bind("click",function(){
 	var account = $("#account2").val();
@@ -43,7 +44,7 @@ $("#changePassButton").bind("click",function(){
 		data:$("#changeForm").serialize(),
 		dataType:"json",
 		error:function(XMLHttpRequest, textStatus, errorThrown){
-			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+			 alert({title:"提示信息",message:"网络错误！"});
 		 },
 		success:function(result){
 			if(result["num"]>0){
@@ -57,7 +58,7 @@ $("#changePassButton").bind("click",function(){
 			}else {
 				$("#changeError").text(result["errormessage"]);
 			}
-			changeUrl();
+			changeUrl(false);
 		}
 	});
 });
@@ -68,15 +69,15 @@ $("#submitButton").bind("click",function(){
 		data:$("#loginForm").serialize(),
 		dataType:"json",
 		error:function(XMLHttpRequest, textStatus, errorThrown){
-			 BootstrapDialog.alert({title:"提示信息",message:"网络错误！"});
+			 alert({title:"提示信息",message:"网络错误！"});
 		 },
 		success:function(result){
 			if(result["login"]==1){
-				self.location='menu';
+				self.location='manage/menu';
 			}else {
 				$("#loginError").text(result["errormessage"]);
 			}
-			changeUrl();
+			changeUrl(true);
 		}
 	});
 });
