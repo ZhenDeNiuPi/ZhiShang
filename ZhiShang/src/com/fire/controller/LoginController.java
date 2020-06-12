@@ -247,7 +247,7 @@ public class LoginController extends Controller{
 		String name = getPara("name","");
 		HttpClientResult hcr = 
 				ZsSmsUtil.sendSms(recieve, mobile, content, name);
-//		System.out.println(hcr.getContent());
+		System.out.println(hcr.getCode()+"..."+ hcr.getContent());
 		renderJson(hcr);
 	}
 }

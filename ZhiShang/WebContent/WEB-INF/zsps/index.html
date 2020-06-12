@@ -314,7 +314,7 @@
                         </div>
 
                         <div class="col-sm-6 lianxi" >
-                            <form>
+                            <form id="contactForm">
                                 <div class="form-group">
                                     <label for="name">姓名</label>
                                     <input name="name" type="text" class="form-control" id="name" placeholder="请输入姓名">
@@ -328,7 +328,7 @@
                                     <textarea name="content" class="form-control" rows="3" placeholder="请输入备注"></textarea>
                                 </div>
 
-                                <button type="submit" class="btn btn-success">提交</button>
+                                <input type="button" class="btn btn-success" value="提交" onclick="contactUs()""/>
                             </form>
                         </div>
 
@@ -346,6 +346,29 @@
 <script src="#(context)/js/zs/swiper.min.js"></script>
 <script src="#(context)/js/zs/index.js"></script>
 <script>
+
+var contactUs = function(){
+	$.ajax({
+		type:"post",
+		url:"manage/contactUs",
+		data:$("#contactForm").serialize(),
+		dataType:"json",
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			 alert("网络错误！");
+		 },
+		success:function(result){
+			if(result["errormessage"]!=undefined && 
+					result["errormessage"]!=null){
+				//错误信息及IP限制
+				alert(result["errormessage"]);
+			}else{
+				//发送成功
+				alert("发送成功");
+			}
+		}
+	});
+}
+
 
     var mySwiper=new Swiper('.swiper-container',{
         autoplay:{

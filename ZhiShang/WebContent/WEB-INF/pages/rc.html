@@ -43,22 +43,22 @@
 <div id="consoleForm" style="width:98%">
 <input type="hidden" id="picid" />
 	  <div class="row">
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="1" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="2" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="3" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="4" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="1" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="2" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="3" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="4" onclick="opera(this)"/></div>
 	</div>
 	  <div class="row">
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="5" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="6" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="7" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="8" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="5" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="6" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="7" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="8" onclick="opera(this)"/></div>
 	</div>
 	  <div class="row">
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="9" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="10" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="11" onclick="opera(this)"/></div>
-				<div class="col-md-3"><img src="img/nopic.png"  width="100%" id="12" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="9" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="10" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="11" onclick="opera(this)"/></div>
+				<div class="col-md-3"><img src="../img/nopic.png"  width="100%" id="12" onclick="opera(this)"/></div>
 	</div>
 </div>	 
 <!-- 模态框   信息删除确认 -->
@@ -121,13 +121,13 @@
 initPic();
 function initPic(){
 	$.ajax({
-        url: 'rc/getPics', // 要上传的地址
+        url: '../rc/getPics', // 要上传的地址
         type: 'post',
         data: "",
         dataType: 'json',
         success: function (data) {
             for(var i=0;i<data.length;i++){
-            	$("#"+data[i]).attr("src","img/rc/"+data[i]+".jpeg");
+            	$("#"+data[i]).attr("src","../img/rc/"+data[i]+".jpeg");
             }
         }
     });
@@ -137,7 +137,7 @@ function opera(img){
 	var id = $(img).attr("id");
 	$("#picid").val(id);
 	//如果src = img/nopic.png 点击就直接弹出上传 否则弹出选项删除或者重新上传
-	if(src == "img/nopic.png"){
+	if(src == "../img/nopic.png"){
 		open();
 	}else{
 		$("#reuploadOrDel").modal('show');
@@ -145,12 +145,12 @@ function opera(img){
 }
 $("#delBut").click(function() {
 	$.ajax({
-        url: 'rc/delPic', // 要上传的地址
+        url: '../rc/delPic', // 要上传的地址
         type: 'post',
         data: {"id":$("#picid").val()},
         dataType: 'json',
         success: function (data) {
-        	$("#"+$("#picid").val()).attr("src","img/nopic.png");
+        	$("#"+$("#picid").val()).attr("src","../img/nopic.png");
     		$("#reuploadOrDel").modal('hide');
         }
     });
@@ -241,13 +241,13 @@ var crop = function(){
         formData.append('id', $("#picid").val());
         console.log(e);
         console.log(formData);
-        $.ajax('rc/uploadPic', {
+        $.ajax('../rc/uploadPic', {
     	    method: "POST",
     	    data: formData,
     	    processData: false,
     	    contentType: false,
     	    success: function () {
-                $("#"+$("#picid").val()).attr('src', 'rc/getPic?id='+$("#picid").val()+'&s='+Math.random());
+                $("#"+$("#picid").val()).attr('src', '../rc/getPic?id='+$("#picid").val()+'&s='+Math.random());
                 $('#changeModal').modal('hide');
 	        	console.log('Upload success');
     	    },
