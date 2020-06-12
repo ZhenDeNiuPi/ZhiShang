@@ -19,7 +19,7 @@ public class FNewsController extends Controller {
     	 Map<String,String[]> allParams= new HashMap<>();//获取前台传来的分页以及排序所需的参数
          String select  = "select n.id,from_unixtime(n.time,'%Y-%m-%d') ntime,n.title,n.stitle,n.creator,"
          		+ "n.content,n.if_show ";//select xxx,xxx,xxx 
-         String from = " from news_tb n where 1=1 ";//from xxx ... where 1=1 
+         String from = " from news_tb n where if_show=1 ";//from xxx ... where 1=1 
          allParams.put("pageSize", new String[]{"6"});
          allParams.put("pageNumber", new String[]{pageNum});
          Page page = is.query(select, from, allParams);
