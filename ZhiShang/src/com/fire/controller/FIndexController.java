@@ -1,8 +1,14 @@
 package com.fire.controller;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import com.fire.intercepter.LoginInterceptor;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.Db;
 
 /**
@@ -21,7 +27,24 @@ public class FIndexController extends Controller {
         setAttr("cases",Db.find("select * from case_tb where if_show=1 limit 4"));
         //加载新闻数据
         setAttr("news",Db.find("select * from news_tb where if_show=1 limit 4"));
+        //加载轮播图
+        setAttr("rcs",getIndexPics());
         setAttr("time",System.currentTimeMillis());
         renderTemplate("index.html");
+    }
+    
+    public List<Integer> getIndexPics() {
+    	String rootPath = PathKit.getWebRootPath()+"/img/rc";
+		File dir = new File(rootPath);
+		if(!dir.exists()) dir.mkdir();
+		File[] files = new File(rootPath).listFiles();
+		List<Integer> names = new ArrayList<>();
+		if(files != null && files.length > 0) {
+			for(File file : files) {
+				names.add(Integer.parseInt(file.getName().substring(0,file.getName().indexOf("."))));
+			}
+			Collections.sort(names);
+		}
+		return names;
     }
 }

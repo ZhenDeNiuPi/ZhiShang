@@ -11,6 +11,6 @@ import com.jfinal.core.Controller;
 public class FMessageController extends Controller {
 
     public void index(){
-        render("message.html");
+    	renderTemplate("message.html");
     }
 }

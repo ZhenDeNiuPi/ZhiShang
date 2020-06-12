@@ -119,7 +119,7 @@ public class NewsController  extends Controller{
 		if(!dir.exists()) dir.mkdir();
 		String newName = "un_"+UUID.randomUUID();
 		file.getFile().renameTo(new File(rootPath,newName+filename.substring(filename.indexOf("."), filename.length())));
-		renderJson("path","news/getContentPic?filename="+newName+"&s="+Math.random());
+		renderJson("path","../news/getContentPic?filename="+newName+"&s="+Math.random());
 	}
 
 	public void getContentPic() {

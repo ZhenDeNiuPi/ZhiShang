@@ -87,132 +87,48 @@
         <div class="article-protect-body">
             <img src="#(context)/img/zs/pro1.jpg">
             <ul>
+            #for(new:news_3)
                 <li>
                     <a href="news_list_content.html">
-                    <h3>苹果供应商工厂涉嫌偷排废水 松江河道污染</h3>
-                    <span>2017-06-01</span>
+                    <h3>#(new.get("title"))</h3>
+                    <span>#(new.get("ntime"))</span>
                     </a>
-                    <p>文汇报讯 (记者史博臻 通讯员任书建)就在公众把目光聚焦于企业地下排污之时，“钻空子”的不良企业却大张旗鼓地向河道...</p>
+                    <p>#(new.get("stitle"))</p>
                 </li>
-                <li>
-                    <a href="news_list_content.html">
-                    <h3>苹果供应商工厂涉嫌偷排废水 松江河道污染</h3>
-                    <span>2017-06-01</span>
-                    </a>
-                    <p>文汇报讯 (记者史博臻 通讯员任书建)就在公众把目光聚焦于企业地下排污之时，“钻空子”的不良企业却大张旗鼓地向河道...</p>
-                </li>
-                <li>
-                    <a href="news_list_content.html">
-                    <h3>苹果供应商工厂涉嫌偷排废水 松江河道污染</h3>
-                    <span>2017-06-01</span>
-                    </a>
-                    <p>文汇报讯 (记者史博臻 通讯员任书建)就在公众把目光聚焦于企业地下排污之时，“钻空子”的不良企业却大张旗鼓地向河道...</p>
-                </li>
+            #end
             </ul>
         </div>
     </section>
     <section class="article-content">
         <ul>
+            #for(row:page.getRows())
             <li>
                 <div class="article-date">
-                    <strong>01</strong>
-                    <p>2017/06</p>
+                    <strong>#(row.get("ntime").substring(8))</strong>
+                    <p>#(row.get("ntime").substring(0,7))</p>
                     
                 </div>
                 <div class="article-info">
-                    <a href="news_list_content.html">
-                        <h3>如何获得健康饮水</h3>
+                    <a href='fnews/toNewsInfo?id=#(row.get("id"))'>
+                        <h3>#(row.get("title"))</h3>
                         <i class="font">&#xe6aa;</i>
-                        <p>随着生活水平的不断提高，大家对健康饮用水的关注度越来越高，但对如何获取健康饮用水，还会存有很多疑惑。近期开能环保将以“水博士”名义就相关问题进行...</p>
-                        <span>2017/06/01</span>
+                        <p>#(row.get("stitle"))</p>
+                        <span>#(row.get("time"))</span>
                     </a>
                 </div>
             </li>
-
-            <li>
-                <div class="article-date">
-                    <strong>01</strong>
-                    <p>2017/06</p>
-                    
-                </div>
-                <div class="article-info">
-                    <a href="news_list_content.html">
-                        <h3>如何获得健康饮水</h3>
-                        <i class="font">&#xe6aa;</i>
-                        <p>随着生活水平的不断提高，大家对健康饮用水的关注度越来越高，但对如何获取健康饮用水，还会存有很多疑惑。近期开能环保将以“水博士”名义就相关问题进行...</p>
-                        <span>2017/06/01</span>
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="article-date">
-                    <strong>01</strong>
-                    <p>2017/06</p>
-                    
-                </div>
-                <div class="article-info">
-                    <a href="news_list_content.html">
-                        <h3>如何获得健康饮水</h3>
-                        <i class="font">&#xe6aa;</i>
-                        <p>随着生活水平的不断提高，大家对健康饮用水的关注度越来越高，但对如何获取健康饮用水，还会存有很多疑惑。近期开能环保将以“水博士”名义就相关问题进行...</p>
-                        <span>2017/06/01</span>
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="article-date">
-                    <strong>01</strong>
-                    <p>2017/06</p>
-                    
-                </div>
-                <div class="article-info">
-                    <a href="news_list_content.html">
-                        <h3>如何获得健康饮水</h3>
-                        <i class="font">&#xe6aa;</i>
-                        <p>随着生活水平的不断提高，大家对健康饮用水的关注度越来越高，但对如何获取健康饮用水，还会存有很多疑惑。近期开能环保将以“水博士”名义就相关问题进行...</p>
-                        <span>2017/06/01</span>
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="article-date">
-                    <strong>01</strong>
-                    <p>2017/06</p>
-                    
-                </div>
-                <div class="article-info">
-                    <a href="news_list_content.html">
-                        <h3>如何获得健康饮水</h3>
-                        <i class="font">&#xe6aa;</i>
-                        <p>随着生活水平的不断提高，大家对健康饮用水的关注度越来越高，但对如何获取健康饮用水，还会存有很多疑惑。近期开能环保将以“水博士”名义就相关问题进行...</p>
-                        <span>2017/06/01</span>
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="article-date">
-                    <strong>01</strong>
-                    <p>2017/06</p>
-                    
-                </div>
-                <div class="article-info">
-                    <a href="news_list_content.html">
-                        <h3>如何获得健康饮水</h3>
-                        <i class="font">&#xe6aa;</i>
-                        <p>随着生活水平的不断提高，大家对健康饮用水的关注度越来越高，但对如何获取健康饮用水，还会存有很多疑惑。近期开能环保将以“水博士”名义就相关问题进行...</p>
-                        <span>2017/06/01</span>
-                    </a>
-                </div>
-            </li>
+			#end
         </ul>
     </section>
     <div class="article_list_more_pages">
         <ul>
-            <li><a>上一页</a></li>
+            <li><a href="fnews?pageNumber=#(page.getCurNum()-1>0?page.getCurNum()-1:page.getCurNum())">上一页</a></li>
             <li class="article-current"><a>1</a></li>
-            <li><a>2</a></li>
-            <li><a>3</a></li>
-            <li><a>下一页</a></li>
+            #for(i = 1; i*6 < page.getTotal(); i++)
+            <li><a href="fnews?pageNumber=#(i+1)">#(i+1)</a></li>
+			#end
+            <!-- <li><a>3</a></li> -->
+            <li><a href="fnews?pageNumber=#(page.getCurNum()*6<page.getTotal()?page.getCurNum()+1:page.getCurNum())">下一页</a></li>
         </ul>
     </div>
     <div class="feature">

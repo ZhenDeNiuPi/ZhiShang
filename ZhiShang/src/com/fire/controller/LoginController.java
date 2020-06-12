@@ -248,7 +248,10 @@ public class LoginController extends Controller{
 		HttpClientResult hcr = 
 				ZsSmsUtil.sendSms(recieve, mobile, content, name);
 		System.out.println(hcr.getCode()+"..."+ hcr.getContent());
-		renderJson(hcr);
+		Db.update("insert into contact_ip_tb (ip,time) values "
+				+ "('"+ip+"',"+System.currentTimeMillis()/1000+")");
+		if(hcr.getCode() != 200) renderJson("errormessage","网络错误！"); 
+		else renderJson(hcr);
 	}
 }
 

@@ -69,10 +69,11 @@
 <div class="section section1">
     <div class="swiper-container" id="swiper_container">
         <div class="swiper-wrapper">
+        #for(rc : rcs)
             <div class="swiper-slide">
                 <div class="index_banner">
                 <div class="item">
-                    <div class="items scaleBg" style="background-image: url(#(context)/img/zs/banner1.jpg);"></div>
+                    <div class="items scaleBg" style="background-image: url(#(context)/rc/getPic?id=#(rc)&t=#(time)&zs=zs);"></div>
                     <div class="inner">
                         <div class="block_txt">
                             <h4> Goodliness,to be continued</h4>
@@ -83,7 +84,8 @@
                 </div>
                 </div>
             </div>
-            <div class="swiper-slide">
+        #end
+            <!-- <div class="swiper-slide">
                 <div class="index_banner">
                 <div class="item">
                     <div class="items scaleBg" style="background-image: url(#(context)/img/zs/banner2.jpg);"></div>
@@ -111,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
 
@@ -350,7 +352,7 @@
 var contactUs = function(){
 	$.ajax({
 		type:"post",
-		url:"manage/contactUs",
+		url:"manage/contactUs?zs=zs",
 		data:$("#contactForm").serialize(),
 		dataType:"json",
 		error:function(XMLHttpRequest, textStatus, errorThrown){

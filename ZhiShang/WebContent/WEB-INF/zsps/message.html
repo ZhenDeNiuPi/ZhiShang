@@ -90,14 +90,14 @@
     </div>
 </div>
 <div class="message-form">
-   <form method="post">
+   <form id="contactForm" action="" οnsubmit="return false;">
        <ul>
            <li><span>注:<i>*</i>号为必填哦</span></li>
-           <li><label for="username">姓名</label><input type="text" id="username" name="username"><i>*</i></li>
-           <li><label for="tel">电话</label><input type="text" id="tel" name="tel"><i>*</i></li>
-           <li><label for="email">邮箱</label><input type="text" id="email" name="email"><i>*</i></li>
+           <li><label for="username">姓名</label><input type="text" id="username" name="name"><i>*</i></li>
+           <li><label for="tel">电话</label><input type="text" id="tel" name="mobile"><i>*</i></li>
            <li><label for="content">内容</label><textarea id="content" name="content"></textarea><i>*</i></li>
-           <li><button type="button" class="am-btn am-btn-danger">提交</button><span>注:<i>*</i>号为必填哦</span></li>
+           <li><button type="button" class="am-btn am-btn-danger" onclick="contactUs()">提交</button><span>注:<i>*</i>号为必填哦</span></li>
+           <!-- <li><button type="button" class="am-btn am-btn-danger" onclick="contactUs()" value="提交"/><span>注:<i>*</i>号为必填哦</span></li> -->
        </ul>
    </form>
 </div>
@@ -118,4 +118,28 @@
     </div>
 </footer>
 </body>
+<script type="text/javascript">
+var contactUs = function(){
+	$.ajax({
+		type:"post",
+		url:"manage/contactUs?zs=zs",
+		data:$("#contactForm").serialize(),
+		dataType:"json",
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			 alert("网络错误！");
+		 },
+		success:function(result){
+			if(result["errormessage"]!=undefined && 
+					result["errormessage"]!=null){
+				//错误信息及IP限制
+				alert(result["errormessage"]);
+			}else{
+				//发送成功
+				alert("发送成功");
+			}
+		}
+	});
+}
+
+</script>
 </html>

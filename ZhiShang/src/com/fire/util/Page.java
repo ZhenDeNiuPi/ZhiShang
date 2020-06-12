@@ -15,6 +15,11 @@ public class Page implements Serializable {
 	private static final long serialVersionUID = 5044172343675296367L;
 
 	/**
+	 * 当前页
+	 */
+	private int curNum;
+	
+	/**
      * 总记录数
      */
     private long total;
@@ -53,5 +58,13 @@ public class Page implements Serializable {
 	public Page() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public int getCurNum() {
+		return curNum;
+	}
+
+	public void setCurNum(int curNum) {
+		this.curNum = curNum;
 	}
 }
