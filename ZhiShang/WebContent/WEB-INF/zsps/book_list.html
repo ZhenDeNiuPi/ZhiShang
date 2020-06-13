@@ -13,6 +13,15 @@
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <link rel="stylesheet" href="#(context)/css/zs/default.min.css?t=227" />
+    <link rel="stylesheet" href="#(context)/css/zs/bootstrap.min.css" />
+    <link rel="stylesheet" href="#(context)/css/zs/head_min.css" />
+    <link rel="stylesheet" href="#(context)/css/zs/reset.css">
+    <link rel="stylesheet" type="text/css" href="#(context)/css/zs/swiper.min.css" />
+    <link rel="stylesheet" href="#(context)/css/zs/index.css">
+    <link rel="stylesheet" href="#(context)/css/zs/page.css">
+    <link rel="stylesheet" href="#(context)/css/zs/animate.css">
+    <link rel="stylesheet" href="#(context)/css/zs/slick.css">
+    <link rel="stylesheet" href="#(context)/css/zs/jquery.fullpage.css" />
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script type="text/javascript" src="#(context)/lib/zs/jquery/jquery.min.js"></script>
 <!--<![endif]-->
@@ -28,60 +37,58 @@
 <script type="text/javascript" src="#(context)/js/zs/main.min.js?t=1"></script>
 </head>
 <body>
-<header>
-    <div class="header-top">
-        <div class="width-center">
-            <div class="header-logo "><img src="#(context)/img/zs/logo.jpg" alt="" style="width: 105px;height: 70px;"></div>
-            <div class="header-title div-inline">
-                <strong>山东至上净化环保设备工程有限公司</strong>
-                <span>SHAN DONG ZHI SHANG JING HUA HUAN BAO SHE BEI</span>
-            </div>
-
-            <div class="header-right">
-                <span>全国咨询热线</span>
-                <span>00-000-00000000</span>
-            </div>
-
-
-
+<header class="header">
+    <div class="clearfix">
+        <div class="fl left">
+            <a href="javascript:void(0)"><img src="#(context)/img/zs/logo2.jpg" alt="" class="img1"/></a>
+            <a href="javascript:void(0)"><img src="#(context)/img/zs/logo2.jpg" alt="" class="img2"/></a>
         </div>
+        <div class="fr nav"></div>
+        <a href="javascript:void(0)" id="navToggle">
+            <span></span>
+        </a>
     </div>
-    <div class="header-nav">
-        <button class="am-show-sm-only am-collapsed font f-btn" data-am-collapse="{target: '.header-nav'}">Menu <i
-                class="am-icon-bars"></i></button>
-        <nav>
-        <ul class="header-nav-ul am-collapse am-in">
-            <li class="on"><a href="/ZhiShang/" name="index">网站首页</a></li>
-            <li><a href="/ZhiShang/fabout" name="about">关于我们</a></li>
-            <li><a href="/ZhiShang/fbook" name="show">证书展示</a></li>
-            <li><a href="/ZhiShang/fcase" name="show">工程案例</a></li>
-            <li><a href="/ZhiShang/fnews" name="new">新闻资讯</a></li>
-            <li><a href="/ZhiShang/fcontact" name="message">联系我们</a>
-                <div class="secondary-menu">
-                    <ul><li><a href="/ZhiShang/fmessage" class="message"></a></li></ul>
-                </div>
-            </li>
-        </ul>
-
-
-
-
-        </nav>
-    </div>
-
 </header>
+<div class="m_nav">
+    <div class="top clearfix">
+        <img src="#(context)/img/zs/closed.png" alt="" class="closed" />
+    </div>
+    <div class="logo">
+        <img src="#(context)/img/zs/logo2.jpg" alt="" />
+    </div>
+    <ul class="ul" data-in="fadeInDown" data-out="fadeOutUp">
+        <li class="active">
+            <a href="">首页</a>
+        </li>
+        <li class="">
+            <a href="/ZhiShang/fabout">
+                关于我们
+            </a>
 
-<div class="am-slider am-slider-default"
-     data-am-flexslider="{playAfterPaused: 8000 , controlNav: false, directionNav: false    }">
-    <a class="prevbtn" href="#" onClick="javascript :history.back(-1);"></a>
-    <ul class="am-slides">
-        <li><img src="#(context)/img/zs/banner.jpg" alt=""></li>
-        <li><img src="#(context)/img/zs/banner.jpg" alt=""></li>
-        <li><img src="#(context)/img/zs/banner.jpg" alt=""></li>
-        <li><img src="#(context)/img/zs/banner.jpg" alt=""></li>
+        </li>
+        <li class="">
+            <a href="/ZhiShang/fbook">证书展示</a>
+
+        </li>
+        <li>
+            <a href="/ZhiShang/fcase">案例展示</a>
+        </li>
+        <li>
+            <a href="/ZhiShang/fnews">新闻资讯</a>
+        </li>
+        <li>
+            <a href="/ZhiShang/fcontact">联系我们</a>
+        </li>
     </ul>
 </div>
-
+<div class="am-slider am-slider-default" data-am-flexslider="{playAfterPaused: 8000 , controlNav: false, directionNav: false    }">
+    <a class="prevbtn" href="#" onClick="javascript :history.back(-1);"></a>
+    <ul class="am-slides">
+        #for(rc : rcs)
+        <li><img src="#(context)/rc/getPic?id=#(rc)&t=#(time)&zs=zs" alt=""></li>
+        #end
+    </ul>
+</div>
 <main>
     <ul class="pro-body">
         <li>
@@ -89,7 +96,7 @@
             <img src="#(context)/img/zs/main1.jpg" alt="">
             <div class="pro-rightarea">
                 <p>湖南省废气净化处理项目</p>
-                <span>湖南金化工有限公司是一家从事酸性染料研发、生产与销售的专业企业。我们为金化工有限公司提供系统化的整体解决方案，集中处理了酸性染料母液废水，日处理达到100吨。回收废水中的苯胺，实现资源化；合格后的废水达回用要求，实现零排放。金化工有限公司零排放的实施对促进酸性染料行业的污水规范化处理有深远影响，树立了行业的标杆。同时，也将金化工有限公司在行业的领先地位。</span>
+                <span style="font-size: 1.4rem">湖南金化工有限公司是一家从事酸性染料研发、生产与销售的专业企业。我们为金化工有限公司提供系统化的整体解决方案，集中处理了酸性染料母液废水，日处理达到100吨。回收废水中的苯胺，实现资源化；合格后的废水达回用要求，实现零排放。金化工有限公司零排放的实施对促进酸性染料行业的污水规范化处理有深远影响，树立了行业的标杆。同时，也将金化工有限公司在行业的领先地位。</span>
             </div>
             </a>
         </li>
@@ -98,7 +105,7 @@
             <img src="#(context)/img/zs/smcase2.jpg" alt="">
             <div class="pro-rightarea">
                 <p>宜昌市固体废弃物处理项目</p>
-                <span>宜昌市化工有限公司是一家从事酸性染料研发、生产与销售的专业企业。我们为金化工有限公司提供系统化的整体解决方案，集中处理了酸性染料母液废水，日处理达到100吨。回收废水中的苯胺，实现资源化；合格后的废水达回用要求，实现零排放。金化工有限公司零排放的实施对促进酸性染料行业的污水规范化处理有深远影响，树立了行业的标杆。同时，也将金化工有限公司在行业的领先地位。</span>
+                <span style="font-size: 1.4rem">宜昌市化工有限公司是一家从事酸性染料研发、生产与销售的专业企业。我们为金化工有限公司提供系统化的整体解决方案，集中处理了酸性染料母液废水，日处理达到100吨。回收废水中的苯胺，实现资源化；合格后的废水达回用要求，实现零排放。金化工有限公司零排放的实施对促进酸性染料行业的污水规范化处理有深远影响，树立了行业的标杆。同时，也将金化工有限公司在行业的领先地位。</span>
             </div>
             </a>
         </li>
@@ -159,4 +166,10 @@
     </div>
 </footer>
 </body>
+<script src="#(context)/js/zs/jquery.min.js"></script>
+<script src="#(context)/js/zs/bootstrap.min.js"></script>
+<script src="#(context)/js/zs/jquery.fullpage.min.js"></script>
+<script src="#(context)/js/zs/index_slick.js"></script>
+<script src="#(context)/js/zs/swiper.min.js"></script>
+<script src="#(context)/js/zs/index.js"></script>
 </html>
