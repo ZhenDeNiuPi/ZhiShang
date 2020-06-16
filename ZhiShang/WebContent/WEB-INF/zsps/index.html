@@ -194,7 +194,7 @@
                                                 <img src="#(context)/case/getPic4Index?id=#(case.get('id'))&t=#(time)&zs=zs">
                                             </div>
                                             <div class="caption">
-                                                <h3 >#(case.get("title"))</h3>
+                                                <h4 style="font-size: 1rem;"><a style="color: white" href="fcase/toCaseInfo?id=#(case.get('id'))">#(case.get("title"))</a></h4>
                                             </div>
                                         </a> </div>
                                     </div>
@@ -216,7 +216,7 @@
                         <div>
                             <div>
                                 <div class="block-title">
-                                    <h3 class="title" style="color: #fff;text-align: center">行业资讯</h3>
+                                    <h3 class="title" style="color: #fff;text-align: center">新闻资讯</h3>
                                     <div class="line"> <span class="short-line"></span> <span class="long-line"></span> </div>
                                 </div>
                             </div>
@@ -235,7 +235,7 @@
                                     </div>
                                     <div class="cont text-left" >
                                         <p class="ov1 text-left"><a href="" >#(new.get('title')) </a></p>
-                                        <p><a href="" style="color: #0a628f;text-align: left">查看详情→ </a></p>
+                                        <p><a href="fnews/toNewsInfo?id=#(new.get('id'))" style="color: #0a628f;text-align: left">查看详情→ </a></p>
                                     </div>
                                 </div>
                             </div>

@@ -99,7 +99,7 @@
             <ul>
             #for(new:news_3)
                 <li>
-                    <a href='/ZhiShang/fnews/toNewsInfo?id=#(new.get("id"))'>
+                    <a href='fnews/toNewsInfo?id=#(new.get("id"))'>
                     <h3 style="font-size: 1.7rem;font-weight: 600">#(new.get("title"))</h3>
                     <span>#(new.get("ntime"))</span>
                     </a>
@@ -119,7 +119,7 @@
                     
                 </div>
                 <div class="article-info">
-                    <a href='/ZhiShang/fnews/toNewsInfo?id=#(row.get("id"))'>
+                    <a href='fnews/toNewsInfo?id=#(row.get("id"))'>
                         <h3 style="margin: 0 0 1.6rem;font-weight: 600;font-size: 130%">#(row.get("title"))</h3>
                         <i class="font">&#xe6aa;</i>
                         <p>#(row.get("content").substring(0,100)+"...")</p>
