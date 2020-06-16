@@ -93,7 +93,7 @@
     <ul class="pro-body">
       #for(row:page.getRows())
         <li>
-            <a href="news_list_content.html">
+            <a href='fcase/toCaseInfo?id=#(row.get("id"))'>
             <img src='#(context)/case/getPic4Index?id=#(row.get("id"))&t=#(time)&zs=zs' alt="">
             <div class="pro-rightarea">
                 <p>#(row.get("title"))</p>

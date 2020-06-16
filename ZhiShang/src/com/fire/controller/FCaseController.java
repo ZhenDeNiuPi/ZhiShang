@@ -33,6 +33,39 @@ public class FCaseController extends Controller {
         setAttr("time",System.currentTimeMillis());
     	renderTemplate("product_list.html");
     }
+
+    public void toCaseInfo(){
+        String id = getPara("id");
+//        System.out.println(newsId);
+        setAttr("info", Db.findFirst("select * from info_tb"));
+        setAttr("case", Db.findFirst("select id,title,content"
+        		+ ",address from case_tb "
+    			+ "where id="+id));
+        List<Integer> pics = getPics(id);
+        setAttr("pics",pics);
+        setAttr("picsize",pics.size());
+        setAttr("time",System.currentTimeMillis());
+        renderTemplate("product_list_content.html");
+    }
+    
+
+	public List<Integer> getPics(String id) {
+		String rootPath = PathKit.getWebRootPath()+"/img/case";
+		File dir = new File(rootPath);
+		if(!dir.exists()) dir.mkdir();
+		File[] files = new File(rootPath).listFiles();
+		List<Integer> names = new ArrayList<>();
+		if(files != null && files.length > 0) {
+			for(File file : files) {
+				String fileName = file.getName();
+				if(fileName.startsWith(id+"_"))
+				names.add(Integer.parseInt(fileName.substring(fileName.indexOf("_")+1,fileName.indexOf("."))));
+			}
+			Collections.sort(names);
+		}
+		return names;
+	}
+    
     public List<Integer> getIndexPics() {
         String rootPath = PathKit.getWebRootPath()+"/img/rc";
         File dir = new File(rootPath);

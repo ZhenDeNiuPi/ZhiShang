@@ -130,6 +130,30 @@
     </div>
 </footer>
 </body>
+<script type="text/javascript">
+
+var contactUs = function(){
+	$.ajax({
+		type:"post",
+		url:"manage/contactUs?zs=zs",
+		data:$("#contactForm").serialize(),
+		dataType:"json",
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			 alert("网络错误！");
+		 },
+		success:function(result){
+			if(result["errormessage"]!=undefined && 
+					result["errormessage"]!=null){
+				//错误信息及IP限制
+				alert(result["errormessage"]);
+			}else{
+				//发送成功
+				alert("发送成功");
+			}
+		}
+	});
+}
+</script>
 <script src="#(context)/js/zs/jquery.min.js"></script>
 <script src="#(context)/js/zs/bootstrap.min.js"></script>
 <script src="#(context)/js/zs/jquery.fullpage.min.js"></script>
