@@ -16,6 +16,8 @@ public class FNewsController extends Controller {
 	private IBaseServiceImpl is = new IBaseServiceImpl();
 
     public void index(){
+        //加载公司数据
+        setAttr("info", Db.findFirst("select * from info_tb"));
     	String pageNum = getPara("pageNumber","1");
     	 Map<String,String[]> allParams= new HashMap<>();//获取前台传来的分页以及排序所需的参数
          String select  = "select n.id,from_unixtime(n.time,'%Y-%m-%d') ntime,n.title,n.stitle,n.creator,"
@@ -38,6 +40,7 @@ public class FNewsController extends Controller {
     public void toNewsInfo(){
         String id = getPara("id");
 //        System.out.println(newsId);
+        setAttr("info", Db.findFirst("select * from info_tb"));
         setAttr("new", Db.findFirst("select id,title,stitle,content,creator,"
     			+ "from_unixtime(n.time,'%y-%m-%d') ntime from news_tb n "
     			+ "where id="+id));

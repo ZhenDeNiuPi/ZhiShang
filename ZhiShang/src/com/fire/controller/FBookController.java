@@ -4,6 +4,7 @@ import com.fire.intercepter.LoginInterceptor;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.PathKit;
+import com.jfinal.plugin.activerecord.Db;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import java.util.List;
 public class FBookController extends Controller {
 
     public void index(){
+        //加载公司数据
+        setAttr("info", Db.findFirst("select * from info_tb"));
         //加载轮播图
         setAttr("rcs",getIndexPics());
         setAttr("time",System.currentTimeMillis());

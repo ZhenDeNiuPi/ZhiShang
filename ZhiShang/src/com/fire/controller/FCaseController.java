@@ -9,12 +9,15 @@ import com.fire.util.Page;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.PathKit;
+import com.jfinal.plugin.activerecord.Db;
 
 @Clear(LoginInterceptor.class)
 public class FCaseController extends Controller {
 	private IBaseServiceImpl is = new IBaseServiceImpl();
 
     public void index(){
+        //加载公司数据
+        setAttr("info", Db.findFirst("select * from info_tb"));
     	String pageNum = getPara("pageNumber","1");
    	 Map<String,String[]> allParams= new HashMap<>();//获取前台传来的分页以及排序所需的参数
         String select  = "select id,title,content ";//select xxx,xxx,xxx 
