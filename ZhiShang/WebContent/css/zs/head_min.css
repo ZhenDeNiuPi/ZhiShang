@@ -152,7 +152,7 @@
     position: fixed;
     top: 0;
     box-shadow: 0 15px 27px 0 rgba(167,165,165,.38);
-    width: 100%;
+    width: 300px;
     height: 100%;
     background: #fff;
     transition: all ease .5s;
@@ -164,6 +164,7 @@
     overflow-y: auto;
     transition: all .6s cubic-bezier(.77,0,.175,1) 0ms;
     top: 0;
+    right: 0;
     transform: translateX(100%)
 }
 

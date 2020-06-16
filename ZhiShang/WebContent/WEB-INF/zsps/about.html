@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="#(context)/css/zs/animate.css">
 <link rel="stylesheet" href="#(context)/css/zs/slick.css">
 <link rel="stylesheet" href="#(context)/css/zs/jquery.fullpage.css" />
+    <link rel="stylesheet" href="#(context)/css/zs/load.css"  media="all">
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script type="text/javascript" src="#(context)/lib/zs/jquery/jquery.min.js"></script>
 <!--<![endif]-->
@@ -156,5 +157,10 @@
 <script src="#(context)/js/zs/index_slick.js"></script>
 <script src="#(context)/js/zs/swiper.min.js"></script>
 <script src="#(context)/js/zs/index.js"></script>
-
+<script src="#(context)/js/zs/load-min.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function () {
+        $.mask_fullscreen(1000);
+    })
+</script>
 </html>
