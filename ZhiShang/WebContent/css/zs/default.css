@@ -15534,7 +15534,6 @@ main {
   }
   .index-main-md-body ul > li:nth-child(1) div:nth-child(1) {
     height: 170px !important;
-    background: url("../../img/zs/team1s.jpg") no-repeat center center / contain !important;
   }
   .index-main-md-body ul > li:nth-child(2) div:nth-child(1) {
     height: 170px !important;
@@ -15610,7 +15609,6 @@ main {
 }
 .index-main-md-body ul > li:nth-child(1) div:nth-child(1) {
   height: 262px;
-  background: url("../../img/zs/team1.jpg") no-repeat center center / contain;
 }
 .index-main-md-body ul > li:nth-child(2) div:nth-child(1) {
   height: 262px;

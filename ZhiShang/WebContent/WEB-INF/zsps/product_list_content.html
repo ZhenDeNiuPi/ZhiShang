@@ -13,79 +13,87 @@
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <link rel="stylesheet" href="#(context)/css/zs/default.min.css?t=227" />
-<!--[if (gte IE 9)|!(IE)]><!-->
-<script type="text/javascript" src="#(context)/lib/zs/jquery/jquery.min.js"></script>
-<!--<![endif]-->
-<!--[if lte IE 8 ]>
-<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="#(context)/lib/zs/amazeui/amazeui.ie8polyfill.min.js"></script>
-<![endif]-->
-<script type="text/javascript" src="#(context)/lib/zs/handlebars/handlebars.min.js"></script>
-<script type="text/javascript" src="#(context)/lib/zs/iscroll/iscroll-probe.js"></script>
-<script type="text/javascript" src="#(context)/lib/zs/amazeui/amazeui.min.js"></script>
-<script type="text/javascript" src="#(context)/lib/zs/raty/jquery.raty.js"></script>
-<script type="text/javascript" src="#(context)/js/zs/main.min.js?t=1"></script>
+    <link rel="stylesheet" href="#(context)/css/zs/bootstrap.min.css" />
+    <link rel="stylesheet" href="#(context)/css/zs/head_min.css" />
+    <link rel="stylesheet" href="#(context)/css/zs/reset.css">
+    <link rel="stylesheet" type="text/css" href="#(context)/css/zs/swiper.min.css" />
+    <link rel="stylesheet" href="#(context)/css/zs/index.css">
+    <link rel="stylesheet" href="#(context)/css/zs/page.css">
+    <link rel="stylesheet" href="#(context)/css/zs/animate.css">
+    <link rel="stylesheet" href="#(context)/css/zs/slick.css">
+    <link rel="stylesheet" href="#(context)/css/zs/jquery.fullpage.css" />
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script type="text/javascript" src="#(context)/lib/zs/jquery/jquery.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lte IE 8 ]>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+    <script src="#(context)/lib/zs/amazeui/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="#(context)/lib/zs/handlebars/handlebars.min.js"></script>
+    <script type="text/javascript" src="#(context)/lib/zs/iscroll/iscroll-probe.js"></script>
+    <script type="text/javascript" src="#(context)/lib/zs/amazeui/amazeui.min.js"></script>
+    <script type="text/javascript" src="#(context)/lib/zs/raty/jquery.raty.js"></script>
+    <script type="text/javascript" src="#(context)/js/zs/main.min.js?t=1"></script>
 </head>
 <body>
-<header>
-    <div class="header-top">
-        <div class="width-center">
-            <div class="header-logo "><img src="#(context)/img/zs/logo.jpg" alt="" style="width: 105px;height: 70px;"></div>
-            <div class="header-title div-inline">
-                <strong>山东至上净化环保设备工程有限公司</strong>
-                <span>SHAN DONG ZHI SHANG JING HUA HUAN BAO SHE BEI</span>
-            </div>
-
-            <div class="header-right">
-                <span>全国咨询热线</span>
-                <span>00-000-00000000</span>
-            </div>
-
-
-
+<header class="header">
+    <div class="clearfix">
+        <div class="fl left">
+            <a href="javascript:void(0)"><img src="#(context)/img/zs/logo.png" alt="" class="img1"/></a>
+            <a href="javascript:void(0)"><img src="#(context)/img/zs/logo.png" alt="" class="img2"/></a>
         </div>
+        <div class="fr nav"></div>
+        <a href="javascript:void(0)" id="navToggle">
+            <span></span>
+        </a>
     </div>
-    <div class="header-nav">
-        <button class="am-show-sm-only am-collapsed font f-btn" data-am-collapse="{target: '.header-nav'}">Menu <i
-                class="am-icon-bars"></i></button>
-        <nav>
-        <ul class="header-nav-ul am-collapse am-in">
-            <li class="on"><a href="index.html" name="index">网站首页</a></li>
-            <li><a href="about.html" name="about">关于我们</a></li>
-            <li><a href="productlist.html" name="show">工程案例</a></li>
-            <li><a href="productlist.html" name="show">证书展示</a></li>
-            <li><a href="article_list.html" name="new">新闻资讯</a></li>
-            <li><a href="contact.html" name="message">联系我们</a>
-                <div class="secondary-menu">
-
-                    <ul><li><a href="message.html" class="message"></a></li></ul>
-                </div>
-            </li>
-        </ul>
-
-
-
-
-        </nav>
-    </div>
-
 </header>
+<div class="m_nav">
+    <div class="top clearfix">
+        <img src="#(context)/img/zs/closed.png" alt="" class="closed" />
+    </div>
+    <div class="logo">
+        <img src="#(context)/img/zs/logo2.jpg" alt="" />
+    </div>
+    <ul class="ul" data-in="fadeInDown" data-out="fadeOutUp">
+        <li class="active">
+            <a href="/ZhiShang/">首页</a>
+        </li>
+        <li class="">
+            <a href="/ZhiShang/fabout">
+                关于我们
+            </a>
 
+        </li>
+        <li class="">
+            <a href="/ZhiShang/fbook">证书展示</a>
+
+        </li>
+        <li>
+            <a href="/ZhiShang/fcase">案例展示</a>
+        </li>
+        <li>
+            <a href="/ZhiShang/fnews">新闻资讯</a>
+        </li>
+        <li>
+            <a href="/ZhiShang/fcontact">联系我们</a>
+        </li>
+    </ul>
+</div>
 <div class="am-slider am-slider-default" data-am-flexslider="{playAfterPaused: 8000 , controlNav: false, directionNav: false    }">
     <a class="prevbtn" href="#" onClick="javascript :history.back(-1);"></a>
     <ul class="am-slides">
-        <li><img src="#(context)/img/zs/banner.jpg" alt=""></li>
-        <li><img src="#(context)/img/zs/banner.jpg" alt=""></li>
-        <li><img src="#(context)/img/zs/banner.jpg" alt=""></li>
-        <li><img src="#(context)/img/zs/banner.jpg" alt=""></li>
+        #for(rc : rcs)
+        <li><img src="#(context)/rc/getPic?id=#(rc)&t=#(time)&zs=zs" alt=""></li>
+        #end
     </ul>
 </div>
 
 <main>
     <div class="index-main-title">
         <p>#(case.get("title"))</p>
-        <span>地址：#(case.get("address"))</span>
+        <span>案例实施地址：#(case.get("address"))</span>
     </div>
     <div class="index-main-md">
         <!-- <div class="left-area">
@@ -93,12 +101,11 @@
         </div> -->
         <!-- <div class="right-area"> -->
             <!-- <p>保护环境是我们每个人的责任</p> -->
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(case.get("content"))</span>
-            <div style="text-align:center;"><img src="#(context)/img/zs/slogan1.png" alt=""></div>
+            <span style="font-size: 1.6rem">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(case.get("content"))</span>
         <!-- </div> -->
     </div>
     <div class="index-main-title">
-        <p>项目图片</p>
+        <p>案例图片展示</p>
         <span></span>
     </div>
     <div class="index-main-md-body">

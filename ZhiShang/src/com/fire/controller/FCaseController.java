@@ -44,6 +44,8 @@ public class FCaseController extends Controller {
         List<Integer> pics = getPics(id);
         setAttr("pics",pics);
         setAttr("picsize",pics.size());
+        //加载轮播图
+        setAttr("rcs",getIndexPics());
         setAttr("time",System.currentTimeMillis());
         renderTemplate("product_list_content.html");
     }
