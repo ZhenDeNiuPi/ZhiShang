@@ -27,7 +27,7 @@ public class FNewsController extends Controller {
          allParams.put("pageNumber", new String[]{pageNum});
          Page page = is.query(select, from, allParams);
          page.setCurNum(Integer.parseInt(pageNum));
-    	setAttr("news_3", Db.find("select id,title,stitle,"
+    	setAttr("news_3", Db.find("select id,title,stitle,content,"
     			+ "from_unixtime(n.time,'%y-%m-%d') ntime from news_tb n "
     			+ "where if_show=1 order by n.time desc limit 3"));
     	setAttr("page",page);
@@ -40,6 +40,9 @@ public class FNewsController extends Controller {
     public void toNewsInfo(){
         String id = getPara("id");
 //        System.out.println(newsId);
+        //加载轮播图
+        setAttr("rcs",getIndexPics());
+        setAttr("time",System.currentTimeMillis());
         setAttr("info", Db.findFirst("select * from info_tb"));
         setAttr("new", Db.findFirst("select id,title,stitle,content,creator,"
     			+ "from_unixtime(n.time,'%y-%m-%d') ntime from news_tb n "
