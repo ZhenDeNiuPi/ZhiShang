@@ -67,7 +67,7 @@ public class ExceptionInterceptor implements Interceptor{
 			    		 check+=i;
 			    	 }
 			    	 Long tempNow = Long.parseLong(params.get("ajaxTime"));
-			    	 if(check!=checkSum || now-tempNow>60 || tempNow>now+60) {//有人搞事 先不管 以后忙完别的封ip
+			    	 if(check!=checkSum || now-tempNow>600 || tempNow>now+600) {//有人搞事 先不管 以后忙完别的封ip
 //				    	 System.out.println(checkSum+":"+paramNum);
 				    	 logg.error("前台上传："+tempNow+"；后台接收："+now+"；"+checkSum+":"+check);
 			    		int count2 = Integer.parseInt(Db.findFirst("select ifnull(count(0),0) count from login_iperror_tb where lock_ip='"+ip+"'").get("count")+"");
