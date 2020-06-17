@@ -223,19 +223,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="row row-static" style="margin-top:80px;">
-
+                <div class="row row-static" style="margin-top:20px;">
                     #for(new:news)
                     <div class="col-md-3 col-sm-6 w50">
                         <div>
                             <div>
-                                <div class="cus-thumbnail">
-                                    <div class="img">
+                                <div class="cus-thumbnail" style="margin-bottom: 0">
+                                    <div class="img" style="margin-bottom: 5px">
                                         <img src="#(context)/news/getPic?id=#(new.get('id'))&t=#(time)&zs=zs">
                                     </div>
-                                    <div class="cont text-left" >
-                                        <p class="ov1 text-left"><a href="" >#(new.get('title')) </a></p>
-                                        <p><a href="fnews/toNewsInfo?id=#(new.get('id'))" style="color: #0a628f;text-align: left">查看详情→ </a></p>
+                                    <div class="cont" style="padding-bottom: 0;" >
+                                        <p style="line-height: 1rem"><a href="" >#(new.get('title')) </a></p>
                                     </div>
                                 </div>
                             </div>
@@ -243,6 +241,7 @@
                     </div>
                     #end
                 </div>
+
             </div>
         </div>
     </div>
@@ -268,7 +267,7 @@
                         <div>
                             <div>
                                 <div class="text-center aImage">
-                                    <img style="max-width:100%;" src="#(context)/img/zs/contactus.jpg"> </div>
+                                    <img style="max-width:30%;" src="#(context)/img/zs/contactus.jpg"> </div>
                             </div>
                         </div>
                     </div>
