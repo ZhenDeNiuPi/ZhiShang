@@ -144,3 +144,8 @@ CREATE TABLE `contact_ip_tb` (
   `time` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+-- 20200620 新闻表添加类型 
+ALTER TABLE `news_tb`
+ADD COLUMN `type`  int(1) NULL DEFAULT 0 COMMENT '新闻类型 0新闻资讯1行业资讯' AFTER `if_show`;
+

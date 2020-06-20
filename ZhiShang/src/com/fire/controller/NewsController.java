@@ -28,7 +28,7 @@ public class NewsController  extends Controller{
 	public void getDatas() {
         Map<String,String[]> allParams=getParaMap();//获取前台传来的分页以及排序所需的参数
         String select  = "select n.id,from_unixtime(n.time,'%Y-%m-%d') ntime,n.title,n.stitle,n.creator,"
-        		+ "n.content,n.if_show ";//select xxx,xxx,xxx 
+        		+ "n.content,n.if_show,n.type ";//select xxx,xxx,xxx 
         String from = " from news_tb n where 1=1 ";//from xxx ... where 1=1 
         Page page = is.query(select, from, allParams);
     	renderJson(page);
@@ -49,7 +49,7 @@ public class NewsController  extends Controller{
 	public void getData() {
 		String id = getPara("id");
 		String select  = "select n.id,from_unixtime(n.time,'%Y-%m-%d') ntime,n.title,n.stitle,n.creator,"
-        		+ "n.content,n.if_show "
+        		+ "n.content,n.if_show,n.type "
         		+ " from news_tb n where id="+id;
 		renderJson(Db.findFirst(select));
 	}

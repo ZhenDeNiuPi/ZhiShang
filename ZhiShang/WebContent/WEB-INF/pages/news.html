@@ -87,6 +87,15 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
+			    <label for="fund_name" class="col-sm-2 control-label">新闻类型</label>
+			    <div class="col-sm-10">
+			      <select id="type" name="n.type" class="form-control">
+			      	<option value="0">新闻资讯</option>
+			      	<option value="1">行业资讯</option>
+			      </select>
+			    </div>
+			  </div>
+			  <div class="form-group">
 			    <label for="fund_name" class="col-sm-2 control-label">是否展示</label>
 			    <div class="col-sm-10">
 			      <select id="if_show" name="n.if_show" class="form-control">
@@ -143,6 +152,16 @@
 			      	<option value="">请选择</option>
 			      	<option value="1">是</option>
 			      	<option value="0">否</option>
+			      </select>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="searchType" class="col-sm-3 control-label">新闻类型</label>
+			    <div class="col-sm-9">
+			      <select id="searchType" name="searchType" class="form-control">
+			      	<option value="">请选择</option>
+			      	<option value="0">新闻资讯</option>
+			      	<option value="1">行业资讯</option>
 			      </select>
 			    </div>
 			  </div>
@@ -258,6 +277,7 @@ function queryParams(params) {  //配置参数
 	"n.time%t<":$("#timeStrEnd").val(),
 	"n.title%s~":$("#searchBook").val(),
 	"n.if_show%i=":$("#searchIfShow").val(),
+	"n.type%i=":$("#searchType").val(),
   	"sortName": params.sortName,  //排序列名  
   	"sortOrder": params.sortOrder//排位命令（desc，asc）  
 	};  
@@ -334,6 +354,7 @@ $("#update").bind("click",function(){
     			$("#stitle").val(result['stitle']);
     			$("#creator").val(result['creator']);
     			$("#ntime").val(result['ntime']);
+    			$("#type").val(result['type']);
     			$("#if_show").val(result['if_show']);
     			$("#content").val(result['content']);
     			$("#summernote").summernote("code",result['content']);
@@ -419,6 +440,11 @@ $('#table').bootstrapTable({
         align: 'center',
         visible:false
     },{
+        field: 'type',
+        title: 'type',
+        align: 'center',
+        visible:false
+    },{
         field: 'title',
         title: '新闻标题',
         align: 'center',
@@ -432,7 +458,7 @@ $('#table').bootstrapTable({
         field: 'ntime',
         title: '新闻时间',
         align: 'center',
-        width:'20%',
+        width:'10%',
         sortable: true
     },{
         field: '新闻标题',
@@ -460,6 +486,15 @@ $('#table').bootstrapTable({
         align: 'center',
         width:'10%',
         sortable: true
+    },{
+        field: '新闻类型',
+        title: '新闻类型',
+        align: 'center',
+        width:'10%',
+        formatter: function (value, row, index) {
+        	var if_show = row['type'];
+        	return (if_show>0?"行业资讯":"新闻资讯");
+        }
     },{
         field: '是否展示',
         title: '是否展示',

@@ -16,20 +16,23 @@ public class FNewsController extends Controller {
 	private IBaseServiceImpl is = new IBaseServiceImpl();
 
     public void index(){
+    	//获取新闻类型 默认0新闻资讯 否则是1 则是行业资讯
+    	String news_type = getPara("type","0");
+    	if(!"0".equals(news_type)) news_type = "1";
         //加载公司数据
         setAttr("info", Db.findFirst("select * from info_tb"));
     	String pageNum = getPara("pageNumber","1");
     	 Map<String,String[]> allParams= new HashMap<>();//获取前台传来的分页以及排序所需的参数
          String select  = "select n.id,from_unixtime(n.time,'%Y-%m-%d') ntime,n.title,n.stitle,n.creator,"
          		+ "n.content,n.if_show ";//select xxx,xxx,xxx 
-         String from = " from news_tb n where if_show=1 ";//from xxx ... where 1=1 
+         String from = " from news_tb n where if_show=1 and type="+news_type;//from xxx ... where 1=1 
          allParams.put("pageSize", new String[]{"6"});
          allParams.put("pageNumber", new String[]{pageNum});
          Page page = is.query(select, from, allParams);
          page.setCurNum(Integer.parseInt(pageNum));
     	setAttr("news_3", Db.find("select id,title,stitle,content,"
     			+ "from_unixtime(n.time,'%y-%m-%d') ntime from news_tb n "
-    			+ "where if_show=1 order by n.time desc limit 3"));
+    			+ "where if_show=1  and type="+news_type+" order by n.time desc limit 3"));
     	setAttr("page",page);
         //加载轮播图
         setAttr("rcs",getIndexPics());
