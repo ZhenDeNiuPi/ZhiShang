@@ -2,6 +2,7 @@ package com.fire.config.dbcp;
 
 import com.fire.model.Book;
 import com.fire.model.Case;
+import com.fire.model.History;
 import com.fire.model.Info;
 import com.fire.model.News;
 import com.fire.model.User;
@@ -26,5 +27,6 @@ public class MappingKit {
 	    arp.addMapping("info_tb", Info.class);
 	    arp.addMapping("news_tb", News.class);
 	    arp.addMapping("case_tb", Case.class);
+	    arp.addMapping("history_tb", History.class);
 	}
 }

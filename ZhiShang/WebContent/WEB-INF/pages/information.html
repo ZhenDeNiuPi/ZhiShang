@@ -64,13 +64,6 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="about" class="col-sm-4 control-label">关于我们:</label>
-			    <div class="col-sm-8">
-			      <textarea class="form-control" maxlength="300" 
-			       id="about" name="u.about" placeholder="输入公司简介"></textarea>
-			    </div>
-			  </div>
-			  <div class="form-group">
 			    <label for="four" class="col-sm-4 control-label">四个优势:</label>
 			    <div class="col-sm-2">
 			      <input type="text" class="form-control" maxlength="20" 
@@ -87,6 +80,20 @@
 			    <div class="col-sm-2">
 			      <input type="text" class="form-control" maxlength="20" 
 			       id="four4" name="u.four4" placeholder="四">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="about" class="col-sm-4 control-label">关于我们:</label>
+			    <div class="col-sm-8">
+			      <textarea class="form-control" maxlength="300" 
+			       id="about" name="u.about" placeholder="输入关于我们"></textarea>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="idea" class="col-sm-4 control-label">公司理念:</label>
+			    <div class="col-sm-8">
+			      <textarea class="form-control" maxlength="300" 
+			       id="idea" name="u.idea" placeholder="输入公司理念"></textarea>
 			    </div>
 			  </div>
 			</form>
@@ -121,6 +128,7 @@ function getData(){
 				$("#phone").val(result["phone"]);
 				$("#mobile").val(result["mobile"]);
 				$("#about").val(result["about"]);
+				$("#idea").val(result["idea"]);
 				$("#four1").val(result["four1"]);
 				$("#four2").val(result["four2"]);
 				$("#four3").val(result["four3"]);

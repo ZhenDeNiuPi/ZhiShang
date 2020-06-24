@@ -55,6 +55,10 @@ public class LoginController extends Controller{
 	public void cases() {
 		render("case.html");
 	}
+	
+	public void history() {
+		render("history.html");
+	}
 
 	@Clear
 	public void img(){
