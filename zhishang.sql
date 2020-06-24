@@ -149,3 +149,16 @@ CREATE TABLE `contact_ip_tb` (
 ALTER TABLE `news_tb`
 ADD COLUMN `type`  int(1) NULL DEFAULT 0 COMMENT '新闻类型 0新闻资讯1行业资讯' AFTER `if_show`;
 
+-- 20200624 增加发展历史表  公司信息表添加公司理念
+DROP TABLE IF EXISTS `history_tb`;
+CREATE TABLE `history_tb` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL COMMENT '发展历程标题',
+  `content` varchar(500) DEFAULT NULL COMMENT '发展历程正文',
+  `time` bigint(20) DEFAULT NULL COMMENT '发展历程时间线',
+  `if_show` int(1) DEFAULT NULL COMMENT '是否显示 0否1是',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=gbk;
+
+ALTER TABLE `info_tb`
+ADD COLUMN `idea`  varchar(300) DEFAULT NULL COMMENT '公司理念' AFTER `four4`;
