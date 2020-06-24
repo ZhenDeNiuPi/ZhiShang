@@ -149,7 +149,7 @@ CREATE TABLE `contact_ip_tb` (
 ALTER TABLE `news_tb`
 ADD COLUMN `type`  int(1) NULL DEFAULT 0 COMMENT '新闻类型 0新闻资讯1行业资讯' AFTER `if_show`;
 
--- 20200624 增加发展历史表  公司信息表添加公司理念
+-- 20200624 增加发展历史表  公司信息表添加公司理念  新闻表（现已是图文编辑表） 添加产品模块类型
 DROP TABLE IF EXISTS `history_tb`;
 CREATE TABLE `history_tb` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -162,3 +162,6 @@ CREATE TABLE `history_tb` (
 
 ALTER TABLE `info_tb`
 ADD COLUMN `idea`  varchar(300) DEFAULT NULL COMMENT '公司理念' AFTER `four4`;
+ALTER TABLE `news_tb`
+MODIFY COLUMN `type`  int(1) NULL DEFAULT 0 COMMENT '新闻类型 0新闻资讯1行业资讯2产品模块1' AFTER `if_show`;
+
