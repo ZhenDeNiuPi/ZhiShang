@@ -9,11 +9,14 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap-treeview.min.css" rel="stylesheet">
     <link href="../css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../css/cropper.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/cropper.js"></script>
+    <script type="text/javascript" src="../js/jquery-cropper.js"></script>
     <script type="text/javascript" src="../js/bootstrap-treeview.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap-dialog.js"></script>
-    <script type="text/javascript" src="../js/properties.js"></script>
-    <script type="text/javascript" src="../js/globalAjax.js"></script>
+    <script type="text/javascript" src="js/properties.js"></script>
+    <script type="text/javascript" src="js/globalAjax.js"></script>
 </head>
 <body>
 <div id="consoleForm">
@@ -96,6 +99,13 @@
 			       id="idea" name="u.idea" placeholder="输入公司理念"></textarea>
 			    </div>
 			  </div>
+			  <div class="form-group">
+			    <label for="idea" class="col-sm-4 control-label">理念配图:</label>
+			    <div class="col-sm-8">
+			      <img src="../user/getPic?s="+Math.random()  width="100%" id="pic" 
+			      onclick="opera(this)"/>
+			    </div>
+			  </div>
 			</form>
 	       	<!-- 表单结束 -->
 	      </div>
@@ -104,7 +114,61 @@
 	        <button type="button" id="clearButton" class="btn btn-default" data-dismiss="modal">重置</button>
 	      </div>
 	    </div>
-</div>	 
+</div>	
+<!-- 模态框   信息删除确认 -->
+<div class="modal fade" id="reuploadOrDel">
+    <div class="modal-dialog">
+        <div class="modal-content message_align">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body">
+                <!-- 隐藏需要删除的id -->
+                <input type="hidden" id="deleteHaulId" />
+                <p>上传</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                    data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary"
+                    id="reuploadBut">上传</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-hidden="true" style="overflow: auto">
+<div class="modal-dialog-lg">
+    <div class="modal-content" style="height:100%">
+        <div class="row">
+        <div class="col-sm-12 text-center">
+            <label for="input" class="btn btn-danger" id="">
+            <span>选择图片</span>
+            <input type="file" id="input" class="sr-only">
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6" id="photodiv">
+            <img src="" id="photo" />
+        </div>
+        <div class="col-sm-6  text-center">
+            <div id="prediv">
+                <div class="img-preview" id="pre"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+            data-dismiss="modal">取消</button>
+        <button class="btn btn-primary" onclick="crop()">确定</button>
+    </div>
+    </div>
+</div>
+</div> 
 <script type="text/javascript">
 getData();
 $("#clearButton").bind("click",function(){
@@ -153,6 +217,96 @@ $("#submitButton").bind("click",function(){
 		}
 	});
 });
+
+function opera(img){
+	$("#reuploadOrDel").modal('show');
+}
+
+$("#reuploadBut").click(function() {
+	$("#reuploadOrDel").modal('hide');
+	open();
+});
+
+function open(){
+	$("#photodiv").html('<img src="" id="photo" />');
+	$("#prediv").html('<div class="img-preview" id="pre"></div>');
+	var swidth = $(document).width();
+	$("#photo").width(swidth/2);
+	$("#photo").height(swidth/2-swidth/8);
+	$("#pre").width(swidth/2);
+	$("#pre").height(swidth/2-swidth/8);
+	initCropper($('#photo'),$('#input'));
+	$("#changeModal").modal('show');
+}
+var initCropper = function (img, input){
+    var $image = img;
+    var options = {
+        //aspectRatio: 1, // 纵横比
+        viewMode: 2,
+        preview: '.img-preview' // 预览图的class名
+    };
+    $image.cropper(options);
+    var $inputImage = input;
+    var uploadedImageURL;
+    if (URL) {
+        // 给input添加监听
+        $inputImage.change(function () {
+            var files = this.files;
+            var file;
+            if (!$image.data('cropper')) {
+                return;
+            }
+            if (files && files.length) {
+                file = files[0];
+                // 判断是否是图像文件
+                if (/^image\/\w+$/.test(file.type)) {
+                    // 如果URL已存在就先释放
+                    if (uploadedImageURL) {
+                        URL.revokeObjectURL(uploadedImageURL);
+                    }
+                    uploadedImageURL = URL.createObjectURL(file);
+                    // 销毁cropper后更改src属性再重新创建cropper
+                    $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+                    $inputImage.val('');
+                } else {
+                  window.alert('请选择一个图像文件！');
+              }
+          }
+      });
+    } else {
+        $inputImage.prop('disabled', true).addClass('disabled');
+    }
+}
+var crop = function(){
+    var cas = $('#photo').cropper('getCroppedCanvas',{
+    	  fillColor: '#fff',
+    	  imageSmoothingEnabled: false,
+    	  imageSmoothingQuality: 'high'
+    });
+    var photo = cas.toDataURL('image/jpeg');
+    cas.toBlob(function (e) {
+        console.log(e);  //生成Blob的图片格式
+        e.name="temp.jpeg";
+        var formData = new FormData();
+        formData.append('croppedImage', e);
+        console.log(e);
+        console.log(formData);
+        $.ajax('../user/uploadPic', {
+    	    method: "POST",
+    	    data: formData,
+    	    processData: false,
+    	    contentType: false,
+    	    success: function () {
+                $("#pic").attr('src', '../user/getPic?s='+Math.random());
+                $('#changeModal').modal('hide');
+	        	console.log('Upload success');
+    	    },
+    	    error: function () {
+    	        console.log('Upload error');
+    	    }
+        });
+    },'image/jpeg')
+}
 </script>
 </body>
 </html>
