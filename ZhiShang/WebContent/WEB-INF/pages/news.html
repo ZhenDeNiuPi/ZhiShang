@@ -29,10 +29,10 @@
             <i class="glyphicon glyphicon-remove"></i> 批量删除
         </button>
         <button id="update" class="btn btn-success">
-            <i class="glyphicon glyphicon-pencil"></i> 编辑新闻
+            <i class="glyphicon glyphicon-pencil"></i> 编辑图文
         </button>
         <button id="add" class="btn btn-info" >
-            <i class="glyphicon glyphicon-plus"></i> 添加新闻
+            <i class="glyphicon glyphicon-plus"></i> 添加图文
         </button>
         <button id="condis" class="btn btn-warning" data-toggle="modal"
 		             data-target="#searchModal">
@@ -51,7 +51,7 @@
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 	        <h4 class="modal-title" id="myModalLabel"
-	        align="center">添加新闻</h4>
+	        align="center">添加图文</h4>
 	      </div>
 	      <div class="modal-body">
 	       	<!-- 表单开始 -->
@@ -62,36 +62,37 @@
 			    <label for="fund_name" class="col-sm-2 control-label">时间</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control"
-			       id="ntime" name="ntime" placeholder="选择新闻发生时间">
+			       id="ntime" name="ntime" placeholder="选择图文发生时间">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="fund_id" class="col-sm-2 control-label">标题</label>
 			    <div class="col-sm-10">
 			      <textarea type="text" class="form-control"
-			       id="title" name="n.title" placeholder="输入新闻标题" maxlength="200"></textarea>
+			       id="title" name="n.title" placeholder="输入图文标题" maxlength="200"></textarea>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="fund_id" class="col-sm-2 control-label">副标题</label>
 			    <div class="col-sm-10">
 			      <textarea type="text" class="form-control"
-			       id="stitle" name="n.stitle" placeholder="输入新闻副标题" maxlength="200"></textarea>
+			       id="stitle" name="n.stitle" placeholder="输入图文副标题" maxlength="200"></textarea>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="fund_id" class="col-sm-2 control-label">作者</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control"
-			       id="creator" name="n.creator" placeholder="输入新闻作者" maxlength="30">
+			       id="creator" name="n.creator" placeholder="输入图文作者" maxlength="30">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="fund_name" class="col-sm-2 control-label">新闻类型</label>
+			    <label for="fund_name" class="col-sm-2 control-label">图文类型</label>
 			    <div class="col-sm-10">
 			      <select id="type" name="n.type" class="form-control">
 			      	<option value="0">新闻资讯</option>
 			      	<option value="1">行业资讯</option>
+			      	<option value="2">产品模块</option>
 			      </select>
 			    </div>
 			  </div>
@@ -127,12 +128,12 @@
 	       	<!-- 表单开始 -->
 			<form id="searchForm" action="" class="form-horizontal" role="form">
 			  <div class="form-group">
-			    <label for="timeStrBegin" class="col-sm-3 control-label">新闻时间起始</label>
+			    <label for="timeStrBegin" class="col-sm-3 control-label">图文时间起始</label>
 			    <div class="col-sm-3">
 			      <input type="text" class="form-control"
 			       id="timeStrBegin" name="timeStrBegin" readonly="readonly"  placeholder="选择时间起始">
 			    </div>
-			    <label for="timeStrBegin" class="col-sm-3 control-label">新闻时间截止</label>
+			    <label for="timeStrBegin" class="col-sm-3 control-label">图文时间截止</label>
 			    <div class="col-sm-3">
 			      <input type="text" class="form-control"
 			       id="timeStrEnd" name="timeStrEnd" readonly="readonly"  placeholder="选择时间截止">
@@ -142,7 +143,7 @@
 			    <label for="searchBook" class="col-sm-3 control-label">标题模糊检索</label>
 			    <div class="col-sm-9">
 			      <input type="text" class="form-control"
-			       id="searchBook" name="searchBook"  placeholder="输入新闻标题" maxlength="15"/>
+			       id="searchBook" name="searchBook"  placeholder="输入图文标题" maxlength="15"/>
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -156,12 +157,13 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="searchType" class="col-sm-3 control-label">新闻类型</label>
+			    <label for="searchType" class="col-sm-3 control-label">图文类型</label>
 			    <div class="col-sm-9">
 			      <select id="searchType" name="searchType" class="form-control">
 			      	<option value="">请选择</option>
 			      	<option value="0">新闻资讯</option>
 			      	<option value="1">行业资讯</option>
+			      	<option value="2">产品模块</option>
 			      </select>
 			    </div>
 			  </div>
@@ -235,13 +237,13 @@
 $("#add").bind("click",function(){
 	document.getElementById("addForm").reset();
 	$("#summernote").summernote('code',"");
-	$("#myModalLabel").text("添加新闻");
+	$("#myModalLabel").text("添加图文");
 	$("#myModal").modal('show');
 });
 $("#addButton").bind("click",function(){
 	var url = "";
 	var text = $("#myModalLabel").text();
-	if(text=="添加新闻")
+	if(text=="添加图文")
 		url = "../news/addData";
 	else
 		url = "../news/updateData";
@@ -328,7 +330,7 @@ function queryParams(params) {  //配置参数
         		                  url:"../news/getDatas"
         		              }  
         		      ); 	
-        			BootstrapDialog.alert({title:"提示信息",message:"成功删除"+result["num"]+"条新闻！"});
+        			BootstrapDialog.alert({title:"提示信息",message:"成功删除"+result["num"]+"条图文！"});
         		}
     		}); 
     	}else{
@@ -358,12 +360,12 @@ $("#update").bind("click",function(){
     			$("#if_show").val(result['if_show']);
     			$("#content").val(result['content']);
     			$("#summernote").summernote("code",result['content']);
-    			$("#myModalLabel").text("编辑新闻");
+    			$("#myModalLabel").text("编辑图文");
     			$("#myModal").modal('show');
     		}
 		});
 	}else{
-		BootstrapDialog.alert({title:"提示信息",message:"必须选择一条新闻！"});
+		BootstrapDialog.alert({title:"提示信息",message:"必须选择一条图文！"});
 	}
 });$('#ntime').datetimepicker({
 	format: 'yyyy-mm-dd',      /*此属性是显示顺序，还有显示顺序是mm-dd-yyyy*/
@@ -446,23 +448,23 @@ $('#table').bootstrapTable({
         visible:false
     },{
         field: 'title',
-        title: '新闻标题',
+        title: '图文标题',
         align: 'center',
         visible:false
     },{
         field: 'stitle',
-        title: '新闻副标题',
+        title: '图文副标题',
         align: 'center',
         visible:false
     },{
         field: 'ntime',
-        title: '新闻时间',
+        title: '图文时间',
         align: 'center',
         width:'10%',
         sortable: true
     },{
-        field: '新闻标题',
-        title: '新闻标题',
+        field: '图文标题',
+        title: '图文标题',
         align: 'center',
         width:'10%',
         formatter: function (value, row, index) {
@@ -471,8 +473,8 @@ $('#table').bootstrapTable({
         	return title;
         }
     },{
-        field: '新闻副标题',
-        title: '新闻副标题',
+        field: '图文副标题',
+        title: '图文副标题',
         align: 'center',
         width:'20%',
         formatter: function (value, row, index) {
@@ -482,18 +484,21 @@ $('#table').bootstrapTable({
         }
     },{
         field: 'creator',
-        title: '新闻作者',
+        title: '图文作者',
         align: 'center',
         width:'10%',
         sortable: true
     },{
-        field: '新闻类型',
-        title: '新闻类型',
+        field: '图文类型',
+        title: '图文类型',
         align: 'center',
         width:'10%',
         formatter: function (value, row, index) {
         	var if_show = row['type'];
-        	return (if_show>0?"行业资讯":"新闻资讯");
+        	if(if_show == 0) return "新闻资讯";
+        	else if(if_show == 0) return "行业资讯";
+        	else if(if_show == 0) return "产品模块";
+        	return "";
         }
     },{
         field: '是否展示',
@@ -505,8 +510,8 @@ $('#table').bootstrapTable({
         	return (if_show>0?"是":"否");
         }
     },{
-        field: '新闻正文',
-        title: '新闻正文',
+        field: '图文正文',
+        title: '图文正文',
         align: 'center',
         width:'10%',
         sortable: false,
@@ -556,7 +561,7 @@ function seePic(id){
         dataType: 'json',
         success: function (data) {
         	if(data["path"] == ""){
-				BootstrapDialog.alert({title:"提示信息",message:"还未上传新闻图片，请先上传！"});
+				BootstrapDialog.alert({title:"提示信息",message:"还未上传图文封面，请先上传！"});
         	}else{
         		var swidth = $(document).width();
         		$("#see").attr("src","../"+data["path"]+"&s="+Math.random());
@@ -641,7 +646,7 @@ var crop = function(){
     	    contentType: false,
     	    success: function () {
                 $('#changeModal').modal('hide');
-				BootstrapDialog.alert({title:"提示信息",message:"上传成功，可点击查看进行新闻图片查看！"});
+				BootstrapDialog.alert({title:"提示信息",message:"上传成功，可点击查看进行图文封面查看！"});
     	    },
     	    error: function () {
     	    }
@@ -655,7 +660,7 @@ $("#summernote").summernote({
     lang : 'zh-CN',// 语言
    minHeight : 200, // 最小高度
    maxHeight : 200,
-   placeholder : '请输入新闻正文', // 提示       
+   placeholder : '请输入正文', // 提示       
    // summernote自定义配置
    toolbar: [
      //['operate', ['undo','redo']],
