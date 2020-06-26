@@ -20,6 +20,9 @@ public class FAboutusController extends Controller {
     //加载关于页面
     public void index(){
         setAttr("info",Db.findFirst("select * from info_tb"));
+        setAttr("history",Db.find("select * from history_tb where if_show = 1"));
+        setAttr("zs1",Db.find("select * from book_tb where if_show = 1 limit 0,3"));
+        setAttr("zs2",Db.find("select * from book_tb where if_show = 1 limit 3,3"));
         //加载轮播图
         setAttr("rcs",getIndexPics());
         setAttr("time",System.currentTimeMillis());

@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="#(context)/css/zs/slick.css">
 <link rel="stylesheet" href="#(context)/css/zs/jquery.fullpage.css" />
     <link rel="stylesheet" href="#(context)/css/zs/load.css"  media="all">
+    <link rel="stylesheet" href="#(context)/css/zs/jquery.eeyellow.Timeline.css"  media="all">
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script type="text/javascript" src="#(context)/lib/zs/jquery/jquery.min.js"></script>
 <!--<![endif]-->
@@ -31,6 +32,16 @@
 <script type="text/javascript" src="#(context)/lib/zs/amazeui/amazeui.min.js"></script>
 <script type="text/javascript" src="#(context)/lib/zs/raty/jquery.raty.js"></script>
 <script type="text/javascript" src="#(context)/js/zs/main.min.js?t=1"></script>
+    <style>
+        @media (max-width:768px){
+            #goodness{
+                background:url(#(context)/img/zs/goodness.png) no-repeat!important;
+                -webkit-background-size:100% 100%!important;
+                height:180px!important;
+                margin-bottom:20px
+            }
+        }
+    </style>
 </head>
 <body>
 <header class="header">
@@ -92,7 +103,7 @@
         <span>为各大重型工业工厂所制造的环境问题提供相关处理净化设备</span>
     </div>
     <div class="index-main-md">
-        <div class="left-area" >
+        <div class="left-area">
 
         </div>
         <div class="right-area">
@@ -101,40 +112,151 @@
             <!--<div><img src="#(context)/img/zs/slogan1.png" alt=""></div>-->
         </div>
     </div>
-    <!--<div class="index-main-title">
-        <p>团队成员</p>
+    <div class="index-main-title">
+        <p>公司理念</p>
+        <span>为各大重型工业工厂所制造的环境问题提供相关处理净化设备</span>
+    </div>
+    <div class="index-main-md">
+        <div class="left-area" id="goodness" style="display:inline-block;width:48%;height:367px;float:left;background:url(#(context)/img/zs/goodness.png) no-repeat;-webkit-background-size:contain;background-size:contain;">
+
+        </div>
+        <div class="right-area">
+            <p>#(info.get("title"))</p>
+            <span style="font-size: 1.4rem">#(info.get("idea"))</span>
+            <!--<div><img src="#(context)/img/zs/slogan1.png" alt=""></div>-->
+        </div>
+    </div>
+    <div class="index-main-title">
+        <p>证书展示</p>
         <span>为各大重型工业工厂所制造的环境问题提供相关处理净化设备</span>
     </div>
     <div class="index-main-md-body">
         <ul>
+            #for(z1:zs1)
             <li>
-                <div></div>
+                <div style="background: url('#(context)/img/zs/banner1.jpg')"></div>
+                <p>JERRY</p>
+                <p>高级工程师</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span></li>
+            #end
+        </ul>
+        <span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span>
+    </div>
+    <div class="index-main-md-body">
+        <ul>
+            <li>
+                <div style="background: url('#(context)/img/zs/banner1.jpg')"></div>
                 <p>JERRY</p>
                 <p>高级工程师</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span></li>
             <li>
                 <div></div>
                 <p>李美娜</p>
                 <p>工程师</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span></li>
-            <li>
-                <div></div>
-                <p>保罗</p>
-                <p>环境测试员</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span></li>
+
         </ul>
         <span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span>
     </div>
     <div class="index-main-title">
-        <p>核心业务</p>
+        <p>发展历程</p>
         <span>为各大重型工业工厂所制造的环境问题提供相关处理净化设备</span>
+    </div>
+    <div class="index-main-md-body">
+        <div class="col-md-12">
+            <div class="VivaTimeline">
+                <dl>
+                    <!--<dt>May 2016</dt>-->
+                    <!--<dd class="pos-left clearfix">
+                        <div class="circ"></div>
+                        <div class="time">Feb 03</div>
+                        <div class="events">
+                            <div class="events-header">Event Heading</div>
+                            <div class="events-body">
+                                <div class="row">
+                                    <div class="col-md-6 pull-left">
+                                        <img class="events-object img-responsive img-rounded" src="#(context)/img/book/1.jpeg" />
+                                    </div>
+                                    <div class="events-desc">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </div>
+                                </div>
 
-    </div>-->
+                            </div>
+                            <div class="events-footer">
+                                123
+                            </div>
+                        </div>
+                    </dd>-->
+                    <!--<dt>Feb 2016</dt>-->
+                    #for(his : history)
+                    <dd class="pos-right clearfix">
+                        <div class="circ"></div>
+                        <div class="time">#(his.get("time"))</div>
+                        <div class="events">
+                            <div class="events-header">#(his.get("title"))</div>
+                            <div class="events-body">
+                                <div class="row">
+                                    <div class="col-md-6 pull-left">
+                                        <img class="events-object img-responsive img-rounded" src="img/cat01.png" />
+                                    </div>
+                                    <div class="events-desc">
+                                        #(his.get("content"))
+                                    </div>
+                                </div>
+                                <!--<div class="row">
+                                    <div class="col-md-6 pull-left">
+                                        <img class="events-object img-responsive img-rounded" src="img/cat02.png" />
+                                    </div>
+                                    <div class="events-desc">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 pull-left">
+                                        <img class="events-object img-responsive img-rounded" src="img/cat03.png" />
+                                    </div>
+                                    <div class="events-desc">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </div>
+                                </div>-->
+                            </div>
+                            <div class="events-footer">
 
+                            </div>
+                        </div>
+                    </dd>
+                    #end
+                    <!--<dd class="pos-left clearfix">
+                        <div class="circ"></div>
+                        <div class="time">Jan 07</div>
+                        <div class="events">
+                            <div class="events-header">Event Heading</div>
+                            <div class="events-body">
+                                <div class="row">
+                                    <div class="col-md-6 pull-left">
+                                        <img class="events-object img-responsive img-rounded" src="img/rabbit01.png" />
+                                    </div>
+                                    <div class="events-desc">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </dd>
+                    <dt>Jan 2016</dt>
+                    <dt>Dec 2015</dt>
+                    <dt>Oct 2015</dt>
+                    <dt>Sep 2015</dt>
+                    <dt>Aug 2015</dt>-->
+                </dl>
+            </div>
+        </div>
+    </div>
     <!--<div class="about-main-footer">
         <span></span>
-    </div>-->
+    </div>
 
     <div class="feature">
         <img class="sm" src="#(context)/img/zs/main5.jpg">
-    </div>
+    </div>-->
 </main>
 <footer class="footer">
     <div class="footer-pc">
@@ -158,4 +280,13 @@
 <script src="#(context)/js/zs/swiper.min.js"></script>
 <script src="#(context)/js/zs/index.js"></script>
 <script src="#(context)/js/zs/load-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="#(context)/js/zs/jquery.eeyellow.Timeline.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.VivaTimeline').vivaTimeline({
+            carousel: true,
+            carouselTime: 3000
+        });
+    });
+</script>
 </html>
