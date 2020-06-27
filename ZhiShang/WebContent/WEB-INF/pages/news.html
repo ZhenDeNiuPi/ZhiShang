@@ -497,8 +497,8 @@ $('#table').bootstrapTable({
         formatter: function (value, row, index) {
         	var if_show = row['type'];
         	if(if_show == 0) return "新闻资讯";
-        	else if(if_show == 0) return "行业资讯";
-        	else if(if_show == 0) return "产品模块";
+        	else if(if_show == 1) return "行业资讯";
+        	else if(if_show == 2) return "产品模块";
         	return "";
         }
     },{

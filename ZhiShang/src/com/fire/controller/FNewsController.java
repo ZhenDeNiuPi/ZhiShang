@@ -10,6 +10,7 @@ import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
 
 @Clear(LoginInterceptor.class)
 public class FNewsController extends Controller {
@@ -18,7 +19,6 @@ public class FNewsController extends Controller {
     public void index(){
     	//获取新闻类型 默认0新闻资讯 否则是1 则是行业资讯
     	String news_type = getPara("type","0");
-    	if(!"0".equals(news_type)) news_type = "1";
         //加载公司数据
         setAttr("info", Db.findFirst("select * from info_tb"));
     	String pageNum = getPara("pageNumber","1");
@@ -33,6 +33,13 @@ public class FNewsController extends Controller {
     	setAttr("news_3", Db.find("select id,title,stitle,content,"
     			+ "from_unixtime(n.time,'%y-%m-%d') ntime from news_tb n "
     			+ "where if_show=1  and type="+news_type+" order by n.time desc limit 3"));
+    	String type = "新闻资讯";
+    	if("1".equals(news_type)) type = "行业资讯";
+    	if("2".equals(news_type)) type = "产品模块";
+    	//用于那个框的显示
+    	setAttr("type",type);
+    	//用于分页链接显示
+    	setAttr("typeNum",news_type);
     	setAttr("page",page);
         //加载轮播图
         setAttr("rcs",getIndexPics());
@@ -47,9 +54,15 @@ public class FNewsController extends Controller {
         setAttr("rcs",getIndexPics());
         setAttr("time",System.currentTimeMillis());
         setAttr("info", Db.findFirst("select * from info_tb"));
-        setAttr("new", Db.findFirst("select id,title,stitle,content,creator,"
-    			+ "from_unixtime(n.time,'%y-%m-%d') ntime from news_tb n "
-    			+ "where id="+id));
+        Record rec = Db.findFirst("select id,title,stitle,content,creator,"
+    			+ "from_unixtime(n.time,'%y-%m-%d') ntime,type from news_tb n "
+    			+ "where id="+id);
+        String typeStr = "新闻资讯";
+        String type = rec.get("type")+"";
+    	if("1".equals(type)) typeStr = "行业资讯";
+    	if("2".equals(type)) typeStr = "产品模块";
+        setAttr("new", rec);
+        setAttr("type", typeStr);
         renderTemplate("news_list_content.html");
     }
 

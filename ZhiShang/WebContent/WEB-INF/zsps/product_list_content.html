@@ -22,19 +22,19 @@
     <link rel="stylesheet" href="#(context)/css/zs/animate.css">
     <link rel="stylesheet" href="#(context)/css/zs/slick.css">
     <link rel="stylesheet" href="#(context)/css/zs/jquery.fullpage.css" />
-    <!--[if (gte IE 9)|!(IE)]><!-->
-    <script type="text/javascript" src="#(context)/lib/zs/jquery/jquery.min.js"></script>
-    <!--<![endif]-->
-    <!--[if lte IE 8 ]>
-    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-    <script src="#(context)/lib/zs/amazeui/amazeui.ie8polyfill.min.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="#(context)/lib/zs/handlebars/handlebars.min.js"></script>
-    <script type="text/javascript" src="#(context)/lib/zs/iscroll/iscroll-probe.js"></script>
-    <script type="text/javascript" src="#(context)/lib/zs/amazeui/amazeui.min.js"></script>
-    <script type="text/javascript" src="#(context)/lib/zs/raty/jquery.raty.js"></script>
-    <script type="text/javascript" src="#(context)/js/zs/main.min.js?t=1"></script>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script type="text/javascript" src="#(context)/lib/zs/jquery/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="#(context)/lib/zs/amazeui/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="#(context)/lib/zs/handlebars/handlebars.min.js"></script>
+<script type="text/javascript" src="#(context)/lib/zs/iscroll/iscroll-probe.js"></script>
+<script type="text/javascript" src="#(context)/lib/zs/amazeui/amazeui.min.js"></script>
+<script type="text/javascript" src="#(context)/lib/zs/raty/jquery.raty.js"></script>
+<script type="text/javascript" src="#(context)/js/zs/main.min.js?t=1"></script>
 </head>
 <body>
 <header class="header">
@@ -58,26 +58,32 @@
     </div>
     <ul class="ul" data-in="fadeInDown" data-out="fadeOutUp">
         <li class="active">
-            <a href="index">首页</a>
+            <a href="../index">首页</a>
         </li>
         <li class="">
-            <a href="fabout">
+            <a href="../fabout">
                 关于我们
             </a>
 
         </li>
         <li class="">
-            <a href="fbook">证书展示</a>
+            <a href="../fbook">证书展示</a>
 
         </li>
         <li>
-            <a href="fcase">案例展示</a>
+            <a href="../fcase">案例展示</a>
         </li>
         <li>
-            <a href="fnews">新闻资讯</a>
+            <a href="../fnews?type=2">产品模块</a>
         </li>
         <li>
-            <a href="fcontact">联系我们</a>
+            <a href="../fnews?type=0">新闻资讯</a>
+        </li>
+        <li>
+            <a href="../fnews?type=1">行业资讯</a>
+        </li>
+        <li>
+            <a href="../fcontact">联系我们</a>
         </li>
     </ul>
 </div>
@@ -174,4 +180,10 @@
     </div>
 </footer>
 </body>
+<script src="#(context)/js/zs/jquery.min.js"></script>
+<script src="#(context)/js/zs/bootstrap.min.js"></script>
+<script src="#(context)/js/zs/jquery.fullpage.min.js"></script>
+<script src="#(context)/js/zs/index_slick.js"></script>
+<script src="#(context)/js/zs/swiper.min.js"></script>
+<script src="#(context)/js/zs/index.js"></script>
 </html>

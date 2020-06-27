@@ -58,26 +58,32 @@
     </div>
     <ul class="ul" data-in="fadeInDown" data-out="fadeOutUp">
         <li class="active">
-            <a href="index">首页</a>
+            <a href="../index">首页</a>
         </li>
         <li class="">
-            <a href="fabout">
+            <a href="../fabout">
                 关于我们
             </a>
 
         </li>
         <li class="">
-            <a href="fbook">证书展示</a>
+            <a href="../fbook">证书展示</a>
 
         </li>
         <li>
-            <a href="fcase">案例展示</a>
+            <a href="../fcase">案例展示</a>
         </li>
         <li>
-            <a href="fnews">新闻资讯</a>
+            <a href="../fnews?type=2">产品模块</a>
         </li>
         <li>
-            <a href="fcontact">联系我们</a>
+            <a href="../fnews?type=0">新闻资讯</a>
+        </li>
+        <li>
+            <a href="../fnews?type=1">行业资讯</a>
+        </li>
+        <li>
+            <a href="../fcontact">联系我们</a>
         </li>
     </ul>
 </div>
@@ -92,7 +98,7 @@
 <div>
 
     <div class="article-protect-tab">
-        <span>新闻资讯</span>
+        <span>#(type)</span>
     </div>
     <section class="article-contents">
         <h4 style="font-weight: 600;font-size: 150%;padding: 5px">#(new.get("title"))</h4>

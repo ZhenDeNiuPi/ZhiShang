@@ -74,7 +74,13 @@
             <a href="fcase">案例展示</a>
         </li>
         <li>
-            <a href="fnews">新闻资讯</a>
+            <a href="fnews?type=2">产品模块</a>
+        </li>
+        <li>
+            <a href="fnews?type=0">新闻资讯</a>
+        </li>
+        <li>
+            <a href="fnews?type=1">行业资讯</a>
         </li>
         <li>
             <a href="fcontact">联系我们</a>
@@ -92,7 +98,7 @@
 <div>
     <section class="article-content">
         <div class="article-protect-tab">
-            <span>新闻资讯</span>
+            <span>#(type)</span>
         </div>
         <div class="article-protect-body">
             <img src="#(context)/img/zs/pro1.jpg">
@@ -140,13 +146,13 @@
     </section>
     <div class="article_list_more_pages">
         <ul>
-            <li><a href="fnews?pageNumber=#(page.getCurNum()-1>0?page.getCurNum()-1:page.getCurNum())">上一页</a></li>
+            <li><a href="fnews?type=#(typeNum)&pageNumber=#(page.getCurNum()-1>0?page.getCurNum()-1:page.getCurNum())">上一页</a></li>
             <li class="article-current"><a>1</a></li>
             #for(i = 1; i*6 < page.getTotal(); i++)
-            <li><a href="fnews?pageNumber=#(i+1)">#(i+1)</a></li>
+            <li><a href="fnews?type=#(typeNum)&pageNumber=#(i+1)">#(i+1)</a></li>
 			#end
             <!-- <li><a>3</a></li> -->
-            <li><a href="fnews?pageNumber=#(page.getCurNum()*6<page.getTotal()?page.getCurNum()+1:page.getCurNum())">下一页</a></li>
+            <li><a href="fnews?type=#(typeNum)&pageNumber=#(page.getCurNum()*6<page.getTotal()?page.getCurNum()+1:page.getCurNum())">下一页</a></li>
         </ul>
     </div>
     <div class="feature">
