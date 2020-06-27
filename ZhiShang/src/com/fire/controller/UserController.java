@@ -32,6 +32,23 @@ public class UserController extends Controller{
 			renderFile(new File(rootPath,"nopic.png"));
 	}
 	
+	public void uploadUsPic(){
+		UploadFile file = getFile();
+		File old = new File(rootPath,"aboutUs.jpeg");
+		if(old.exists()) old.delete();
+		file.getFile().renameTo(new File(rootPath,"aboutUs.jpeg"));
+		renderJson("num",1);
+		
+	}
+
+	public void getUsPic() {
+		File idea = new File(rootPath,"aboutUs.jpeg");
+		if(idea.exists())
+			renderFile(idea);
+		else
+			renderFile(new File(rootPath,"nopic.png"));
+	}
+	
 	public void update() throws Exception{
     	Info info = getModel(Info.class,"u");
     	int num = 1;

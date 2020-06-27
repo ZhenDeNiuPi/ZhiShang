@@ -103,7 +103,7 @@
         <span>为各大重型工业工厂所制造的环境问题提供相关处理净化设备</span>
     </div>
     <div class="index-main-md">
-        <div class="left-area">
+        <div class="left-area" id="goodness2" style="display:inline-block;width:48%;height:367px;float:left;background:url(#(context)/user/getUsPic?t=#(time)&zs=zs) no-repeat;-webkit-background-size:contain;background-size:contain;">
 
         </div>
         <div class="right-area">
@@ -117,7 +117,7 @@
         <span>为各大重型工业工厂所制造的环境问题提供相关处理净化设备</span>
     </div>
     <div class="index-main-md">
-        <div class="left-area" id="goodness" style="display:inline-block;width:48%;height:367px;float:left;background:url(#(context)/img/zs/goodness.png) no-repeat;-webkit-background-size:contain;background-size:contain;">
+        <div class="left-area" id="goodness" style="display:inline-block;width:48%;height:367px;float:left;background:url(#(context)/user/getPic?t=#(time)&zs=zs) no-repeat;-webkit-background-size:contain;background-size:contain;">
 
         </div>
         <div class="right-area">
@@ -130,18 +130,24 @@
         <p>证书展示</p>
         <span>为各大重型工业工厂所制造的环境问题提供相关处理净化设备</span>
     </div>
+    #for(i=0;i<((books.size()+2)/3);i++)
     <div class="index-main-md-body">
         <ul>
-            #for(z1:zs1)
+            #for(j=i*3;j<i*3+3;j++)
+            #if(j<books.size())
             <li>
-                <div style="background: url('#(context)/img/zs/banner1.jpg')"></div>
-                <p>JERRY</p>
-                <p>高级工程师</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span></li>
+                <div style="background-size:cover;background-image:url('#(context)/book/getPic?id=#(books.get(j).get("id"))&t=#(time)&zs=zs')"></div>
+                <!-- <div><img src='#(context)/book/getPic?id=#(books.get(j).get("id"))&t=#(time)&zs=zs' /></div> -->
+                <p>#(books.get(j).get("name"))</p>
+                <p>#(books.get(j).get("btime"))</p>
+                <span>#(books.get(j).get("content"))</span></li>
+            #end	
             #end
         </ul>
         <span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span>
     </div>
-    <div class="index-main-md-body">
+    #end
+    <!-- <div class="index-main-md-body">
         <ul>
             <li>
                 <div style="background: url('#(context)/img/zs/banner1.jpg')"></div>
@@ -154,7 +160,7 @@
 
         </ul>
         <span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span>
-    </div>
+    </div> -->
     <div class="index-main-title">
         <p>发展历程</p>
         <span>为各大重型工业工厂所制造的环境问题提供相关处理净化设备</span>
@@ -189,13 +195,13 @@
                     #for(his : history)
                     <dd class="pos-right clearfix">
                         <div class="circ"></div>
-                        <div class="time">#(his.get("time"))</div>
+                        <div class="time">#(his.get("htime"))</div>
                         <div class="events">
                             <div class="events-header">#(his.get("title"))</div>
                             <div class="events-body">
                                 <div class="row">
-                                    <div class="col-md-6 pull-left">
-                                        <img class="events-object img-responsive img-rounded" src="img/cat01.png" />
+                                    <div class="col-md-12 pull-left">
+                                        <img class="events-object img-responsive img-rounded" src='#(context)/history/getPic?id=#(his.get("id"))&t=#(time)&zs=zs' />
                                     </div>
                                     <div class="events-desc">
                                         #(his.get("content"))

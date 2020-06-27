@@ -235,6 +235,7 @@
 <script type="text/javascript">
 
 $("#add").bind("click",function(){
+	$("#id").val("");
 	document.getElementById("addForm").reset();
 	$("#summernote").summernote('code',"");
 	$("#myModalLabel").text("添加图文");
