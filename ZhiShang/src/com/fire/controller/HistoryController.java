@@ -41,7 +41,7 @@ public class HistoryController  extends Controller{
 	public void getData() {
 		String id = getPara("id");
 		String select  = "select h.id,from_unixtime(h.time,'%Y-%m-%d') hTime,h.title,h.content,b.if_show "
-				+ " from history h where id="+id;//from xxx ... where 1=1 
+				+ " from history_tb h where id="+id;//from xxx ... where 1=1 
         renderJson(Db.findFirst(select));
 	}
 	
