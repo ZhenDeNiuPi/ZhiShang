@@ -68,6 +68,62 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
+			    <label for="mobile" class="col-sm-4 control-label">优势1:</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" maxlength="20" 
+			       id="four1" name="u.four1" placeholder="输入优势1标题">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="about" class="col-sm-4 control-label"></label>
+			    <div class="col-sm-8">
+			      <textarea class="form-control" maxlength="300" 
+			       id="four1content" name="u.four1content" placeholder="输入优势1正文"></textarea>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="mobile" class="col-sm-4 control-label">优势2:</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" maxlength="20" 
+			       id="four2" name="u.four2" placeholder="输入优势2标题">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="about" class="col-sm-4 control-label"></label>
+			    <div class="col-sm-8">
+			      <textarea class="form-control" maxlength="300" 
+			       id="four2content" name="u.four2content" placeholder="输入优势2正文"></textarea>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="mobile" class="col-sm-4 control-label">优势3:</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" maxlength="20" 
+			       id="four3" name="u.four3" placeholder="输入优势3标题">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="about" class="col-sm-4 control-label"></label>
+			    <div class="col-sm-8">
+			      <textarea class="form-control" maxlength="300" 
+			       id="four3content" name="u.four3content" placeholder="输入优势3正文"></textarea>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="mobile" class="col-sm-4 control-label">优势4:</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" maxlength="20" 
+			       id="four4" name="u.four4" placeholder="输入优势4标题">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="about" class="col-sm-4 control-label"></label>
+			    <div class="col-sm-8">
+			      <textarea class="form-control" maxlength="300" 
+			       id="four4content" name="u.four4content" placeholder="输入优势4正文"></textarea>
+			    </div>
+			  </div>
+			  <!-- <div class="form-group">
 			    <label for="four" class="col-sm-4 control-label">四个优势:</label>
 			    <div class="col-sm-2">
 			      <input type="text" class="form-control" maxlength="20" 
@@ -85,7 +141,7 @@
 			      <input type="text" class="form-control" maxlength="20" 
 			       id="four4" name="u.four4" placeholder="四">
 			    </div>
-			  </div>
+			  </div> -->
 			  <div class="form-group">
 			    <label for="about" class="col-sm-4 control-label">关于我们:</label>
 			    <div class="col-sm-8">
@@ -205,6 +261,10 @@ function getData(){
 				$("#four2").val(result["four2"]);
 				$("#four3").val(result["four3"]);
 				$("#four4").val(result["four4"]);
+				$("#four1content").val(result["four1content"]);
+				$("#four2content").val(result["four2content"]);
+				$("#four3content").val(result["four3content"]);
+				$("#four4content").val(result["four4content"]);
 			}else BootstrapDialog.alert({title:"提示信息",message:result["errormessage"]});
 		}
 	});

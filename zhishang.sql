@@ -165,3 +165,16 @@ ADD COLUMN `idea`  varchar(300) DEFAULT NULL COMMENT '公司理念' AFTER `four4
 ALTER TABLE `news_tb`
 MODIFY COLUMN `type`  int(1) NULL DEFAULT 0 COMMENT '新闻类型 0新闻资讯1行业资讯2产品模块1' AFTER `if_show`;
 
+-- 20200628 四个优势 优势修改为标题+正文
+
+ALTER TABLE `info_tb`
+MODIFY COLUMN `about`  varchar(300) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '关于我们' AFTER `mobile`,
+MODIFY COLUMN `four1`  varchar(50) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '优势1标题' AFTER `about`,
+MODIFY COLUMN `four2`  varchar(50) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '优势2标题' AFTER `four1`,
+MODIFY COLUMN `four3`  varchar(50) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '优势3标题' AFTER `four2`,
+MODIFY COLUMN `four4`  varchar(50) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '优势4标题' AFTER `four3`,
+ADD COLUMN `four1content`  varchar(300) NULL COMMENT '优势1正文' AFTER `idea`,
+ADD COLUMN `four2content`  varchar(300) NULL COMMENT '优势2正文' AFTER `four1content`,
+ADD COLUMN `four3content`  varchar(300) NULL COMMENT '优势3正文' AFTER `four2content`,
+ADD COLUMN `four4content`  varchar(300) NULL COMMENT '优势4正文' AFTER `four3content`;
+
