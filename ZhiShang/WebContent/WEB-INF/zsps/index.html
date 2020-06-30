@@ -15,6 +15,54 @@
     <link rel="stylesheet" href="#(context)/css/zs/index.css">
     <link rel="stylesheet" href="#(context)/css/zs/page.css">
     <link rel="stylesheet" href="#(context)/css/zs/style.css">
+    <style>
+        .value,.value2,.value3{
+            margin:0 auto;
+            color: #ffffff;
+            margin-top:20px;
+            text-align:center;
+            ont-family: 'Tungsten';
+            font-size: 86px;
+            line-height: 1;
+            display: inline-block;
+        }
+        .valueWord1{
+            ont-family: 'Tungsten';
+            font-size: 86px;
+            color: #ffffff;
+            line-height: 1;
+            display: inline-block;
+            text-align: center;
+        }.valueWord2{
+             font-size: 22px;
+             color: #ffffff;
+             font-weight: normal;
+             top: -4px;
+             display: inline-block;
+             margin-left: 4px;
+        }.valueWord{
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 10px 0 0 0;
+            color: #fff;
+            text-align: center;
+        }
+        .title1{
+            font-family: 'Tw Cen MT';
+            font-size: 56px;
+            font-weight: normal;
+            line-height: 1;
+            display: block;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .title2{
+            font-size: 24px;
+            line-height: 1.66666667;
+            margin: 0;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 
@@ -325,6 +373,52 @@
             </div>
         </div>
     </div>
+    <!--    5-2   -->
+    <div class="section section4"  style="background: url('#(context)/img/zs/bg4.jpg') no-repeat;background-size: cover">
+        <div class="container">
+            <div class="">
+                <div class="row row-static stit">
+                    <div class="col-md-12" style="text-align: center;">
+                        <span class="title1">WELCOME TO ZHISHANG</span>
+                        <span class="title2">欢迎您走进至上</span>
+                    </div>
+                </div>
+            </div>
+        <hr style="color: #fff;border-top: 1px solid #f8f9fa;">
+            <div class="">
+                <div class="row row-static stit">
+                    <div class="col-md-4" style="text-align: center;">
+                        <div>
+                            <span class="valueWord1">2003</span>
+                            <span class="valueWord2">年</span>
+                        </div>
+                        <div class="valueWord">
+                            至上净化成立
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        <div>
+                            <span class="valueWord1">10</span>
+                            <span class="valueWord2">项</span>
+                        </div>
+                        <div class="valueWord">
+                            10项国家专利
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        <div>
+                            <span class="valueWord1">500</span>
+                            <span class="valueWord2">强</span>
+                        </div>
+                        <div class="valueWord">
+                            山东省500强企业
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="color: #fff;border-top: 1px solid #f8f9fa;">
+        </div>
+    </div>
     <!--    6-->
     <div class="section section4" style="background: url('#(context)/img/zs/bg5.jpg') no-repeat;background-size: cover;color: #fff">
 
@@ -367,7 +461,7 @@
                                 <textarea name="content" class="form-control" rows="3" placeholder="请输入备注"></textarea>
                             </div>
 
-                            <input type="button" class="btn btn-success" value="提交" onclick="contactUs()""/>
+                            <input type="button" class="btn btn-success" value="提交" onclick="contactUs()"/>
                         </form>
                     </div>
 
@@ -384,9 +478,83 @@
 <script src="#(context)/js/zs/index_slick.js"></script>
 <script src="#(context)/js/zs/swiper.min.js"></script>
 <script src="#(context)/js/zs/index.js"></script>
+<script src="#(context)/js/zs/team/count.js"></script>
 <script>
 
-    var contactUs = function(){
+  $(document).ready(function(){
+    var a,b,c;
+    a = $(window).height();    //浏览器窗口高度
+    var group = $(".group-pic");
+    $(window).scroll(function(){
+      b = $(this).scrollTop();   //页面滚动的高度
+      c = group.offset().top;    //元素距离文档（document）顶部的高度
+      if(a+b>c){
+       alert(1)
+      }else{
+        alert(2)
+      }
+    });
+  });
+  function begin() {
+    var a,b,c;
+    a = $(window).height();    //浏览器窗口高度
+    var group = $(".group-pic");
+    $(window).scroll(function(){
+      b = $(this).scrollTop();   //页面滚动的高度
+      c = group.offset().top;    //元素距离文档（document）顶部的高度
+      if(a+b>c){
+        alert(1)
+      }else{
+        alert(2)
+      }
+    });
+  }
+  function scroll(){
+    //console.log("打印log日志");实时看下效果
+    console.log("开始滚动！");
+
+  }
+
+  var scrollFunc = function (e) {
+    e = e || window.event;
+    if (e.wheelDelta) {  //第一步：先判断浏览器IE，谷歌滑轮事件
+      if (e.wheelDelta > 0) { //当滑轮向上滚动时
+        console.log("滑轮向上滚动");
+      }
+      if (e.wheelDelta < 0) { //当滑轮向下滚动时
+        console.log("滑轮向下滚动");
+      }
+    } else if (e.detail) {  //Firefox滑轮事件
+      if (e.detail> 0) { //当滑轮向上滚动时
+        console.log("滑轮向上滚动");
+      }
+      if (e.detail< 0) { //当滑轮向下滚动时
+        console.log("滑轮向下滚动");
+      }
+    }
+    begin();
+  }
+  //给页面绑定滑轮滚动事件
+  if (document.addEventListener) {//firefox
+    document.addEventListener('DOMMouseScroll', scrollFunc, false);
+  }
+  //滚动滑轮触发scrollFunc方法  //ie 谷歌
+  window.onmousewheel = document.onmousewheel = scrollFunc;
+
+  $(".value").numberRock({
+    speed:100,//
+    count:2003//
+  })
+  $(".value2").numberRock({
+    speed:100,
+    count:500
+  })
+  $(".value3").numberRock({
+    speed:22,
+    count:10000
+  })
+
+  var contactUs = function(){
         $.ajax({
             type:"post",
             url:"manage/contactUs?zs=zs",
@@ -407,6 +575,7 @@
             }
         });
     }
+
 
 
     var mySwiper=new Swiper('.swiper-container',{
