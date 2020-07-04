@@ -178,3 +178,31 @@ ADD COLUMN `four2content`  varchar(300) NULL COMMENT '优势2正文' AFTER `four
 ADD COLUMN `four3content`  varchar(300) NULL COMMENT '优势3正文' AFTER `four2content`,
 ADD COLUMN `four4content`  varchar(300) NULL COMMENT '优势4正文' AFTER `four3content`;
 
+
+-- 20200704 团队介绍  贡献
+ALTER TABLE `info_tb`
+ADD COLUMN `intro1content`  varchar(50) NULL COMMENT '团队介绍1正文' AFTER `four4content`,
+ADD COLUMN `intro1num`  varchar(20) NULL COMMENT '团队介绍1数量' AFTER `intro1content`,
+ADD COLUMN `intro1unit`  varchar(5) NULL COMMENT '团队介绍1单位' AFTER `intro1num`,
+ADD COLUMN `intro2content`  varchar(50) NULL COMMENT '团队介绍2正文' AFTER `intro1unit`,
+ADD COLUMN `intro2num`  varchar(20) NULL COMMENT '团队介绍2数量' AFTER `intro2content`,
+ADD COLUMN `intro2unit`  varchar(5) NULL COMMENT '团队介绍2单位' AFTER `intro2num`,
+ADD COLUMN `intro3content`  varchar(50) NULL COMMENT '团队介绍3正文' AFTER `intro2unit`,
+ADD COLUMN `intro3num`  varchar(20) NULL COMMENT '团队介绍3数量' AFTER `intro3content`,
+ADD COLUMN `intro3unit`  varchar(5) NULL COMMENT '团队介绍3单位' AFTER `intro3num`;
+
+ALTER TABLE `info_tb`
+ADD COLUMN `contri1content`  varchar(50) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献1正文' AFTER `intro3unit`,
+ADD COLUMN `contri1num`  varchar(20) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献1数量' AFTER `contri1content`,
+ADD COLUMN `contri1unit`  varchar(5) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献1单位' AFTER `contri1num`,
+ADD COLUMN `contri2content`  varchar(50) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献2正文' AFTER `contri1unit`,
+ADD COLUMN `contri2num`  varchar(20) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献2数量' AFTER `contri2content`,
+ADD COLUMN `contri2unit`  varchar(5) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献2单位' AFTER `contri2num`,
+ADD COLUMN `contri3content`  varchar(50) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献3正文' AFTER `contri2unit`,
+ADD COLUMN `contri3num`  varchar(20) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献3数量' AFTER `contri3content`,
+ADD COLUMN `contri3unit`  varchar(5) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献3单位' AFTER `contri3num`,
+ADD COLUMN `contri4content`  varchar(50) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献3正文' AFTER `contri3unit`,
+ADD COLUMN `contri4num`  varchar(20) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献4数量' AFTER `contri4content`,
+ADD COLUMN `contri4unit`  varchar(5) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献4单位' AFTER `contri4num`;
+
+

@@ -60,6 +60,10 @@ public class LoginController extends Controller{
 		render("history.html");
 	}
 
+	public void sc() {
+		render("sc.html");
+	}
+
 	@Clear
 	public void img(){
 		renderCaptcha();
