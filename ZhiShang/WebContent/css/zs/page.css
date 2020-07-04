@@ -1282,6 +1282,11 @@ label {
     max-width: auto;
     margin: 0 auto;
 }
+.thumbnail > .intr-box .card {
+    position: relative;
+    max-width: auto;
+    margin: 0 auto;
+}
 .thumbnail > .intr-box .img .img_bg {
     width: 100%;
     max-width: 290px;
