@@ -30,7 +30,7 @@ public class FNewsController extends Controller {
          allParams.put("pageNumber", new String[]{pageNum});
          Page page = is.query(select, from, allParams);
          page.setCurNum(Integer.parseInt(pageNum));
-    	setAttr("news_3", Db.find("select id,title,stitle,content,"
+    	setAttr("news_3", Db.find("select id,title,stitle,content,creator,"
     			+ "from_unixtime(n.time,'%y-%m-%d') ntime from news_tb n "
     			+ "where if_show=1  and type="+news_type+" order by n.time desc limit 3"));
     	String type = "新闻资讯";

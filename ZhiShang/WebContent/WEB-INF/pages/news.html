@@ -470,6 +470,7 @@ $('#table').bootstrapTable({
         width:'10%',
         formatter: function (value, row, index) {
         	var title = row['title'];
+        	if(title == null) return "";
         	if(title.length>11) return title.substring(0,11)+"...";
         	return title;
         }
@@ -480,6 +481,7 @@ $('#table').bootstrapTable({
         width:'20%',
         formatter: function (value, row, index) {
         	var stitle = row['stitle'];
+        	if(stitle == null) return ""; 
         	if(stitle.length>27) return stitle.substring(0,27)+"...";
         	return stitle;
         }
