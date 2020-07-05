@@ -101,7 +101,13 @@
             <span>#(type)</span>
         </div>
         <div class="article-protect-body">
+        	#if((type).equals("新闻资讯"))
             <img src="#(context)/img/zs/pro1.jpg">
+            #elseif((type).equals("行业资讯"))
+            <img src="#(context)/img/zs/pro2.jpg">
+            #elseif((type).equals("产品模块"))
+            <img src="#(context)/img/zs/pro3.jpg">
+            #end
             <ul>
             #for(new:news_3)
                 <li>
