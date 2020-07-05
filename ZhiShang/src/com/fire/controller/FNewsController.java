@@ -61,6 +61,8 @@ public class FNewsController extends Controller {
         String type = rec.get("type")+"";
     	if("1".equals(type)) typeStr = "行业资讯";
     	if("2".equals(type)) typeStr = "产品模块";
+    	rec.set("content", (rec.get("content")+"").replaceAll("style=\"width: 546px;\"", ""));
+//    	System.out.println(rec.get("content")+"");
         setAttr("new", rec);
         setAttr("type", typeStr);
         renderTemplate("news_list_content.html");

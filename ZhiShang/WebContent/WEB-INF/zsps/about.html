@@ -145,7 +145,7 @@
             #for(j=i*3;j<i*3+3;j++)
             #if(j<books.size())
             <li>
-                <div style="background-size:cover;background-image:url('#(context)/book/getPic?id=#(books.get(j).get("id"))&t=#(time)&zs=zs')"></div>
+                <div style="background-size:cover;background-image:url('#(context)/book/getPic?id=#(books.get(j).get("id"))&t=#(time)&zs=zs') !important;" ></div>
                 <!-- <div><img src='#(context)/book/getPic?id=#(books.get(j).get("id"))&t=#(time)&zs=zs' /></div> -->
                 <p>#(books.get(j).get("name"))</p>
                 <p>#(books.get(j).get("btime"))</p>
@@ -284,6 +284,7 @@
         <a style="color:#f5f5f5;" href="fcontact">联系我们</a></p></li>
         <li><p>地址：#(info.get("address"))</p></li>
         <li><P>电话：#(info.get("phone"))</P></li>
+        <li><P>邮箱：#(info.get("email"))</P></li>
     </ul>
     <!--<img src="#(context)/img/zs/qccode.png" alt="">-->
     </div>

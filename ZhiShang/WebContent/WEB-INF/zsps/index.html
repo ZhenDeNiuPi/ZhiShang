@@ -205,58 +205,74 @@
                     </div>
                 </div>
                 <div class="row row-static">
-        <div class="trade-content">
-            <div class="trade-black">
-                <div class="trade-box">
-                    <div class="trade-box-list">
-                        <div class="trade-box-item item01">
-                            <a href="#">
-                                <div class="item-logo">
-                                    <img src="#(context)/images/img001.svg" alt="">
-                                </div>
-                                <div class="item-title">#(info.get("four1"))</div>
-                                <div class="item-text">
-                                    <p>#(info.get("four1content"))</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="trade-box-item item02">
-                            <a href="#">
-                                <div class="item-logo">
-                                    <img src="#(context)/images/img002.svg" alt="">
-                                </div>
-                                <div class="item-title">#(info.get("four2"))</div>
-                                <div class="item-text">
-                                    <p>#(info.get("four2content"))</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="trade-box-item item03">
-                            <a href="#">
-                                <div class="item-logo">
-                                    <img src="#(context)/images/img003.svg" alt="">
-                                </div>
-                                <div class="item-title">#(info.get("four3"))</div>
-                                <div class="item-text">
-                                    <p>#(info.get("four3content"))</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="trade-box-item item05">
-                            <a href="#">
-                                <div class="item-logo">
-                                    <img src="#(context)/images/img005.svg" alt="">
-                                </div>
-                                <div class="item-title">#(info.get("four4"))</div>
-                                <div class="item-text">
-                                    <p>#(info.get("four4content"))</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+			        <div class="trade-content">
+			            <!-- <div class="trade-black"> -->
+			                <div class="trade-box" style="width: 85vw !important;">
+			                    <div class="trade-box-list row row-wrap">
+			                    <div class="col-md-3 col-xs-12">
+			                        <div>
+			                            <div>
+			                                <div class="cus-thumbnail">
+			                        <div class="trade-box-item item01">
+			                            <a href="#">
+			                                <div class="item-logo">
+			                                    <img src="#(context)/images/img001.svg" alt="">
+			                                </div>
+			                                <div class="item-title">#(info.get("four1"))</div>
+			                                <div class="item-text">
+			                                    <p>#(info.get("four1content"))</p>
+			                                </div>
+			                            </a>
+			                        </div></div></div></div></div>
+			                    <div class="col-md-3 col-xs-12">
+			                        <div>
+			                            <div>
+			                                <div class="cus-thumbnail">
+			                        <div class="trade-box-item item02">
+			                            <a href="#">
+			                                <div class="item-logo">
+			                                    <img src="#(context)/images/img002.svg" alt="">
+			                                </div>
+			                                <div class="item-title">#(info.get("four2"))</div>
+			                                <div class="item-text">
+			                                    <p>#(info.get("four2content"))</p>
+			                                </div>
+			                            </a>
+			                        </div></div></div></div></div>
+			                        <div class="col-md-3 col-xs-12">
+			                        <div>
+			                            <div>
+			                                <div class="cus-thumbnail">
+			                        <div class="trade-box-item item03">
+			                            <a href="#">
+			                                <div class="item-logo">
+			                                    <img src="#(context)/images/img003.svg" alt="">
+			                                </div>
+			                                <div class="item-title">#(info.get("four3"))</div>
+			                                <div class="item-text">
+			                                    <p>#(info.get("four3content"))</p>
+			                                </div>
+			                            </a>
+			                        </div></div></div></div></div>
+			                        <div class="col-md-3 col-xs-12">
+			                        <div>
+			                            <div>
+			                                <div class="cus-thumbnail">
+			                        <div class="trade-box-item item05">
+			                            <a href="#">
+			                                <div class="item-logo">
+			                                    <img src="#(context)/images/img005.svg" alt="">
+			                                </div>
+			                                <div class="item-title">#(info.get("four4"))</div>
+			                                <div class="item-text">
+			                                    <p>#(info.get("four4content"))</p>
+			                                </div>
+			                            </a>
+			                        </div></div></div></div></div>
+			                    </div>
+			                </div>
+			            <!-- </div> -->
+			        </div>
                 </div>
             </div>
         </div>
@@ -324,7 +340,7 @@
                                 #for(case:cases)
                                 <div class="col-md-3 col-sm-6 w50">
                                     <div class="thumbnail">
-                                        <div class="intr-box"> <a href="fcase/toCaseInfo?id=#(case.get('id'))">
+                                        <div class="intr-box" onclick="window.location.href='fcase/toCaseInfo?id=#(case.get('id'))'"> <a href="fcase/toCaseInfo?id=#(case.get('id'))">
                                             <div class="img">
                                                 <img src="#(context)/case/getPic4Index?id=#(case.get('id'))&t=#(time)&zs=zs">
                                             </div>
@@ -363,7 +379,7 @@
                     <div class="col-md-3 col-sm-6 w50">
                         <div>
                             <div>
-                                <div class="cus-thumbnail" style="margin-bottom: 0">
+                                <div class="cus-thumbnail" style="margin-bottom: 0"  onclick="window.location.href='fnews/toNewsInfo?id=#(new.get('id'))'">
                                     <div class="img" style="margin-bottom: 5px">
                                         <img src="#(context)/news/getPic?id=#(new.get('id'))&t=#(time)&zs=zs">
                                     </div>
