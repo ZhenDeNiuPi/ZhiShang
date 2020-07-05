@@ -28,13 +28,15 @@ public class FIndexController extends Controller {
         //加载新闻数据
         setAttr("news",Db.find("select * from news_tb where if_show=1 and type=0 order by time desc limit 4"));
         //加载轮播图
-        setAttr("rcs",getIndexPics());
+        setAttr("rcs",getIndexPics("/img/rc"));
+        //加载战略合作图
+        setAttr("scs",getIndexPics("/img/sc"));
         setAttr("time",System.currentTimeMillis());
         renderTemplate("index.html");
     }
     
-    public List<Integer> getIndexPics() {
-    	String rootPath = PathKit.getWebRootPath()+"/img/rc";
+    public List<Integer> getIndexPics(String path) {
+    	String rootPath = PathKit.getWebRootPath()+path;
 		File dir = new File(rootPath);
 		if(!dir.exists()) dir.mkdir();
 		File[] files = new File(rootPath).listFiles();
