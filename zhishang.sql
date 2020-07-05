@@ -206,3 +206,8 @@ ADD COLUMN `contri4num`  varchar(20) CHARACTER SET gbk COLLATE gbk_chinese_ci NU
 ADD COLUMN `contri4unit`  varchar(5) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '贡献4单位' AFTER `contri4num`;
 
 
+-- 20200705
+ALTER TABLE `info_tb`
+ADD COLUMN `lat`  varchar(20) NULL COMMENT '纬度' AFTER `contri4unit`,
+ADD COLUMN `lon`  varchar(20) NULL COMMENT '经度' AFTER `lat`;
+
