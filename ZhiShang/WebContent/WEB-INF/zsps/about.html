@@ -135,7 +135,7 @@
             <!--<div><img src="#(context)/img/zs/slogan1.png" alt=""></div>-->
         </div>
     </div>
-    <div class="index-main-title">
+    <!--<div class="index-main-title">
         <p class="aboutTitle">证书展示</p>
         <span>为各大重型工业工厂所制造的环境问题提供相关处理净化设备</span>
     </div>
@@ -146,7 +146,7 @@
             #if(j<books.size())
             <li>
                 <div style="background-size:cover;background-image:url('#(context)/book/getPic?id=#(books.get(j).get("id"))&t=#(time)&zs=zs') !important;" ></div>
-                <!-- <div><img src='#(context)/book/getPic?id=#(books.get(j).get("id"))&t=#(time)&zs=zs' /></div> -->
+                &lt;!&ndash; <div><img src='#(context)/book/getPic?id=#(books.get(j).get("id"))&t=#(time)&zs=zs' /></div> &ndash;&gt;
                 <p>#(books.get(j).get("name"))</p>
                 <p>#(books.get(j).get("btime"))</p>
                 <span>#(books.get(j).get("content"))</span></li>
@@ -155,7 +155,7 @@
         </ul>
         <span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span>
     </div>
-    #end
+    #end-->
     <!-- <div class="index-main-md-body">
         <ul>
             <li>
@@ -174,10 +174,10 @@
         <p class="aboutTitle">发展历程</p>
         <span>为各大重型工业工厂所制造的环境问题提供相关处理净化设备</span>
     </div>
-    <div class="index-main-md-body">
+    <div class="index-main-md-body" style="height: 1000px">
         <div class="col-md-12">
             <div class="VivaTimeline">
-                <dl>
+                <dl style="height: 1000px">
                     <!--<dt>May 2016</dt>-->
                     <!--<dd class="pos-left clearfix">
                         <div class="circ"></div>
@@ -203,8 +203,8 @@
                     <!--<dt>Feb 2016</dt>-->
                     #for(his : history)
                     <dd class="pos-right clearfix">
-                        <div class="circ"></div>
-                        <div class="time">#(his.get("htime"))</div>
+                        <!--<div class="circ"></div>-->
+                        <div class="time" style="width: 120px;">#(his.get("htime"))</div>
                         <div class="events">
                             <div class="events-header">#(his.get("title"))</div>
                             <div class="events-body">
