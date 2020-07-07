@@ -181,18 +181,23 @@ a, button, input, textarea {
 }
 .trade-content .item01 {
 	background-image: url(../../images/icon-at01.png);
+	background-size: cover;
 }
 .trade-content .item02 {
 	background-image: url(../../images/icon-at02.png);
+	background-size: cover;
 }
 .trade-content .item03 {
 	background-image: url(../../images/icon-at03.png);
+	background-size: cover;
 }
 .trade-content .item04 {
 	background-image: url(../../images/icon-at04.png);
+	background-size: cover;
 }
 .trade-content .item05 {
 	background-image: url(../../images/icon-at05.png);
+	background-size: cover;
 }
 .trade-content .trade-box-item:hover .item-text {
 	display: block;
