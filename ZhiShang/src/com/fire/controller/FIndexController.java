@@ -24,7 +24,7 @@ public class FIndexController extends Controller {
         //加载证书数据
         setAttr("books",Db.find("select * from book_tb where if_show=1 order by get_time desc limit 4"));
         //加载案例数据
-        setAttr("cases",Db.find("select * from case_tb where if_show=1 order by ctime desc limit 4"));
+        setAttr("cases",Db.find("select * from case_tb where if_show=1 order by ctime desc limit 8"));
         //加载新闻数据
         setAttr("news",Db.find("select * from news_tb where if_show=1 and type=0 order by time desc limit 4"));
         //加载轮播图
@@ -34,7 +34,7 @@ public class FIndexController extends Controller {
         setAttr("time",System.currentTimeMillis());
         renderTemplate("index.html");
     }
-    
+
     public List<Integer> getIndexPics(String path) {
     	String rootPath = PathKit.getWebRootPath()+path;
 		File dir = new File(rootPath);
