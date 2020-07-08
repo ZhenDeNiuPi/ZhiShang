@@ -2,7 +2,9 @@ package com.fire.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -113,7 +115,18 @@ public class CaseController  extends Controller{
 		if(!dir.exists()) dir.mkdir();
 		File[] files = new File(rootPath).listFiles();
 		if(files != null && files.length > 0) {
-			for(File file : files) {
+			List<File> fileList = Arrays.asList(files);
+			Collections.sort(fileList, new Comparator<File>() {
+	            @Override
+	            public int compare(File o1, File o2) {
+	                if (o1.isDirectory() && o2.isFile())
+	                    return -1;
+	                if (o1.isFile() && o2.isDirectory())
+	                    return 1;
+	                return o1.getName().compareTo(o2.getName());
+	            }
+	        });
+			for(File file : fileList) {
 				String fileName = file.getName();
 				if(fileName.startsWith(id+"_")) {
 					renderFile(file);
