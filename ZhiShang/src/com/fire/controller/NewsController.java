@@ -108,7 +108,6 @@ public class NewsController  extends Controller{
 		String id = getPara("id");
 		renderJson(Db.findFirst("select content from news_tb where id="+id));
 	}
-	
 	public void uploadContentPic(){
 		UploadFile file = getFile();
 		String filename = file.getFileName();

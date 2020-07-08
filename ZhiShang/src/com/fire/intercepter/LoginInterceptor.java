@@ -23,7 +23,7 @@ public class LoginInterceptor implements Interceptor{
 				inv.invoke();
 			}else if(actKey.equals("/manage/dologin")||
 					actKey.equals("/manage")||
-//					actKey.equals("/welcome")||
+					actKey.equals("/news/getContentPic")||
 					actKey.equals("/user/sendValidate")
 					) 
 				inv.invoke();
