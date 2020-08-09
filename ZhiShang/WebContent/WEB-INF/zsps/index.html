@@ -73,6 +73,7 @@
 <input type="hidden" id="lon" value="#(info.get("lon"))">
 <input type="hidden" id="lat" value="#(info.get("lat"))">
 <input type="hidden" id="phone" value="#(info.get("phone"))">
+<input type="hidden" id="mobile" value="#(info.get("mobile"))">
 <input type="hidden" id="hot" value="#(info.get("hot"))">
 <header class="header">
     <div class="clearfix">
@@ -735,7 +736,7 @@
   
   $(function () {
 	  ShowMap($("#lon").val()+","+$("#lat").val(), '至上净化', 
-			  $("#address").val(), $("#phone").val(),$("#hot").val(), '20');
+			  $("#address").val(), $("#phone").val()+","+$("#mobile").val(),$("#hot").val(), '20');
     /* ShowMap('120.37997,36.090118', '至上净化', '青岛市市南区金坛支路8号1703户', '15053225707', '20'); */
   })
   function getInfo(id) {

@@ -174,33 +174,10 @@
         <p class="aboutTitle">发展历程</p>
         <span>为各大重型工业工厂所制造的环境问题提供相关处理净化设备</span>
     </div>
-    <div class="index-main-md-body" style="height: 1000px">
+    <div class="index-main-md-body" style="height: 100% !important">
         <div class="col-md-12">
             <div class="VivaTimeline">
-                <dl style="height: 1000px">
-                    <!--<dt>May 2016</dt>-->
-                    <!--<dd class="pos-left clearfix">
-                        <div class="circ"></div>
-                        <div class="time">Feb 03</div>
-                        <div class="events">
-                            <div class="events-header">Event Heading</div>
-                            <div class="events-body">
-                                <div class="row">
-                                    <div class="col-md-6 pull-left">
-                                        <img class="events-object img-responsive img-rounded" src="#(context)/img/book/1.jpeg" />
-                                    </div>
-                                    <div class="events-desc">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="events-footer">
-                                123
-                            </div>
-                        </div>
-                    </dd>-->
-                    <!--<dt>Feb 2016</dt>-->
+                <dl style="height: 100% !important">
                     #for(his : history)
                     <dd class="pos-right clearfix">
                         <!--<div class="circ"></div>-->
@@ -208,7 +185,7 @@
                         <div class="events">
                             <div class="events-header">#(his.get("title"))</div>
                             <div class="events-body">
-                                <div class="row">
+                                <div class="row" style="height:100% !important">
                                     <div class="col-md-12 pull-left">
                                         <img class="events-object img-responsive img-rounded" src='#(context)/history/getPic?id=#(his.get("id"))&t=#(time)&zs=zs' />
                                     </div>
