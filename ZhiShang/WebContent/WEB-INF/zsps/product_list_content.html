@@ -35,6 +35,28 @@
 <script type="text/javascript" src="#(context)/lib/zs/amazeui/amazeui.min.js"></script>
 <script type="text/javascript" src="#(context)/lib/zs/raty/jquery.raty.js"></script>
 <script type="text/javascript" src="#(context)/js/zs/main.min.js?t=1"></script>
+<style>
+ .enlargeImg_wrapper {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: rgba(52, 52, 52, 0.8);
+  background-size: 50%;
+}
+img:hover {
+    cursor: zoom-in;
+}
+.enlargeImg_wrapper:hover {
+    cursor: zoom-out;
+}
+</style>
 </head>
 <body>
 <header class="header">
@@ -115,13 +137,27 @@
         <span></span>
     </div>
     <div class="index-main-md-body">
-    #if(0<picsize)
+    #for(z=0;z<rowSize;z++)
+        <ul>
+            #for(i=z*3;i<picsize;i++)
+            <li>
+                <div class="enlargeImg" style="background: url(../case/getPic?id=#(case.get('id'))_#(pics.get(i))&t=#(time)&zs=zs) center center/contain no-repeat" 
+                resrc="../case/getPic?id=#(case.get('id'))_#(pics.get(i))&t=#(time)&zs=zs"></div>
+                
+                <!-- <p>JERRY</p>
+                <p>高级工程师</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span> -->
+            </li>
+            #end
+        </ul>
+    #end
+    
+    <!-- #if(0<picsize)
         <ul>
             #for(i=0;i<picsize;i++)
             <li>
                 <div style="background: url(../case/getPic?id=#(case.get('id'))_#(pics.get(i))&t=#(time)&zs=zs) center center/contain no-repeat"></div>
-                <!-- <p>JERRY</p>
-                <p>高级工程师</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span> -->
+                <p>JERRY</p>
+                <p>高级工程师</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span>
             </li>
             #end
         </ul>
@@ -131,8 +167,8 @@
             #for(i=3;i<picsize;i++)
             <li>
                 <div style="background: url(../case/getPic?id=#(case.get('id'))_#(pics.get(i))&t=#(time)&zs=zs) center center/contain no-repeat"></div>
-                <!-- <p>JERRY</p>
-                <p>高级工程师</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span> -->
+                <p>JERRY</p>
+                <p>高级工程师</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span>
             </li>
             #end
         </ul>
@@ -142,12 +178,12 @@
             #for(i=6;i<picsize;i++)
             <li>
                 <div style="background: url(../case/getPic?id=#(case.get('id'))_#(pics.get(i))&t=#(time)&zs=zs) center center/contain no-repeat"></div>
-                <!-- <p>JERRY</p>
-                <p>高级工程师</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span> -->
+                <p>JERRY</p>
+                <p>高级工程师</p><span>保护环境是我们每个人的责任，环保是保持和发展生态平衡，扩大有用自然资源的再生产，协调人类与环境的关系。</span>
             </li>
             #end
         </ul>
-    #end
+    #end -->
         <span></span>
     </div>
     <!-- <div class="index-main-title">
@@ -193,4 +229,22 @@
 <script src="#(context)/js/zs/index_slick.js"></script>
 <script src="#(context)/js/zs/swiper.min.js"></script>
 <script src="#(context)/js/zs/index.js"></script>
+<script type="text/javascript">
+	$(function() {
+		enlargeImg();
+	})
+	//查看大图
+	function enlargeImg() {
+	  $(".enlargeImg").click(function() {
+	    $(this).after("<div onclick='closeImg()' class='enlargeImg_wrapper'></div>");
+	    var imgSrc = $(this).attr('resrc');
+	    $(".enlargeImg_wrapper").css("background-image", "url(" + imgSrc + ")");
+	    $('.enlargeImg_wrapper').fadeIn(200);
+	  })
+	}
+	//关闭并移除图层
+	function closeImg() {
+	  $('.enlargeImg_wrapper').fadeOut(200).remove();
+	}
+    </script>
 </html>

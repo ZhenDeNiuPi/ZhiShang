@@ -43,7 +43,12 @@ public class FCaseController extends Controller {
     			+ "where id="+id));
         List<Integer> pics = getPics(id);
         setAttr("pics",pics);
+        int size = pics.size();
+        int rowSize = size/3;
+        int a = size%3;
+        if(a>0) rowSize += 1;
         setAttr("picsize",pics.size());
+        setAttr("rowSize",rowSize);
         //加载轮播图
         setAttr("rcs",getIndexPics());
         setAttr("time",System.currentTimeMillis());
